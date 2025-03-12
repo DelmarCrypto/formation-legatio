@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Quest</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Crypto Quest : Deviens un Maître des Cryptos !</h1>
+        <div id="welcome">
+            <p>Bienvenue à Cryptopia, apprenti ! Prêt pour une aventure épique ?</p>
+            <button onclick="startQuest()">Démarrer l'Aventure</button>
+        </div>
+
+        <!-- Semaine 1 -->
+        <div id="week1" class="week" style="display: none;">
+            <h2>Semaine 1 : L’Initiation au Royaume des Cryptos</h2>
+            <div class="mission" id="mission1">
+                <h3>Mission 1 : Décrypter les Cryptomonnaies</h3>
+                <p>Le Sage Satoshi te raconte : "Bitcoin est né en 2009. Associe chaque crypto à son pouvoir !"</p>
+                <div class="activity">
+                    <p>Quelle crypto est "décentralisée" ?</p>
+                    <button onclick="checkAnswer('Bitcoin', 'mission1')">Bitcoin</button>
+                    <button onclick="checkAnswer('Ripple', 'mission1')">Ripple</button>
+                    <button onclick="checkAnswer('Ethereum', 'mission1')">Ethereum</button>
+                </div>
+            </div>
+            <div class="mission" id="mission2" style="display: none;">
+                <h3>Mission 2 : Forger ton Bouclier</h3>
+                <p>Crée un mot de passe fort pour impressionner le Forgeron 2FA !</p>
+                <input type="text" id="password" placeholder="Ton mot de passe">
+                <button onclick="checkPassword()">Vérifier</button>
+            </div>
+            <div class="mission" id="boss1" style="display: none;">
+                <h3>Boss : Le Dragon de la Sécurité</h3>
+                <p>Réponds : Quel outil ajoute une sécurité ?</p>
+                <button onclick="checkAnswer('2FA', 'boss1')">2FA</button>
+                <button onclick="checkAnswer('Mot de passe faible', 'boss1')">Mot de passe faible</button>
+            </div>
+            <div id="reward1" style="display: none;">
+                <p>Récompense : <strong>Crypto-Médaille du Courage</strong></p>
+                <button onclick="nextWeek()">Semaine Suivante</button>
+            </div>
+        </div>
+
+        <!-- Placeholder pour les autres semaines -->
+        <div id="week2" class="week" style="display: none;">
+            <h2>Semaine 2 : La Quête des Trésors</h2>
+            <p>(À compléter avec d'autres missions !)</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
