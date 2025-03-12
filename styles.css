@@ -1,0 +1,59 @@
+body {
+    background: linear-gradient(#2A1B3D, #4B3F72);
+    font-family: 'Roboto', sans-serif;
+    color: #F5F5F5;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    color: #FFD700;
+    font-size: 48px;
+}
+
+h2 {
+    font-family: 'Cinzel', serif;
+    color: #FFD700;
+    font-size: 36px;
+}
+
+h3 {
+    color: #2ECC71;
+}
+
+.mission {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button {
+    background: #FFD700;
+    color: #1A1A1A;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+input {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+}
