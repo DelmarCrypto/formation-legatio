@@ -3,52 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Quest</title>
+    <title>Crypto Quest - Semaines 1 à 4 + Bonus</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="loadProgress()">
     <div class="container">
         <h1>Crypto Quest : Deviens un Maître des Cryptos !</h1>
+        <audio id="backgroundMusic" src="assets/sounds/background.mp3" loop></audio>
+        <audio id="victorySound" src="assets/sounds/victory.mp3"></audio>
+        <audio id="errorSound" src="assets/sounds/error.mp3"></audio>
+
         <div id="welcome">
-            <p>Bienvenue à Cryptopia, apprenti ! Prêt pour une aventure épique ?</p>
+            <p>Bienvenue à Cryptopia, apprenti explorateur ! Ta quête commence ici.</p>
             <button onclick="startQuest()">Démarrer l'Aventure</button>
         </div>
 
         <!-- Semaine 1 -->
         <div id="week1" class="week" style="display: none;">
             <h2>Semaine 1 : L’Initiation au Royaume des Cryptos</h2>
-            <div class="mission" id="mission1">
+            <p>Thème : Découvre les bases et protège-toi des voleurs numériques !</p>
+            <div class="mission" id="mission1-1">
                 <h3>Mission 1 : Décrypter les Cryptomonnaies</h3>
-                <p>Le Sage Satoshi te raconte : "Bitcoin est né en 2009. Associe chaque crypto à son pouvoir !"</p>
+                <p>Le Sage Satoshi te dit : "Les cryptomonnaies sont des trésors numériques. Associe Bitcoin à son pouvoir !"</p>
                 <div class="activity">
-                    <p>Quelle crypto est "décentralisée" ?</p>
-                    <button onclick="checkAnswer('Bitcoin', 'mission1')">Bitcoin</button>
-                    <button onclick="checkAnswer('Ripple', 'mission1')">Ripple</button>
-                    <button onclick="checkAnswer('Ethereum', 'mission1')">Ethereum</button>
+                    <p>Quel est le super-pouvoir de Bitcoin ?</p>
+                    <button onclick="checkAnswer('Décentralisation', 'mission1-1')">Décentralisation</button>
+                    <button onclick="checkAnswer('Frais élevés', 'mission1-1')">Frais élevés</button>
+                    <button onclick="checkAnswer('Centralisation', 'mission1-1')">Centralisation</button>
                 </div>
             </div>
-            <div class="mission" id="mission2" style="display: none;">
-                <h3>Mission 2 : Forger ton Bouclier</h3>
-                <p>Crée un mot de passe fort pour impressionner le Forgeron 2FA !</p>
-                <input type="text" id="password" placeholder="Ton mot de passe">
-                <button onclick="checkPassword()">Vérifier</button>
+            <div class="mission" id="mission1-2" style="display: none;">
+                <h3>Mission 2 : Forger ton Bouclier Numérique</h3>
+                <p>Le Forgeron 2FA te défie : "Crée un mot de passe fort pour protéger tes fonds !"</p>
+                <div class="activity">
+                    <input type="text" id="password1" placeholder="Ton mot de passe épique">
+                    <button onclick="checkPassword('mission1-2')">Forger !</button>
+                </div>
+            </div>
+            <div class="mission" id="mission1-3" style="display: none;">
+                <h3>Mission 3 : Choisir ton Coffre au Trésor</h3>
+                <p>La Guilde des Gardiens te propose 3 coffres. Lequel choisis-tu pour ta quête ?</p>
+                <div class="activity">
+                    <button onclick="checkCoffre('Matériel', 'mission1-3')">Coffre Matériel (sécurisé)</button>
+                    <button onclick="checkCoffre('En ligne', 'mission1-3')">Coffre En Ligne (pratique)</button>
+                    <button onclick="checkCoffre('Hors ligne', 'mission1-3')">Coffre Hors Ligne (équilibré)</button>
+                </div>
+            </div>
+            <div class="mission" id="mission1-4" style="display: none;">
+                <h3>Mission 4 : Déjouer les Pièges des Bandits</h3>
+                <p>Les Bandits du Phishing t’envoient un message : "Clique pour un trésor gratuit !" Vrai ou Faux ?</p>
+                <div class="activity">
+                    <button onclick="checkPhishing('Faux', 'mission1-4')">Faux</button>
+                    <button onclick="checkPhishing('Vrai', 'mission1-4')">Vrai</button>
+                </div>
             </div>
             <div class="mission" id="boss1" style="display: none;">
                 <h3>Boss : Le Dragon de la Sécurité</h3>
-                <p>Réponds : Quel outil ajoute une sécurité ?</p>
-                <button onclick="checkAnswer('2FA', 'boss1')">2FA</button>
-                <button onclick="checkAnswer('Mot de passe faible', 'boss1')">Mot de passe faible</button>
+                <p>Le Dragon rugit : "Quel outil est essentiel pour ta sécurité ?"</p>
+                <div class="activity">
+                    <button onclick="checkBoss('2FA', 'boss1')">2FA</button>
+                    <button onclick="checkBoss('Wi-Fi public', 'boss1')">Wi-Fi public</button>
+                    <button onclick="checkBoss('Mot de passe simple', 'boss1')">Mot de passe simple</button>
+                </div>
             </div>
             <div id="reward1" style="display: none;">
-                <p>Récompense : <strong>Crypto-Médaille du Courage</strong></p>
-                <button onclick="nextWeek()">Semaine Suivante</button>
+                <h3>Récompense Gagnée !</h3>
+                <p>Félicitations, aventurier ! Tu as vaincu le Dragon.</p>
+                <img src="assets/images/medal.png" alt="Crypto-Médaille du Courage" class="reward-img">
+                <p><strong>Crypto-Médaille du Courage</strong></p>
+                <button onclick="nextWeek('week1', 'week2')">Semaine Suivante</button>
             </div>
         </div>
 
-        <!-- Placeholder pour les autres semaines -->
+        <!-- Semaine 2 -->
         <div id="week2" class="week" style="display: none;">
-            <h2>Semaine 2 : La Quête des Trésors</h2>
-            <p>(À compléter avec d'autres missions !)</p>
+            <h2>Semaine 2 : La Quête des Trésors Numériques</h2>
+            <p>Thème : Explore la Forêt des Cryptos pour choisir ta monnaie et ton marché !</p>
+            <div class="mission" id="mission2-1">
+                <h3>Mission 1 : Identifier les Trésors</h3>
+                <p>L’Alchimiste te demande : "Quelle crypto est pour les contrats intelligents ?"</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Ethereum', 'mission2-1')">Ethereum</button>
+                    <button onclick="checkAnswer('Bitcoin', 'mission2-1')">Bitcoin</button>
+                    <button onclick="checkAnswer('Ripple', 'mission2-1')">Ripple</button>
+                </div>
+            </div>
+            <div class="mission" id="mission2-2" style="display: none;">
+                <h3>Mission 2 : Découvrir ton Style d’Aventurier</h3>
+                <p>L’Oracle te questionne : "Tu préfères l’aventure rapide ou un trésor durable ?"</p>
+                <div class="activity">
+                    <button onclick="checkStyle('Rapide', 'mission2-2')">Rapide</button>
+                    <button onclick="checkStyle('Durable', 'mission2-2')">Durable</button>
+                </div>
+            </div>
+            <div class="mission" id="mission2-3" style="display: none;">
+                <h3>Mission 3 : Explorer les Marchés de Cryptopia</h3>
+                <p>Les Marchands vantent leurs étals. Lequel choisis-tu ?</p>
+                <div class="activity">
+                    <button onclick="checkMarket('Sécurité', 'mission2-3')">Sécurité</button>
+                    <button onclick="checkMarket('Frais bas', 'mission2-3')">Frais bas</button>
+                </div>
+            </div>
+            <div class="mission" id="mission2-4" style="display: none;">
+                <h3>Mission 4 : Décoder les Taxes et Pièges</h3>
+                <p>Le Troll des Frais : "Calcule les frais sur 100 € à 0,5 %."</p>
+                <div class="activity">
+                    <input type="number" id="fees" placeholder="Ta réponse">
+                    <button onclick="checkFees('mission2-4')">Vérifier</button>
+                </div>
+            </div>
+            <div class="mission" id="boss2" style="display: none;">
+                <h3>Boss : Le Géant du Choix</h3>
+                <p>"Pourquoi choisis-tu Bitcoin ? Réponds en 3 mots."</p>
+                <div class="activity">
+                    <input type="text" id="reason" placeholder="Ta réponse">
+                    <button onclick="checkReason('boss2')">Soumettre</button>
+                </div>
+            </div>
+            <div id="reward2" style="display: none;">
+                <h3>Récompense : Clé d’Or du Marché</h3>
+                <img src="assets/images/key.png" alt="Clé d’Or du Marché" class="reward-img">
+                <button onclick="nextWeek('week2', 'week3')">Semaine Suivante</button>
+            </div>
+        </div>
+
+        <!-- Semaine 3 -->
+        <div id="week3" class="week" style="display: none;">
+            <h2>Semaine 3 : La Forteresse des Portefeuilles</h2>
+            <p>Thème : Construis ta forteresse pour protéger ton butin !</p>
+            <div class="mission" id="mission3-1">
+                <h3>Mission 1 : Comprendre les Tours de Défense</h3>
+                <p>L’Architecte explique : "Une clé publique est comme…"</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Une adresse', 'mission3-1')">Une adresse</button>
+                    <button onclick="checkAnswer('Un mot de passe', 'mission3-1')">Un mot de passe</button>
+                </div>
+            </div>
+            <div class="mission" id="mission3-2" style="display: none;">
+                <h3>Mission 2 : Explorer les Types de Tours</h3>
+                <p>Quel type de portefeuille est le plus sécurisé ?</p>
+                <div class="activity">
+                    <button onclick="checkWalletType('Matériel', 'mission3-2')">Matériel</button>
+                    <button onclick="checkWalletType('En ligne', 'mission3-2')">En ligne</button>
+                    <button onclick="checkWalletType('Papier', 'mission3-2')">Papier</button>
+                </div>
+            </div>
+            <div class="mission" id="mission3-3" style="display: none;">
+                <h3>Mission 3 : Ériger une Tour en Ligne</h3>
+                <p>Le Mage du Cloud te guide : "Active 2FA pour ta tour !"</p>
+                <div class="activity">
+                    <button onclick="activate2FA('Oui', 'mission3-3')">Oui</button>
+                    <button onclick="activate2FA('Non', 'mission3-3')">Non</button>
+                </div>
+            </div>
+            <div class="mission" id="mission3-4" style="display: none;">
+                <h3>Mission 4 : Renforcer une Tour Hors Ligne</h3>
+                <p>Le Forgeron Local : "Où sauvegardes-tu tes clés ?"</p>
+                <div class="activity">
+                    <button onclick="checkBackup('USB', 'mission3-4')">USB</button>
+                    <button onclick="checkBackup('Cloud', 'mission3-4')">Cloud</button>
+                </div>
+            </div>
+            <div class="mission" id="mission3-5" style="display: none;">
+                <h3>Mission 5 : Activer une Tour Matérielle</h3>
+                <p>Le Gardien de Fer : "Connecte ta relique et transfère 10 BTC fictifs."</p>
+                <div class="activity">
+                    <button onclick="transferBTC('mission3-5')">Transférer</button>
+                </div>
+            </div>
+            <div class="mission" id="boss3" style="display: none;">
+                <h3>Boss : Le Titan des Clés</h3>
+                <p>"Où ne dois-tu JAMAIS stocker ta clé privée ?"</p>
+                <div class="activity">
+                    <button onclick="checkBoss('Email', 'boss3')">Email</button>
+                    <button onclick="checkBoss('Portefeuille matériel', 'boss3')">Portefeuille matériel</button>
+                </div>
+            </div>
+            <div id="reward3" style="display: none;">
+                <h3>Récompense : Cristal de Protection</h3>
+                <img src="assets/images/crystal.png" alt="Cristal de Protection" class="reward-img">
+                <button onclick="nextWeek('week3', 'week4')">Semaine Suivante</button>
+            </div>
+        </div>
+
+        <!-- Semaine 4 -->
+        <div id="week4" class="week" style="display: none;">
+            <h2>Semaine 4 : La Grande Aventure d’Achat</h2>
+            <p>Thème : Pars en expédition pour acheter des cryptos et affronter les tempêtes du marché !</p>
+            <div class="mission" id="mission4-1">
+                <h3>Mission 1 : Découvrir les Chemins d’Achat</h3>
+                <p>Le Cartographe te montre : "Quelle méthode préfères-tu pour acheter des cryptos ?"</p>
+                <div class="activity">
+                    <button onclick="checkPurchaseMethod('Plateformes', 'mission4-1')">Plateformes</button>
+                    <button onclick="checkPurchaseMethod('P2P', 'mission4-1')">P2P</button>
+                    <button onclick="checkPurchaseMethod('ATMs', 'mission4-1')">ATMs</button>
+                </div>
+            </div>
+            <div class="mission" id="mission4-2" style="display: none;">
+                <h3>Mission 2 : Acheter sur le Marché</h3>
+                <p>Le Marchand te défie : "Achète 0,01 BTC fictif (prix : 500 €). Combien dépôts-tu ?"</p>
+                <div class="activity">
+                    <input type="number" id="deposit" placeholder="Ton dépôt en €">
+                    <button onclick="checkDeposit('mission4-2')">Acheter</button>
+                </div>
+            </div>
+            <div class="mission" id="mission4-3" style="display: none;">
+                <h3>Mission 3 : Affronter les Tempêtes</h3>
+                <p>La Mer des Volatilités te secoue ! Lance le dé pour voir la chute.</p>
+                <div class="activity">
+                    <button onclick="rollDice('mission4-3')">Lancer le Dé</button>
+                    <p id="diceResult"></p>
+                </div>
+            </div>
+            <div class="mission" id="mission4-4" style="display: none;">
+                <h3>Mission 4 : Naviguer avec Sagesse</h3>
+                <p>Le Capitaine Diversification : "Choisis une crypto à ajouter à ton portefeuille."</p>
+                <div class="activity">
+                    <button onclick="diversify('Bitcoin', 'mission4-4')">Bitcoin</button>
+                    <button onclick="diversify('Ethereum', 'mission4-4')">Ethereum</button>
+                    <button onclick="diversify('Ripple', 'mission4-4')">Ripple</button>
+                </div>
+            </div>
+            <div class="mission" id="boss4" style="display: none;">
+                <h3>Boss : Le Kraken des Profits</h3>
+                <p>"Quelle est ta stratégie en 5 mots ?"</p>
+                <div class="activity">
+                    <input type="text" id="strategy" placeholder="Ta stratégie">
+                    <button onclick="checkStrategy('boss4')">Soumettre</button>
+                </div>
+            </div>
+            <div id="reward4" style="display: none;">
+                <h3>Récompense : Couronne de Maître Crypto</h3>
+                <img src="assets/images/crown.png" alt="Couronne de Maître Crypto" class="reward-img">
+                <p>Félicitations ! Tu es un Maître de Cryptopia.</p>
+                <button onclick="nextWeek('week4', 'bonus')">Quêtes Bonus</button>
+            </div>
+        </div>
+
+        <!-- Quêtes Bonus -->
+        <div id="bonus" class="week" style="display: none;">
+            <h2>Bonus : Les Secrets du Roi Crypto</h2>
+            <p>Thème : Des quêtes secrètes pour les plus curieux !</p>
+            <div class="mission" id="bonus1">
+                <h3>Quête Bonus 1 : Le Trésor Fiscal</h3>
+                <p>Le Roi te demande : "Tu gagnes 500 € fictifs, taxe à 20 %. Combien payes-tu ?"</p>
+                <div class="activity">
+                    <input type="number" id="tax" placeholder="Ton calcul en €">
+                    <button onclick="checkTax('bonus1')">Payer</button>
+                </div>
+            </div>
+            <div class="mission" id="bonus2" style="display: none;">
+                <h3>Quête Bonus 2 : Long Terme ou Éclair Rapide ?</h3>
+                <p>L’Oracle te propose : "Investir ou trader ? Choisis ton destin."</p>
+                <div class="activity">
+                    <button onclick="checkDestiny('Investir', 'bonus2')">Investir</button>
+                    <button onclick="checkDestiny('Trader', 'bonus2')">Trader</button>
+                </div>
+            </div>
+            <div id="rewardBonus" style="display: none;">
+                <h3>Récompenses Bonus</h3>
+                <img src="assets/images/tax_crown.png" alt="Couronne Fiscale" class="reward-img">
+                <p><strong>Couronne Fiscale</strong></p>
+                <img src="assets/images/star.png" alt="Étoile de Vision" class="reward-img">
+                <p><strong>Étoile de Vision</strong></p>
+                <button onclick="endQuest()">Terminer l’Aventure</button>
+            </div>
+        </div>
+
+        <!-- Fin -->
+        <div id="end" style="display: none;">
+            <h2>Fin de l’Aventure</h2>
+            <p>Bravo, Légende de Cryptopia ! Tu as tout conquis.</p>
         </div>
     </div>
     <script src="script.js"></script>
