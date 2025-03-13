@@ -3,1603 +3,382 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Quest : Devenez Expert en Crypto en 4 Semaines</title>
+    <meta name="description" content="Une aventure interactive pour maîtriser les cryptomonnaies !">
+    <title>Crypto Quest - Formation Complète (Semaines 1 à 4 + Bonus)</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Crypto Quest : Devenez Expert en Crypto en 4 Semaines</h1>
-    </header>
     <div class="container">
-        <!-- Section d'introduction -->
-        <section id="welcome">
-            <h2>Bienvenue, Aventurier !</h2>
-            <p>Prêt à devenir un expert des cryptomonnaies en 4 semaines ? Lance-toi dans cette quête épique !</p>
-            <button onclick="startQuest()">Commencer la Quête</button>
+        <!-- En-tête avec progression -->
+        <header class="header">
+            <h1 class="main-title">Crypto Quest : Deviens un Maître des Cryptos !</h1>
+            <div class="progress-bar">
+                <span id="progress-text">Progression : 0%</span>
+                <progress id="progress" value="0" max="100"></progress>
+            </div>
+            <div class="inventory">
+                <h3>Inventaire</h3>
+                <ul id="inventory-list" aria-label="Récompenses obtenues"></ul>
+            </div>
+        </header>
+
+        <!-- Ajout des 3 sons MP3 -->
+        <audio id="adventureMusic" src="ADVENTURE.mp3" loop preload="auto"></audio>
+        <audio id="winSound" src="WIN.mp3" preload="auto"></audio>
+        <audio id="wrongSound" src="WRONG.mp3" preload="auto"></audio>
+
+        <!-- Boutons de test temporaires -->
+        <div style="text-align: center; margin: 10px 0;">
+            <button onclick="document.getElementById('adventureMusic').play()">Tester Musique</button>
+            <button onclick="document.getElementById('winSound').play()">Tester Victoire</button>
+            <button onclick="document.getElementById('wrongSound').play()">Tester Erreur</button>
+        </div>
+
+        <!-- Écran de bienvenue -->
+        <section id="welcome" class="intro-section" aria-label="Introduction">
+            <div class="intro-text">
+                <p>Bienvenue à Cryptopia, apprenti explorateur !</p>
+                <p>Dans ce royaume mystique, tu apprendras à maîtriser les cryptomonnaies, à sécuriser tes trésors et à défier les forces obscures du marché.</p>
+                <p>Es-tu prêt à entreprendre cette quête légendaire ?</p>
+            </div>
+            <button class="btn-start" onclick="startQuest()" aria-label="Démarrer la quête">Démarrer l'Aventure</button>
         </section>
 
-        <!-- Semaine 1 : Initiation au Monde des Cryptos -->
+        <!-- Semaine 1 -->
         <section id="week1" class="week" style="display: none;" aria-label="Semaine 1">
-            <h2 class="week-title">Semaine 1 : Initiation au Monde des Cryptos</h2>
+            <h2 class="week-title">Semaine 1 : L’Initiation au Royaume des Cryptos</h2>
             <p class="week-theme">Thème : Découvre les bases et protège-toi des voleurs numériques !</p>
             <div class="week-description">
-                <p>Le Sage Satoshi t’accueille dans son temple. Ta quête commence par les fondamentaux des cryptomonnaies.</p>
+                <p>Le Sage Satoshi t’accueille dans son temple. Ta première étape est d’apprendre les fondamentaux.</p>
             </div>
-            <!-- Mission 1 -->
+
             <article class="mission" id="mission1-1">
-                <h3>Mission 1 : Découvrir Bitcoin</h3>
-                <p>Le Sage te demande : "Quel est le super-pouvoir de Bitcoin ?"</p>
+                <h3>Mission 1 : Décrypter les Cryptomonnaies</h3>
+                <p>Le Sage Satoshi te dit : "Les cryptomonnaies sont des trésors numériques. Associe Bitcoin à son pouvoir !"</p>
                 <div class="activity" role="region" aria-label="Question sur Bitcoin">
-                    <button onclick="checkAnswerWeek1('Décentralisation', 'mission1-1')">Décentralisation</button>
-                    <button onclick="checkAnswerWeek1('Frais élevés', 'mission1-1')">Frais élevés</button>
-                    <button onclick="checkAnswerWeek1('Centralisation', 'mission1-1')">Centralisation</button>
-                    <p class="hint">Indice : Sans banque centrale.</p>
+                    <p>Quel est le super-pouvoir de Bitcoin ?</p>
+                    <button onclick="checkAnswer('Décentralisation', 'mission1-1')">Décentralisation</button>
+                    <button onclick="checkAnswer('Frais élevés', 'mission1-1')">Frais élevés</button>
+                    <button onclick="checkAnswer('Centralisation', 'mission1-1')">Centralisation</button>
+                    <p class="hint">Indice : Pense à ce qui rend Bitcoin unique face aux banques.</p>
                 </div>
             </article>
-            <!-- Mission 2 -->
+
             <article class="mission" id="mission1-2" style="display: none;">
-                <h3>Mission 2 : Forger un Mot de Passe</h3>
-                <p>Le Forgeron te défie : "Crée un mot de passe fort !"</p>
+                <h3>Mission 2 : Forger ton Bouclier Numérique</h3>
+                <p>Le Forgeron 2FA te défie : "Crée un mot de passe fort pour protéger tes fonds !"</p>
                 <div class="activity" role="region" aria-label="Création de mot de passe">
-                    <input type="text" id="password1-1" placeholder="Ton mot de passe" aria-required="true">
-                    <button onclick="checkPasswordWeek1('mission1-2')">Forger !</button>
-                    <p class="hint">Indice : 12 caractères, chiffres, symboles.</p>
+                    <input type="text" id="password1" placeholder="Ton mot de passe épique" aria-required="true">
+                    <button onclick="checkPassword('mission1-2')">Forger !</button>
+                    <p class="hint">Indice : Utilise au moins 12 caractères, avec chiffres et symboles.</p>
                 </div>
             </article>
-            <!-- Mission 3 -->
+
             <article class="mission" id="mission1-3" style="display: none;">
-                <h3>Mission 3 : Choisir un Coffre</h3>
-                <p>Quel coffre est le plus sécurisé ?</p>
+                <h3>Mission 3 : Choisir ton Coffre au Trésor</h3>
+                <p>La Guilde des Gardiens te propose 3 coffres. Lequel choisis-tu pour ta quête ?</p>
                 <div class="activity" role="region" aria-label="Choix du coffre">
-                    <button onclick="checkCoffreWeek1('Matériel', 'mission1-3')">Matériel</button>
-                    <button onclick="checkCoffreWeek1('En ligne', 'mission1-3')">En ligne</button>
-                    <button onclick="checkCoffreWeek1('Hors ligne', 'mission1-3')">Hors ligne</button>
-                    <p class="hint">Indice : Hors ligne est mieux.</p>
+                    <button onclick="checkCoffre('Matériel', 'mission1-3')">Coffre Matériel (sécurisé)</button>
+                    <button onclick="checkCoffre('En ligne', 'mission1-3')">Coffre En Ligne (pratique)</button>
+                    <button onclick="checkCoffre('Hors ligne', 'mission1-3')">Coffre Hors Ligne (équilibré)</button>
+                    <p class="hint">Indice : La sécurité est clé dans ce monde dangereux !</p>
                 </div>
             </article>
-            <!-- Mission 4 -->
+
             <article class="mission" id="mission1-4" style="display: none;">
-                <h3>Mission 4 : Détecter un Phishing</h3>
-                <p>"Double ton argent !" Vrai ou faux ?</p>
+                <h3>Mission 4 : Déjouer les Pièges des Bandits</h3>
+                <p>Les Bandits du Phishing t’envoient un message : "Clique pour un trésor gratuit !" Vrai ou Faux ?</p>
                 <div class="activity" role="region" aria-label="Détection de phishing">
-                    <button onclick="checkPhishingWeek1('Faux', 'mission1-4')">Faux</button>
-                    <button onclick="checkPhishingWeek1('Vrai', 'mission1-4')">Vrai</button>
-                    <p class="hint">Indice : Méfie-toi.</p>
+                    <button onclick="checkPhishing('Faux', 'mission1-4')">Faux</button>
+                    <button onclick="checkPhishing('Vrai', 'mission1-4')">Vrai</button>
+                    <p class="hint">Indice : Méfie-toi des offres trop belles pour être vraies.</p>
                 </div>
             </article>
-            <!-- Mission 5 -->
-            <article class="mission" id="mission1-5" style="display: none;">
-                <h3>Mission 5 : Sécuriser la Blockchain</h3>
-                <p>Qu’est-ce qui sécurise la blockchain ?</p>
-                <div class="activity" role="region" aria-label="Sécurité blockchain">
-                    <button onclick="checkAnswerWeek1('Cryptographie', 'mission1-5')">Cryptographie</button>
-                    <button onclick="checkAnswerWeek1('Centralisation', 'mission1-5')">Centralisation</button>
-                    <p class="hint">Indice : Chiffrement.</p>
-                </div>
-            </article>
-            <!-- Mission 6 -->
-            <article class="mission" id="mission1-6" style="display: none;">
-                <h3>Mission 6 : Identifier une Arnaque</h3>
-                <p>Un étranger propose : "Double ton Bitcoin en 24h !" Que fais-tu ?</p>
-                <div class="activity" role="region" aria-label="Détection d'arnaque">
-                    <button onclick="checkAnswerWeek1('Ignorer', 'mission1-6')">Ignorer</button>
-                    <button onclick="checkAnswerWeek1('Participer', 'mission1-6')">Participer</button>
-                    <p class="hint">Indice : Trop beau pour être vrai.</p>
-                </div>
-            </article>
-            <!-- Mission 7 -->
-            <article class="mission" id="mission1-7" style="display: none;">
-                <h3>Mission 7 : Définir une Crypto</h3>
-                <p>Que signifie "crypto" dans cryptomonnaie ?</p>
-                <div class="activity" role="region" aria-label="Définition">
-                    <button onclick="checkAnswerWeek1('Cryptographie', 'mission1-7')">Cryptographie</button>
-                    <button onclick="checkAnswerWeek1('Cryptage', 'mission1-7')">Cryptage</button>
-                    <button onclick="checkAnswerWeek1('Cryptozoologie', 'mission1-7')">Cryptozoologie</button>
-                    <p class="hint">Indice : Relie à la sécurité.</p>
-                </div>
-            </article>
-            <!-- Mission 8 -->
-            <article class="mission" id="mission1-8" style="display: none;">
-                <h3>Mission 8 : Protéger ton Compte</h3>
-                <p>Quel est un bon moyen d’ajouter une couche de sécurité ?</p>
-                <div class="activity" role="region" aria-label="Sécurité">
-                    <button onclick="checkAnswerWeek1('2FA', 'mission1-8')">2FA</button>
-                    <button onclick="checkAnswerWeek1('Mot de passe court', 'mission1-8')">Mot de passe court</button>
-                    <p class="hint">Indice : Double vérification.</p>
-                </div>
-            </article>
-            <!-- Mission 9 -->
-            <article class="mission" id="mission1-9" style="display: none;">
-                <h3>Mission 9 : Origine de Bitcoin</h3>
-                <p>Qui a créé Bitcoin ?</p>
-                <div class="activity" role="region" aria-label="Créateur de Bitcoin">
-                    <button onclick="checkAnswerWeek1('Satoshi Nakamoto', 'mission1-9')">Satoshi Nakamoto</button>
-                    <button onclick="checkAnswerWeek1('Elon Musk', 'mission1-9')">Elon Musk</button>
-                    <button onclick="checkAnswerWeek1('Vitalik Buterin', 'mission1-9')">Vitalik Buterin</button>
-                    <p class="hint">Indice : Un pseudonyme mystérieux.</p>
-                </div>
-            </article>
-            <!-- Mission 10 -->
-            <article class="mission" id="mission1-10" style="display: none;">
-                <h3>Mission 10 : Première Cryptomonnaie</h3>
-                <p>Quelle est la première cryptomonnaie ?</p>
-                <div class="activity" role="region" aria-label="Première cryptomonnaie">
-                    <button onclick="checkAnswerWeek1('Bitcoin', 'mission1-10')">Bitcoin</button>
-                    <button onclick="checkAnswerWeek1('Ethereum', 'mission1-10')">Ethereum</button>
-                    <button onclick="checkAnswerWeek1('Ripple', 'mission1-10')">Ripple</button>
-                    <p class="hint">Indice : Elle date de 2009.</p>
-                </div>
-            </article>
-            <!-- Mission 11 -->
-            <article class="mission" id="mission1-11" style="display: none;">
-                <h3>Mission 11 : Piège de Sécurité</h3>
-                <p>Un email te demande ta clé privée. Que fais-tu ?</p>
-                <div class="activity" role="region" aria-label="Détection de phishing">
-                    <button onclick="checkAnswerWeek1('Ignorer', 'mission1-11')">Ignorer</button>
-                    <button onclick="checkAnswerWeek1('Répondre', 'mission1-11')">Répondre</button>
-                    <p class="hint">Indice : Protège tes secrets.</p>
-                </div>
-            </article>
-            <!-- Mission 12 -->
-            <article class="mission" id="mission1-12" style="display: none;">
-                <h3>Mission 12 : Taille du Mot de Passe</h3>
-                <p>Quelle est la taille minimale d’un mot de passe sécurisé ?</p>
-                <div class="activity" role="region" aria-label="Taille du mot de passe">
-                    <button onclick="checkAnswerWeek1('12', 'mission1-12')">12</button>
-                    <button onclick="checkAnswerWeek1('8', 'mission1-12')">8</button>
-                    <button onclick="checkAnswerWeek1('16', 'mission1-12')">16</button>
-                    <p class="hint">Indice : Plus c’est long, mieux c’est.</p>
-                </div>
-            </article>
-            <!-- Mission 13 -->
-            <article class="mission" id="mission1-13" style="display: none;">
-                <h3>Mission 13 : Réseau de Bitcoin</h3>
-                <p>Quel type de réseau utilise Bitcoin ?</p>
-                <div class="activity" role="region" aria-label="Réseau de Bitcoin">
-                    <button onclick="checkAnswerWeek1('Décentralisé', 'mission1-13')">Décentralisé</button>
-                    <button onclick="checkAnswerWeek1('Centralisé', 'mission1-13')">Centralisé</button>
-                    <p class="hint">Indice : Pas de banque centrale.</p>
-                </div>
-            </article>
-            <!-- Mission 14 -->
-            <article class="mission" id="mission1-14" style="display: none;">
-                <h3>Mission 14 : Éviter les Dangers</h3>
-                <p>Où ne dois-tu pas utiliser ton portefeuille ?</p>
-                <div class="activity" role="region" aria-label="Sécurité réseau">
-                    <button onclick="checkAnswerWeek1('Wi-Fi public', 'mission1-14')">Wi-Fi public</button>
-                    <button onclick="checkAnswerWeek1('Réseau sécurisé', 'mission1-14')">Réseau sécurisé</button>
-                    <p class="hint">Indice : Évite les réseaux non protégés.</p>
-                </div>
-            </article>
-            <!-- Mission 15 -->
-            <article class="mission" id="mission1-15" style="display: none;">
-                <h3>Mission 15 : Sauvegarde des Clés</h3>
-                <p>Quelle est une bonne pratique pour tes clés ?</p>
-                <div class="activity" role="region" aria-label="Sauvegarde des clés">
-                    <button onclick="checkAnswerWeek1('Les noter sur papier', 'mission1-15')">Les noter sur papier</button>
-                    <button onclick="checkAnswerWeek1('Les partager', 'mission1-15')">Les partager</button>
-                    <p class="hint">Indice : Garde-les hors ligne.</p>
-                </div>
-            </article>
-            <!-- Mission 16 -->
-            <article class="mission" id="mission1-16" style="display: none;">
-                <h3>Mission 16 : Blockchain Immuable</h3>
-                <p>Pourquoi la blockchain est-elle immuable ?</p>
-                <div class="activity" role="region" aria-label="Immuabilité blockchain">
-                    <button onclick="checkAnswerWeek1('Hachage', 'mission1-16')">Hachage</button>
-                    <button onclick="checkAnswerWeek1('Centralisation', 'mission1-16')">Centralisation</button>
-                    <p class="hint">Indice : Chaque bloc est lié.</p>
-                </div>
-            </article>
-            <!-- Mission 17 -->
-            <article class="mission" id="mission1-17" style="display: none;">
-                <h3>Mission 17 : Année de Bitcoin</h3>
-                <p>En quelle année Bitcoin a-t-il été lancé ?</p>
-                <div class="activity" role="region" aria-label="Année de Bitcoin">
-                    <button onclick="checkAnswerWeek1('2009', 'mission1-17')">2009</button>
-                    <button onclick="checkAnswerWeek1('2015', 'mission1-17')">2015</button>
-                    <p class="hint">Indice : Après la crise de 2008.</p>
-                </div>
-            </article>
-            <!-- Mission 18 -->
-            <article class="mission" id="mission1-18" style="display: none;">
-                <h3>Mission 18 : Types d’Arnaques</h3>
-                <p>Quel type d’arnaque est le plus courant ?</p>
-                <div class="activity" role="region" aria-label="Types d'arnaques">
-                    <button onclick="checkAnswerWeek1('Phishing', 'mission1-18')">Phishing</button>
-                    <button onclick="checkAnswerWeek1('Pyramide', 'mission1-18')">Pyramide</button>
-                    <p class="hint">Indice : Emails frauduleux.</p>
-                </div>
-            </article>
-            <!-- Mission 19 -->
-            <article class="mission" id="mission1-19" style="display: none;">
-                <h3>Mission 19 : Vérification d’Identité</h3>
-                <p>Pourquoi utiliser 2FA ?</p>
-                <div class="activity" role="region" aria-label="Utilité 2FA">
-                    <button onclick="checkAnswerWeek1('Sécurité supplémentaire', 'mission1-19')">Sécurité supplémentaire</button>
-                    <button onclick="checkAnswerWeek1('Plus rapide', 'mission1-19')">Plus rapide</button>
-                    <p class="hint">Indice : Double protection.</p>
-                </div>
-            </article>
-            <!-- Mission 20 -->
-            <article class="mission" id="mission1-20" style="display: none;">
-                <h3>Mission 20 : Limite de Bitcoin</h3>
-                <p>Quelle est la limite totale de Bitcoin ?</p>
-                <div class="activity" role="region" aria-label="Limite Bitcoin">
-                    <button onclick="checkAnswerWeek1('21 millions', 'mission1-20')">21 millions</button>
-                    <button onclick="checkAnswerWeek1('100 millions', 'mission1-20')">100 millions</button>
-                    <p class="hint">Indice : Une quantité fixe.</p>
-                </div>
-            </article>
-            <!-- Mission 21 -->
-            <article class="mission" id="mission1-21" style="display: none;">
-                <h3>Mission 21 : Clé Publique</h3>
-                <p>À quoi sert une clé publique ?</p>
-                <div class="activity" role="region" aria-label="Clé publique">
-                    <button onclick="checkAnswerWeek1('Recevoir des fonds', 'mission1-21')">Recevoir des fonds</button>
-                    <button onclick="checkAnswerWeek1('Retirer des fonds', 'mission1-21')">Retirer des fonds</button>
-                    <p class="hint">Indice : Comme une adresse.</p>
-                </div>
-            </article>
-            <!-- Mission 22 -->
-            <article class="mission" id="mission1-22" style="display: none;">
-                <h3>Mission 22 : Clé Privée</h3>
-                <p>Que protège une clé privée ?</p>
-                <div class="activity" role="region" aria-label="Clé privée">
-                    <button onclick="checkAnswerWeek1('Tes fonds', 'mission1-22')">Tes fonds</button>
-                    <button onclick="checkAnswerWeek1('Ton identité', 'mission1-22')">Ton identité</button>
-                    <p class="hint">Indice : Ton trésor.</p>
-                </div>
-            </article>
-            <!-- Mission 23 -->
-            <article class="mission" id="mission1-23" style="display: none;">
-                <h3>Mission 23 : Danger des Exchanges</h3>
-                <p>Quel est le danger des exchanges ?</p>
-                <div class="activity" role="region" aria-label="Danger des exchanges">
-                    <button onclick="checkAnswerWeek1('Pirates informatiques', 'mission1-23')">Pirates informatiques</button>
-                    <button onclick="checkAnswerWeek1('Frais élevés', 'mission1-23')">Frais élevés</button>
-                    <p class="hint">Indice : Risque de vol.</p>
-                </div>
-            </article>
-            <!-- Mission 24 -->
-            <article class="mission" id="mission1-24" style="display: none;">
-                <h3>Mission 24 : Importance du Hachage</h3>
-                <p>Quel rôle joue le hachage ?</p>
-                <div class="activity" role="region" aria-label="Rôle du hachage">
-                    <button onclick="checkAnswerWeek1('Sécuriser les blocs', 'mission1-24')">Sécuriser les blocs</button>
-                    <button onclick="checkAnswerWeek1('Augmenter la vitesse', 'mission1-24')">Augmenter la vitesse</button>
-                    <p class="hint">Indice : Relie les blocs.</p>
-                </div>
-            </article>
-            <!-- Mission 25 -->
-            <article class="mission" id="mission1-25" style="display: none;">
-                <h3>Mission 25 : Test Final</h3>
-                <p>Quelle est une bonne habitude de sécurité ?</p>
-                <div class="activity" role="region" aria-label="Habitude de sécurité">
-                    <button onclick="checkAnswerWeek1('Sauvegarde hors ligne', 'mission1-25')">Sauvegarde hors ligne</button>
-                    <button onclick="checkAnswerWeek1('Partager tes clés', 'mission1-25')">Partager tes clés</button>
-                    <p class="hint">Indice : Protège tes clés.</p>
-                </div>
-            </article>
-            <!-- Boss -->
+
             <article class="mission boss" id="boss1" style="display: none;">
                 <h3>Boss : Le Dragon de la Sécurité</h3>
-                <p>Quel outil est essentiel ?</p>
+                <p>Le Dragon rugit : "Quel outil est essentiel pour ta sécurité ?"</p>
                 <div class="activity" role="region" aria-label="Combat contre le boss">
-                    <button onclick="checkBossWeek1('2FA', 'boss1')">2FA</button>
-                    <button onclick="checkBossWeek1('Wi-Fi public', 'boss1')">Wi-Fi public</button>
-                    <p class="hint">Indice : Double sécurité.</p>
+                    <button onclick="checkBoss('2FA', 'boss1')">2FA</button>
+                    <button onclick="checkBoss('Wi-Fi public', 'boss1')">Wi-Fi public</button>
+                    <button onclick="checkBoss('Mot de passe simple', 'boss1')">Mot de passe simple</button>
+                    <p class="hint">Indice : Le Dragon craint les défenses doubles.</p>
                 </div>
             </article>
-            <!-- Récompense -->
+
             <div class="reward" id="reward1" style="display: none;" aria-label="Récompense Semaine 1">
                 <h3>Récompense Gagnée !</h3>
-                <p>Tu as maîtrisé les bases !</p>
-                <img src="crypto-medal.png" alt="Crypto-Médaille" class="reward-img">
+                <p>Félicitations, aventurier ! Tu as vaincu le Dragon.</p>
+                <img src="crypto-medal.png" alt="Crypto-Médaille du Courage" class="reward-img">
                 <p><strong>Crypto-Médaille du Courage</strong></p>
                 <button onclick="nextWeek('week1', 'week2')">Semaine Suivante</button>
             </div>
         </section>
 
-        <!-- Semaine 2 : Exploration des Cryptomonnaies -->
+        <!-- Semaine 2 -->
         <section id="week2" class="week" style="display: none;" aria-label="Semaine 2">
-            <h2 class="week-title">Semaine 2 : Exploration des Cryptomonnaies</h2>
-            <p class="week-theme">Thème : Découvre les trésors numériques et les marchés !</p>
+            <h2 class="week-title">Semaine 2 : La Quête des Trésors Numériques</h2>
+            <p class="week-theme">Thème : Explore la Forêt des Cryptos pour choisir ta monnaie et ton marché !</p>
             <div class="week-description">
                 <p>La Forêt des Cryptos s’ouvre devant toi. Choisis bien tes alliés et tes chemins !</p>
             </div>
-            <!-- Mission 1 -->
+
             <article class="mission" id="mission2-1">
-                <h3>Mission 1 : Contrats Intelligents</h3>
-                <p>Quelle crypto est connue pour les contrats intelligents ?</p>
+                <h3>Mission 1 : Identifier les Trésors</h3>
+                <p>L’Alchimiste te demande : "Quelle crypto est pour les contrats intelligents ?"</p>
                 <div class="activity" role="region" aria-label="Question sur les cryptos">
-                    <button onclick="checkAnswerWeek2('Ethereum', 'mission2-1')">Ethereum</button>
-                    <button onclick="checkAnswerWeek2('Bitcoin', 'mission2-1')">Bitcoin</button>
-                    <button onclick="checkAnswerWeek2('Ripple', 'mission2-1')">Ripple</button>
-                    <p class="hint">Indice : Exécute des programmes.</p>
+                    <button onclick="checkAnswer('Ethereum', 'mission2-1')">Ethereum</button>
+                    <button onclick="checkAnswer('Bitcoin', 'mission2-1')">Bitcoin</button>
+                    <button onclick="checkAnswer('Ripple', 'mission2-1')">Ripple</button>
+                    <p class="hint">Indice : Cherche une crypto qui exécute des sorts complexes.</p>
                 </div>
             </article>
-            <!-- Mission 2 -->
+
             <article class="mission" id="mission2-2" style="display: none;">
-                <h3>Mission 2 : Paiements Rapides</h3>
-                <p>Quelle crypto est connue pour les paiements rapides ?</p>
-                <div class="activity" role="region" aria-label="Choix de crypto">
-                    <button onclick="checkAnswerWeek2('Ripple', 'mission2-2')">Ripple</button>
-                    <button onclick="checkAnswerWeek2('Bitcoin', 'mission2-2')">Bitcoin</button>
-                    <p class="hint">Indice : Transactions internationales.</p>
-                </div>
-            </article>
-            <!-- Mission 3 -->
-            <article class="mission" id="mission2-3" style="display: none;">
-                <h3>Mission 3 : Style d’Aventurier</h3>
-                <p>Tu préfères l’aventure rapide ou durable ?</p>
+                <h3>Mission 2 : Découvrir ton Style d’Aventurier</h3>
+                <p>L’Oracle te questionne : "Tu préfères l’aventure rapide ou un trésor durable ?"</p>
                 <div class="activity" role="region" aria-label="Choix de style">
-                    <button onclick="checkAnswerWeek2('Rapide', 'mission2-3')">Rapide</button>
-                    <button onclick="checkAnswerWeek2('Durable', 'mission2-3')">Durable</button>
-                    <p class="hint">Indice : Réfléchis à ton rythme.</p>
+                    <button onclick="checkStyle('Rapide', 'mission2-2')">Rapide</button>
+                    <button onclick="checkStyle('Durable', 'mission2-2')">Durable</button>
+                    <p class="hint">Indice : Réfléchis à ton rythme dans cette quête.</p>
                 </div>
             </article>
-            <!-- Mission 4 -->
-            <article class="mission" id="mission2-4" style="display: none;">
-                <h3>Mission 4 : Marchés de Cryptopia</h3>
-                <p>Quel marché privilégies-tu ?</p>
+
+            <article class="mission" id="mission2-3" style="display: none;">
+                <h3>Mission 3 : Explorer les Marchés de Cryptopia</h3>
+                <p>Les Marchands vantent leurs étals. Lequel choisis-tu ?</p>
                 <div class="activity" role="region" aria-label="Choix du marché">
-                    <button onclick="checkAnswerWeek2('Sécurité', 'mission2-4')">Sécurité</button>
-                    <button onclick="checkAnswerWeek2('Frais bas', 'mission2-4')">Frais bas</button>
-                    <p class="hint">Indice : Priorise la protection.</p>
+                    <button onclick="checkMarket('Sécurité', 'mission2-3')">Sécurité</button>
+                    <button onclick="checkMarket('Frais bas', 'mission2-3')">Frais bas</button>
+                    <p class="hint">Indice : Priorise ce qui protège ton butin.</p>
                 </div>
             </article>
-            <!-- Mission 5 -->
-            <article class="mission" id="mission2-5" style="display: none;">
-                <h3>Mission 5 : Calcul des Frais</h3>
-                <p>Calcule les frais sur 100 € à 0,5 %.</p>
+
+            <article class="mission" id="mission2-4" style="display: none;">
+                <h3>Mission 4 : Décoder les Taxes et Pièges</h3>
+                <p>Le Troll des Frais : "Calcule les frais sur 100 € à 0,5 %."</p>
                 <div class="activity" role="region" aria-label="Calcul des frais">
-                    <input type="number" id="fees2-1" placeholder="Ta réponse" aria-required="true">
-                    <button onclick="checkFeesWeek2('mission2-5')">Vérifier</button>
+                    <input type="number" id="fees" placeholder="Ta réponse" aria-required="true">
+                    <button onclick="checkFees('mission2-4')">Vérifier</button>
                     <p class="hint">Indice : Multiplie 100 par 0,005.</p>
                 </div>
             </article>
-            <!-- Mission 6 -->
-            <article class="mission" id="mission2-6" style="display: none;">
-                <h3>Mission 6 : Rôle d’Ethereum</h3>
-                <p>Quel est le rôle principal d’Ethereum ?</p>
-                <div class="activity" role="region" aria-label="Rôle d'Ethereum">
-                    <button onclick="checkAnswerWeek2('Contrats intelligents', 'mission2-6')">Contrats intelligents</button>
-                    <button onclick="checkAnswerWeek2('Paiements rapides', 'mission2-6')">Paiements rapides</button>
-                    <p class="hint">Indice : Pense aux DApps.</p>
-                </div>
-            </article>
-            <!-- Mission 7 -->
-            <article class="mission" id="mission2-7" style="display: none;">
-                <h3>Mission 7 : Stablecoins</h3>
-                <p>Quel est un exemple de stablecoin ?</p>
-                <div class="activity" role="region" aria-label="Stablecoin">
-                    <button onclick="checkAnswerWeek2('USDT', 'mission2-7')">USDT</button>
-                    <button onclick="checkAnswerWeek2('Bitcoin', 'mission2-7')">Bitcoin</button>
-                    <p class="hint">Indice : Lié à une monnaie fiat.</p>
-                </div>
-            </article>
-            <!-- Mission 8 -->
-            <article class="mission" id="mission2-8" style="display: none;">
-                <h3>Mission 8 : Fonction des Exchanges</h3>
-                <p>Quel est le rôle d’un exchange ?</p>
-                <div class="activity" role="region" aria-label="Rôle de l'exchange">
-                    <button onclick="checkAnswerWeek2('Acheter/vendre', 'mission2-8')">Acheter/vendre</button>
-                    <button onclick="checkAnswerWeek2('Stocker', 'mission2-8')">Stocker</button>
-                    <p class="hint">Indice : Plateforme de trading.</p>
-                </div>
-            </article>
-            <!-- Mission 9 -->
-            <article class="mission" id="mission2-9" style="display: none;">
-                <h3>Mission 9 : Frais de Transaction</h3>
-                <p>Quel réseau a des frais élevés ?</p>
-                <div class="activity" role="region" aria-label="Frais de transaction">
-                    <button onclick="checkAnswerWeek2('Bitcoin', 'mission2-9')">Bitcoin</button>
-                    <button onclick="checkAnswerWeek2('Ripple', 'mission2-9')">Ripple</button>
-                    <p class="hint">Indice : Popularité augmente les coûts.</p>
-                </div>
-            </article>
-            <!-- Mission 10 -->
-            <article class="mission" id="mission2-10" style="display: none;">
-                <h3>Mission 10 : Altcoins</h3>
-                <p>Qu’est-ce qu’un altcoin ?</p>
-                <div class="activity" role="region" aria-label="Altcoin">
-                    <button onclick="checkAnswerWeek2('Alternative à Bitcoin', 'mission2-10')">Alternative à Bitcoin</button>
-                    <button onclick="checkAnswerWeek2('Stablecoin', 'mission2-10')">Stablecoin</button>
-                    <p class="hint">Indice : Tout sauf Bitcoin.</p>
-                </div>
-            </article>
-            <!-- Mission 11 -->
-            <article class="mission" id="mission2-11" style="display: none;">
-                <h3>Mission 11 : Exchange Sécurisé</h3>
-                <p>Quel exchange est connu pour sa sécurité ?</p>
-                <div class="activity" role="region" aria-label="Exchange sécurisé">
-                    <button onclick="checkAnswerWeek2('Kraken', 'mission2-11')">Kraken</button>
-                    <button onclick="checkAnswerWeek2('Bitfinex', 'mission2-11')">Bitfinex</button>
-                    <p class="hint">Indice : Réputation solide.</p>
-                </div>
-            </article>
-            <!-- Mission 12 -->
-            <article class="mission" id="mission2-12" style="display: none;">
-                <h3>Mission 12 : Calcul de Profit</h3>
-                <p>Tu achètes 1 ETH à 2000 €, il monte à 2500 €. Quel est ton profit ?</p>
-                <div class="activity" role="region" aria-label="Calcul de profit">
-                    <input type="number" id="profit2-1" placeholder="Ton profit en €" aria-required="true">
-                    <button onclick="checkProfitWeek2('mission2-12')">Vérifier</button>
-                    <p class="hint">Indice : Soustrais et compare.</p>
-                </div>
-            </article>
-            <!-- Mission 13 -->
-            <article class="mission" id="mission2-13" style="display: none;">
-                <h3>Mission 13 : Monnaie Anonyme</h3>
-                <p>Quelle crypto est axée sur l’anonymat ?</p>
-                <div class="activity" role="region" aria-label="Monnaie anonyme">
-                    <button onclick="checkAnswerWeek2('Monero', 'mission2-13')">Monero</button>
-                    <button onclick="checkAnswerWeek2('Ethereum', 'mission2-13')">Ethereum</button>
-                    <p class="hint">Indice : Vie privée.</p>
-                </div>
-            </article>
-            <!-- Mission 14 -->
-            <article class="mission" id="mission2-14" style="display: none;">
-                <h3>Mission 14 : Exchange Décentralisé</h3>
-                <p>Qu’est-ce qu’un DEX ?</p>
-                <div class="activity" role="region" aria-label="Exchange décentralisé">
-                    <button onclick="checkAnswerWeek2('Exchange décentralisé', 'mission2-14')">Exchange décentralisé</button>
-                    <button onclick="checkAnswerWeek2('Portefeuille', 'mission2-14')">Portefeuille</button>
-                    <p class="hint">Indice : Sans intermédiaire.</p>
-                </div>
-            </article>
-            <!-- Mission 15 -->
-            <article class="mission" id="mission2-15" style="display: none;">
-                <h3>Mission 15 : Vérification d’Exchange</h3>
-                <p>Que dois-tu vérifier avant d’utiliser un exchange ?</p>
-                <div class="activity" role="region" aria-label="Vérification d'exchange">
-                    <button onclick="checkAnswerWeek2('Réputation', 'mission2-15')">Réputation</button>
-                    <button onclick="checkAnswerWeek2('Couleurs du site', 'mission2-15')">Couleurs du site</button>
-                    <p class="hint">Indice : Fiabilité.</p>
-                </div>
-            </article>
-            <!-- Mission 16 -->
-            <article class="mission" id="mission2-16" style="display: none;">
-                <h3>Mission 16 : Frais Cachés</h3>
-                <p>Quel type de frais peut être caché ?</p>
-                <div class="activity" role="region" aria-label="Frais cachés">
-                    <button onclick="checkAnswerWeek2('Frais de retrait', 'mission2-16')">Frais de retrait</button>
-                    <button onclick="checkAnswerWeek2('Frais de connexion', 'mission2-16')">Frais de connexion</button>
-                    <p class="hint">Indice : Lors du transfert.</p>
-                </div>
-            </article>
-            <!-- Mission 17 -->
-            <article class="mission" id="mission2-17" style="display: none;">
-                <h3>Mission 17 : Rôle de Binance</h3>
-                <p>Quel est le rôle principal de Binance ?</p>
-                <div class="activity" role="region" aria-label="Rôle de Binance">
-                    <button onclick="checkAnswerWeek2('Exchange', 'mission2-17')">Exchange</button>
-                    <button onclick="checkAnswerWeek2('Portefeuille', 'mission2-17')">Portefeuille</button>
-                    <p class="hint">Indice : Trading populaire.</p>
-                </div>
-            </article>
-            <!-- Mission 18 -->
-            <article class="mission" id="mission2-18" style="display: none;">
-                <h3>Mission 18 : Crypto Écologique</h3>
-                <p>Quelle crypto est plus écologique ?</p>
-                <div class="activity" role="region" aria-label="Crypto écologique">
-                    <button onclick="checkAnswerWeek2('Cardano', 'mission2-18')">Cardano</button>
-                    <button onclick="checkAnswerWeek2('Bitcoin', 'mission2-18')">Bitcoin</button>
-                    <p class="hint">Indice : Moins énergivore.</p>
-                </div>
-            </article>
-            <!-- Mission 19 -->
-            <article class="mission" id="mission2-19" style="display: none;">
-                <h3>Mission 19 : Calcul de Frais 2</h3>
-                <p>Calcule les frais sur 500 € à 1 %.</p>
-                <div class="activity" role="region" aria-label="Calcul des frais 2">
-                    <input type="number" id="fees2-2" placeholder="Ta réponse" aria-required="true">
-                    <button onclick="checkFeesWeek2('mission2-19')">Vérifier</button>
-                    <p class="hint">Indice : Multiplie 500 par 0,01.</p>
-                </div>
-            </article>
-            <!-- Mission 20 -->
-            <article class="mission" id="mission2-20" style="display: none;">
-                <h3>Mission 20 : Réseau Rapide</h3>
-                <p>Quel réseau est rapide et peu coûteux ?</p>
-                <div class="activity" role="region" aria-label="Réseau rapide">
-                    <button onclick="checkAnswerWeek2('Solana', 'mission2-20')">Solana</button>
-                    <button onclick="checkAnswerWeek2('Bitcoin', 'mission2-20')">Bitcoin</button>
-                    <p class="hint">Indice : Scalabilité.</p>
-                </div>
-            </article>
-            <!-- Mission 21 -->
-            <article class="mission" id="mission2-21" style="display: none;">
-                <h3>Mission 21 : Tokens</h3>
-                <p>Qu’est-ce qu’un token ?</p>
-                <div class="activity" role="region" aria-label="Définition token">
-                    <button onclick="checkAnswerWeek2('Actif numérique', 'mission2-21')">Actif numérique</button>
-                    <button onclick="checkAnswerWeek2('Monnaie fiat', 'mission2-21')">Monnaie fiat</button>
-                    <p class="hint">Indice : Sur une blockchain.</p>
-                </div>
-            </article>
-            <!-- Mission 22 -->
-            <article class="mission" id="mission2-22" style="display: none;">
-                <h3>Mission 22 : NFT</h3>
-                <p>Que signifie NFT ?</p>
-                <div class="activity" role="region" aria-label="Définition NFT">
-                    <button onclick="checkAnswerWeek2('Non-Fungible Token', 'mission2-22')">Non-Fungible Token</button>
-                    <button onclick="checkAnswerWeek2('New Financial Tool', 'mission2-22')">New Financial Tool</button>
-                    <p class="hint">Indice : Actif unique.</p>
-                </div>
-            </article>
-            <!-- Mission 23 -->
-            <article class="mission" id="mission2-23" style="display: none;">
-                <h3>Mission 23 : DeFi</h3>
-                <p>Que signifie DeFi ?</p>
-                <div class="activity" role="region" aria-label="Définition DeFi">
-                    <button onclick="checkAnswerWeek2('Finance décentralisée', 'mission2-23')">Finance décentralisée</button>
-                    <button onclick="checkAnswerWeek2('Fonds d’investissement', 'mission2-23')">Fonds d’investissement</button>
-                    <p class="hint">Indice : Sans banque.</p>
-                </div>
-            </article>
-            <!-- Mission 24 -->
-            <article class="mission" id="mission2-24" style="display: none;">
-                <h3>Mission 24 : Staking</h3>
-                <p>Que signifie staker une crypto ?</p>
-                <div class="activity" role="region" aria-label="Staking">
-                    <button onclick="checkAnswerWeek2('Verrouiller pour des récompenses', 'mission2-24')">Verrouiller pour des récompenses</button>
-                    <button onclick="checkAnswerWeek2('Acheter et vendre', 'mission2-24')">Acheter et vendre</button>
-                    <p class="hint">Indice : Gagner des intérêts.</p>
-                </div>
-            </article>
-            <!-- Mission 25 -->
-            <article class="mission" id="mission2-25" style="display: none;">
-                <h3>Mission 25 : Test Final</h3>
-                <p>Quel est le rôle d’un marché crypto ?</p>
-                <div class="activity" role="region" aria-label="Rôle du marché">
-                    <button onclick="checkAnswerWeek2('Échanger des cryptos', 'mission2-25')">Échanger des cryptos</button>
-                    <button onclick="checkAnswerWeek2('Créer des cryptos', 'mission2-25')">Créer des cryptos</button>
-                    <p class="hint">Indice : Trading.</p>
-                </div>
-            </article>
-            <!-- Boss -->
+
             <article class="mission boss" id="boss2" style="display: none;">
                 <h3>Boss : Le Géant du Choix</h3>
                 <p>"Pourquoi choisis-tu Bitcoin ? Réponds en 3 mots."</p>
                 <div class="activity" role="region" aria-label="Combat contre le boss">
-                    <input type="text" id="reason2-1" placeholder="Ta réponse" aria-required="true">
-                    <button onclick="checkReasonWeek2('boss2')">Soumettre</button>
-                    <p class="hint">Indice : Forces uniques.</p>
+                    <input type="text" id="reason" placeholder="Ta réponse" aria-required="true">
+                    <button onclick="checkReason('boss2')">Soumettre</button>
+                    <p class="hint">Indice : Pense à ses forces uniques.</p>
                 </div>
             </article>
-            <!-- Récompense -->
+
             <div class="reward" id="reward2" style="display: none;" aria-label="Récompense Semaine 2">
                 <h3>Récompense : Clé d’Or du Marché</h3>
-                <p>Tu as conquis la forêt !</p>
-                <img src="golden-key.png" alt="Clé d’Or" class="reward-img">
-                <p><strong>Clé d’Or du Marché</strong></p>
+                <p>Tu as conquis la forêt et ses mystères !</p>
+                <img src="golden-key.png" alt="Clé d’Or du Marché" class="reward-img">
                 <button onclick="nextWeek('week2', 'week3')">Semaine Suivante</button>
             </div>
         </section>
 
-        <!-- Semaine 3 : Maîtrise des Portefeuilles -->
+        <!-- Semaine 3 -->
         <section id="week3" class="week" style="display: none;" aria-label="Semaine 3">
-            <h2 class="week-title">Semaine 3 : Maîtrise des Portefeuilles</h2>
+            <h2 class="week-title">Semaine 3 : La Forteresse des Portefeuilles</h2>
             <p class="week-theme">Thème : Construis ta forteresse pour protéger ton butin !</p>
             <div class="week-description">
                 <p>Entre dans la Forteresse des Clés. Ton trésor mérite une protection inébranlable.</p>
             </div>
-            <!-- Mission 1 -->
+
             <article class="mission" id="mission3-1">
-                <h3>Mission 1 : Clé Publique</h3>
-                <p>Une clé publique est comme…</p>
+                <h3>Mission 1 : Comprendre les Tours de Défense</h3>
+                <p>L’Architecte explique : "Une clé publique est comme…"</p>
                 <div class="activity" role="region" aria-label="Question sur les clés">
-                    <button onclick="checkAnswerWeek3('Une adresse', 'mission3-1')">Une adresse</button>
-                    <button onclick="checkAnswerWeek3('Un mot de passe', 'mission3-1')">Un mot de passe</button>
-                    <p class="hint">Indice : Partageable.</p>
+                    <button onclick="checkAnswer('Une adresse', 'mission3-1')">Une adresse</button>
+                    <button onclick="checkAnswer('Un mot de passe', 'mission3-1')">Un mot de passe</button>
+                    <p class="hint">Indice : C’est ce que tu partages sans crainte.</p>
                 </div>
             </article>
-            <!-- Mission 2 -->
+
             <article class="mission" id="mission3-2" style="display: none;">
-                <h3>Mission 2 : Type de Portefeuille</h3>
-                <p>Quel portefeuille est le plus sécurisé ?</p>
+                <h3>Mission 2 : Explorer les Types de Tours</h3>
+                <p>Quel type de portefeuille est le plus sécurisé ?</p>
                 <div class="activity" role="region" aria-label="Choix du portefeuille">
-                    <button onclick="checkAnswerWeek3('Matériel', 'mission3-2')">Matériel</button>
-                    <button onclick="checkAnswerWeek3('En ligne', 'mission3-2')">En ligne</button>
-                    <p class="hint">Indice : Hors ligne.</p>
+                    <button onclick="checkWalletType('Matériel', 'mission3-2')">Matériel</button>
+                    <button onclick="checkWalletType('En ligne', 'mission3-2')">En ligne</button>
+                    <button onclick="checkWalletType('Papier', 'mission3-2')">Papier</button>
+                    <p class="hint">Indice : Cherche la tour la plus robuste.</p>
                 </div>
             </article>
-            <!-- Mission 3 -->
+
             <article class="mission" id="mission3-3" style="display: none;">
-                <h3>Mission 3 : Activer 2FA</h3>
-                <p>Dois-tu activer 2FA pour ton portefeuille ?</p>
+                <h3>Mission 3 : Ériger une Tour en Ligne</h3>
+                <p>Le Mage du Cloud te guide : "Active 2FA pour ta tour !"</p>
                 <div class="activity" role="region" aria-label="Activation 2FA">
-                    <button onclick="checkAnswerWeek3('Oui', 'mission3-3')">Oui</button>
-                    <button onclick="checkAnswerWeek3('Non', 'mission3-3')">Non</button>
-                    <p class="hint">Indice : Sécurité double.</p>
+                    <button onclick="activate2FA('Oui', 'mission3-3')">Oui</button>
+                    <button onclick="activate2FA('Non', 'mission3-3')">Non</button>
+                    <p class="hint">Indice : La sécurité double est ton amie.</p>
                 </div>
             </article>
-            <!-- Mission 4 -->
+
             <article class="mission" id="mission3-4" style="display: none;">
-                <h3>Mission 4 : Sauvegarde Hors Ligne</h3>
-                <p>Où sauvegarder tes clés ?</p>
+                <h3>Mission 4 : Renforcer une Tour Hors Ligne</h3>
+                <p>Le Forgeron Local : "Où sauvegardes-tu tes clés ?"</p>
                 <div class="activity" role="region" aria-label="Choix de sauvegarde">
-                    <button onclick="checkAnswerWeek3('USB', 'mission3-4')">USB</button>
-                    <button onclick="checkAnswerWeek3('Cloud', 'mission3-4')">Cloud</button>
-                    <p class="hint">Indice : Hors ligne.</p>
+                    <button onclick="checkBackup('USB', 'mission3-4')">USB</button>
+                    <button onclick="checkBackup('Cloud', 'mission3-4')">Cloud</button>
+                    <p class="hint">Indice : Évite les nuages vulnérables.</p>
                 </div>
             </article>
-            <!-- Mission 5 -->
+
             <article class="mission" id="mission3-5" style="display: none;">
-                <h3>Mission 5 : Transfert Fictif</h3>
-                <p>Transfère 10 BTC fictifs sur un portefeuille matériel.</p>
+                <h3>Mission 5 : Activer une Tour Matérielle</h3>
+                <p>Le Gardien de Fer : "Connecte ta relique et transfère 10 BTC fictifs."</p>
                 <div class="activity" role="region" aria-label="Transfert fictif">
-                    <button onclick="transferBTCWeek3('mission3-5')">Transférer</button>
-                    <p class="hint">Indice : Imagine un coffre-fort.</p>
+                    <button onclick="transferBTC('mission3-5')">Transférer</button>
+                    <p class="hint">Indice : Imagine un coffre-fort physique.</p>
                 </div>
             </article>
-            <!-- Mission 6 -->
-            <article class="mission" id="mission3-6" style="display: none;">
-                <h3>Mission 6 : Portefeuille Mobile</h3>
-                <p>Quel portefeuille est le plus portable ?</p>
-                <div class="activity" role="region" aria-label="Portefeuille mobile">
-                    <button onclick="checkAnswerWeek3('Mobile', 'mission3-6')">Mobile</button>
-                    <button onclick="checkAnswerWeek3('Matériel', 'mission3-6')">Matériel</button>
-                    <p class="hint">Indice : Sur ton téléphone.</p>
-                </div>
-            </article>
-            <!-- Mission 7 -->
-            <article class="mission" id="mission3-7" style="display: none;">
-                <h3>Mission 7 : Sauvegarde Papier</h3>
-                <p>Un portefeuille papier est-il sécurisé ?</p>
-                <div class="activity" role="region" aria-label="Portefeuille papier">
-                    <button onclick="checkAnswerWeek3('Oui', 'mission3-7')">Oui</button>
-                    <button onclick="checkAnswerWeek3('Non', 'mission3-7')">Non</button>
-                    <p class="hint">Indice : Si bien protégé.</p>
-                </div>
-            </article>
-            <!-- Mission 8 -->
-            <article class="mission" id="mission3-8" style="display: none;">
-                <h3>Mission 8 : Clé Privée</h3>
-                <p>Où ne dois-tu jamais stocker ta clé privée ?</p>
-                <div class="activity" role="region" aria-label="Stockage clé privée">
-                    <button onclick="checkAnswerWeek3('Email', 'mission3-8')">Email</button>
-                    <button onclick="checkAnswerWeek3('Portefeuille matériel', 'mission3-8')">Portefeuille matériel</button>
-                    <p class="hint">Indice : Évite les endroits exposés.</p>
-                </div>
-            </article>
-            <!-- Mission 9 -->
-            <article class="mission" id="mission3-9" style="display: none;">
-                <h3>Mission 9 : Portefeuille Chaud</h3>
-                <p>Qu’est-ce qu’un portefeuille chaud ?</p>
-                <div class="activity" role="region" aria-label="Portefeuille chaud">
-                    <button onclick="checkAnswerWeek3('Connecté à Internet', 'mission3-9')">Connecté à Internet</button>
-                    <button onclick="checkAnswerWeek3('Hors ligne', 'mission3-9')">Hors ligne</button>
-                    <p class="hint">Indice : Accessible en ligne.</p>
-                </div>
-            </article>
-            <!-- Mission 10 -->
-            <article class="mission" id="mission3-10" style="display: none;">
-                <h3>Mission 10 : Portefeuille Froid</h3>
-                <p>Qu’est-ce qu’un portefeuille froid ?</p>
-                <div class="activity" role="region" aria-label="Portefeuille froid">
-                    <button onclick="checkAnswerWeek3('Hors ligne', 'mission3-10')">Hors ligne</button>
-                    <button onclick="checkAnswerWeek3('Connecté', 'mission3-10')">Connecté</button>
-                    <p class="hint">Indice : Sécurité maximale.</p>
-                </div>
-            </article>
-            <!-- Mission 11 -->
-            <article class="mission" id="mission3-11" style="display: none;">
-                <h3>Mission 11 : Exemple de Portefeuille Matériel</h3>
-                <p>Quel est un exemple de portefeuille matériel ?</p>
-                <div class="activity" role="region" aria-label="Portefeuille matériel">
-                    <button onclick="checkAnswerWeek3('Ledger', 'mission3-11')">Ledger</button>
-                    <button onclick="checkAnswerWeek3('Coinbase', 'mission3-11')">Coinbase</button>
-                    <p class="hint">Indice : Dispositif physique.</p>
-                </div>
-            </article>
-            <!-- Mission 12 -->
-            <article class="mission" id="mission3-12" style="display: none;">
-                <h3>Mission 12 : Sauvegarde Multiple</h3>
-                <p>Quelle est la meilleure pratique pour sauvegarder tes clés ?</p>
-                <div class="activity" role="region" aria-label="Sauvegarde multiple">
-                    <button onclick="checkAnswerWeek3('Multiple lieux', 'mission3-12')">Multiple lieux</button>
-                    <button onclick="checkAnswerWeek3('Un seul endroit', 'mission3-12')">Un seul endroit</button>
-                    <p class="hint">Indice : Diversifie.</p>
-                </div>
-            </article>
-            <!-- Mission 13 -->
-            <article class="mission" id="mission3-13" style="display: none;">
-                <h3>Mission 13 : Risque du Cloud</h3>
-                <p>Pourquoi éviter le cloud pour tes clés ?</p>
-                <div class="activity" role="region" aria-label="Risque du cloud">
-                    <button onclick="checkAnswerWeek3('Piratage', 'mission3-13')">Piratage</button>
-                    <button onclick="checkAnswerWeek3('Facilité', 'mission3-13')">Facilité</button>
-                    <p class="hint">Indice : Vulnérabilité.</p>
-                </div>
-            </article>
-            <!-- Mission 14 -->
-            <article class="mission" id="mission3-14" style="display: none;">
-                <h3>Mission 14 : Récupération de Clés</h3>
-                <p>Comment récupérer ton portefeuille ?</p>
-                <div class="activity" role="region" aria-label="Récupération de clés">
-                    <button onclick="checkAnswerWeek3('Phrase de récupération', 'mission3-14')">Phrase de récupération</button>
-                    <button onclick="checkAnswerWeek3('Mot de passe', 'mission3-14')">Mot de passe</button>
-                    <p class="hint">Indice : 12-24 mots.</p>
-                </div>
-            </article>
-            <!-- Mission 15 -->
-            <article class="mission" id="mission3-15" style="display: none;">
-                <h3>Mission 15 : Portefeuille Logiciel</h3>
-                <p>Quel est un exemple de portefeuille logiciel ?</p>
-                <div class="activity" role="region" aria-label="Portefeuille logiciel">
-                    <button onclick="checkAnswerWeek3('Metamask', 'mission3-15')">Metamask</button>
-                    <button onclick="checkAnswerWeek3('Trezor', 'mission3-15')">Trezor</button>
-                    <p class="hint">Indice : Navigateur.</p>
-                </div>
-            </article>
-            <!-- Mission 16 -->
-            <article class="mission" id="mission3-16" style="display: none;">
-                <h3>Mission 16 : Sécurité Physique</h3>
-                <p>Où garder ton portefeuille papier ?</p>
-                <div class="activity" role="region" aria-label="Sécurité physique">
-                    <button onclick="checkAnswerWeek3('Coffre-fort', 'mission3-16')">Coffre-fort</button>
-                    <button onclick="checkAnswerWeek3('Sac à dos', 'mission3-16')">Sac à dos</button>
-                    <p class="hint">Indice : Endroit sûr.</p>
-                </div>
-            </article>
-            <!-- Mission 17 -->
-            <article class="mission" id="mission3-17" style="display: none;">
-                <h3>Mission 17 : Perte de Clés</h3>
-                <p>Que se passe-t-il si tu perds ta clé privée ?</p>
-                <div class="activity" role="region" aria-label="Perte de clés">
-                    <button onclick="checkAnswerWeek3('Perte des fonds', 'mission3-17')">Perte des fonds</button>
-                    <button onclick="checkAnswerWeek3('Rien', 'mission3-17')">Rien</button>
-                    <p class="hint">Indice : Irrécupérable.</p>
-                </div>
-            </article>
-                  <!-- Mission 18 -->
-            <article class="mission" id="mission3-18">
-                <h3>Mission 18 : Phrase de Récupération</h3>
-                <p>Combien de mots dans une phrase de récupération ?</p>
-                <div class="activity" role="region" aria-label="Phrase de récupération">
-                    <button onclick="checkAnswerWeek3('12-24', 'mission3-18')">12-24</button>
-                    <button onclick="checkAnswerWeek3('6-12', 'mission3-18')">6-12</button>
-                    <p class="hint">Indice : Standard pour la sécurité.</p>
-                </div>
-            </article>
-            <!-- Mission 19 -->
-            <article class="mission" id="mission3-19">
-                <h3>Mission 19 : Multisignature</h3>
-                <p>Qu’est-ce qu’un portefeuille multisignature ?</p>
-                <div class="activity" role="region" aria-label="Multisignature">
-                    <button onclick="checkAnswerWeek3('Plusieurs clés', 'mission3-19')">Plusieurs clés</button>
-                    <button onclick="checkAnswerWeek3('Une seule clé', 'mission3-19')">Une seule clé</button>
-                    <p class="hint">Indice : Sécurité renforcée.</p>
-                </div>
-            </article>
-            <!-- Mission 20 -->
-            <article class="mission" id="mission3-20">
-                <h3>Mission 20 : Portefeuille Papier</h3>
-                <p>Un portefeuille papier peut-il être utilisé pour des transactions ?</p>
-                <div class="activity" role="region" aria-label="Portefeuille papier">
-                    <button onclick="checkAnswerWeek3('Oui', 'mission3-20')">Oui</button>
-                    <button onclick="checkAnswerWeek3('Non', 'mission3-20')">Non</button>
-                    <p class="hint">Indice : Si importé.</p>
-                </div>
-            </article>
-            <!-- Mission 21 -->
-            <article class="mission" id="mission3-21">
-                <h3>Mission 21 : Phishing Avancé</h3>
-                <p>Un lien te demande de vérifier ton portefeuille. Que fais-tu ?</p>
-                <div class="activity" role="region" aria-label="Phishing avancé">
-                    <button onclick="checkAnswerWeek3('Ne clique pas', 'mission3-21')">Ne clique pas</button>
-                    <button onclick="checkAnswerWeek3('Clique', 'mission3-21')">Clique</button>
-                    <p class="hint">Indice : Méfiance.</p>
-                </div>
-            </article>
-            <!-- Mission 22 -->
-            <article class="mission" id="mission3-22">
-                <h3>Mission 22 : Clé Publique Partagée</h3>
-                <p>Peux-tu partager ta clé publique ?</p>
-                <div class="activity" role="region" aria-label="Clé publique partagée">
-                    <button onclick="checkAnswerWeek3('Oui', 'mission3-22')">Oui</button>
-                    <button onclick="checkAnswerWeek3('Non', 'mission3-22')">Non</button>
-                    <p class="hint">Indice : C’est une adresse.</p>
-                </div>
-            </article>
-            <!-- Mission 23 -->
-            <article class="mission" id="mission3-23">
-                <h3>Mission 23 : Portefeuille Logiciel Populaire</h3>
-                <p>Quel portefeuille logiciel est recommandé pour Bitcoin ?</p>
-                <div class="activity" role="region" aria-label="Portefeuille logiciel populaire">
-                    <button onclick="checkAnswerWeek3('Electrum', 'mission3-23')">Electrum</button>
-                    <button onclick="checkAnswerWeek3('Binance', 'mission3-23')">Binance</button>
-                    <p class="hint">Indice : Spécifique à Bitcoin.</p>
-                </div>
-            </article>
-            <!-- Mission 24 -->
-            <article class="mission" id="mission3-24">
-                <h3>Mission 24 : Protection Ultime</h3>
-                <p>Où stocker ton portefeuille matériel ?</p>
-                <div class="activity" role="region" aria-label="Protection ultime">
-                    <button onclick="checkAnswerWeek3('Coffre-fort', 'mission3-24')">Coffre-fort</button>
-                    <button onclick="checkAnswerWeek3('Bureau', 'mission3-24')">Bureau</button>
-                    <p class="hint">Indice : Sécurité physique.</p>
-                </div>
-            </article>
-            <!-- Mission 25 -->
-            <article class="mission" id="mission3-25">
-                <h3>Mission 25 : Test Final</h3>
-                <p>Quelle est la meilleure pratique pour tes clés ?</p>
-                <div class="activity" role="region" aria-label="Meilleure pratique">
-                    <button onclick="checkAnswerWeek3('Sauvegarde hors ligne', 'mission3-25')">Sauvegarde hors ligne</button>
-                    <button onclick="checkAnswerWeek3('Cloud', 'mission3-25')">Cloud</button>
-                    <p class="hint">Indice : Évite les risques en ligne.</p>
-                </div>
-            </article>
-            <!-- Boss -->
-            <article class="mission boss" id="boss3">
+
+            <article class="mission boss" id="boss3" style="display: none;">
                 <h3>Boss : Le Titan des Clés</h3>
-                <p>"Où ne jamais stocker ta clé privée ?"</p>
+                <p>"Où ne dois-tu JAMAIS stocker ta clé privée ?"</p>
                 <div class="activity" role="region" aria-label="Combat contre le boss">
-                    <button onclick="checkBossWeek3('Email', 'boss3')">Email</button>
-                    <button onclick="checkBossWeek3('Coffre-fort', 'boss3')">Coffre-fort</button>
-                    <p class="hint">Indice : Endroit vulnérable.</p>
+                    <button onclick="checkBoss('Email', 'boss3')">Email</button>
+                    <button onclick="checkBoss('Portefeuille matériel', 'boss3')">Portefeuille matériel</button>
+                    <p class="hint">Indice : Le Titan déteste les endroits exposés.</p>
                 </div>
             </article>
-            <!-- Récompense -->
-            <div class="reward" id="reward3">
+
+            <div class="reward" id="reward3" style="display: none;" aria-label="Récompense Semaine 3">
                 <h3>Récompense : Cristal de Protection</h3>
-                <p>Tu as sécurisé ton butin !</p>
+                <p>Ta forteresse est désormais imprenable !</p>
                 <img src="protection-crystal.png" alt="Cristal de Protection" class="reward-img">
-                <p><strong>Cristal de Protection</strong></p>
                 <button onclick="nextWeek('week3', 'week4')">Semaine Suivante</button>
             </div>
         </section>
 
-        <!-- Semaine 4 : Stratégies Avancées -->
-        <section id="week4" class="week">
-            <h2 class="week-title">Semaine 4 : Stratégies Avancées</h2>
-            <p class="week-theme">Thème : Domine les marchés et deviens un maître !</p>
+        <!-- Semaine 4 -->
+        <section id="week4" class="week" style="display: none;" aria-label="Semaine 4">
+            <h2 class="week-title">Semaine 4 : La Grande Aventure d’Achat</h2>
+            <p class="week-theme">Thème : Pars en expédition pour acheter des cryptos et affronter les tempêtes du marché !</p>
             <div class="week-description">
-                <p>Tu arrives au sommet de la Montagne des Marchés. Prépare-toi à des défis stratégiques !</p>
+                <p>Navigue sur la Mer des Volatilités pour devenir un véritable maître crypto.</p>
             </div>
-            <!-- Mission 1 -->
+
             <article class="mission" id="mission4-1">
-                <h3>Mission 1 : Plus Grand Exchange</h3>
-                <p>Quel est le plus grand exchange crypto ?</p>
-                <div class="activity" role="region" aria-label="Plus grand exchange">
-                    <button onclick="checkAnswerWeek4('Binance', 'mission4-1')">Binance</button>
-                    <button onclick="checkAnswerWeek4('Kraken', 'mission4-1')">Kraken</button>
-                    <p class="hint">Indice : Volume de trading.</p>
+                <h3>Mission 1 : Découvrir les Chemins d’Achat</h3>
+                <p>Le Cartographe te montre : "Quelle méthode préfères-tu pour acheter des cryptos ?"</p>
+                <div class="activity" role="region" aria-label="Choix de méthode d'achat">
+                    <button onclick="checkPurchaseMethod('Plateformes', 'mission4-1')">Plateformes</button>
+                    <button onclick="checkPurchaseMethod('P2P', 'mission4-1')">P2P</button>
+                    <button onclick="checkPurchaseMethod('ATMs', 'mission4-1')">ATMs</button>
+                    <p class="hint">Indice : Les plateformes sont les plus populaires.</p>
                 </div>
             </article>
-            <!-- Mission 2 -->
-            <article class="mission" id="mission4-2">
-                <h3>Mission 2 : Calcul de Profit</h3>
-                <p>Tu achètes 2 BTC à 30 000 €, ils montent à 35 000 €. Quel est ton profit ?</p>
-                <div class="activity" role="region" aria-label="Calcul de profit">
-                    <input type="number" id="profit4-1" placeholder="Ton profit en €" aria-required="true">
-                    <button onclick="checkProfitWeek4('mission4-2')">Vérifier</button>
-                    <p class="hint">Indice : (35 000 - 30 000) × 2.</p>
+
+            <article class="mission" id="mission4-2" style="display: none;">
+                <h3>Mission 2 : Acheter sur le Marché</h3>
+                <p>Le Marchand te défie : "Achète 0,01 BTC fictif (prix : 500 €). Combien dépôts-tu ?"</p>
+                <div class="activity" role="region" aria-label="Calcul d'achat">
+                    <input type="number" id="deposit" placeholder="Ton dépôt en €" aria-required="true">
+                    <button onclick="checkDeposit('mission4-2')">Acheter</button>
+                    <p class="hint">Indice : Le prix est fixe ici !</p>
                 </div>
             </article>
-            <!-- Mission 3 -->
-            <article class="mission" id="mission4-3">
-                <h3>Mission 3 : Diversification</h3>
-                <p>Pourquoi diversifier ton portefeuille ?</p>
+
+            <article class="mission" id="mission4-3" style="display: none;">
+                <h3>Mission 3 : Affronter les Tempêtes</h3>
+                <p>La Mer des Volatilités te secoue ! Lance le dé pour voir la chute.</p>
+                <div class="activity" role="region" aria-label="Lancer de dé">
+                    <button onclick="rollDice('mission4-3')">Lancer le Dé</button>
+                    <p id="diceResult"></p>
+                    <p class="hint">Indice : La chance décide de ton destin.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission4-4" style="display: none;">
+                <h3>Mission 4 : Naviguer avec Sagesse</h3>
+                <p>Le Capitaine Diversification : "Choisis une crypto à ajouter à ton portefeuille."</p>
                 <div class="activity" role="region" aria-label="Diversification">
-                    <button onclick="checkAnswerWeek4('Réduire les risques', 'mission4-3')">Réduire les risques</button>
-                    <button onclick="checkAnswerWeek4('Augmenter les frais', 'mission4-3')">Augmenter les frais</button>
-                    <p class="hint">Indice : Moins de volatilité.</p>
+                    <button onclick="diversify('Bitcoin', 'mission4-4')">Bitcoin</button>
+                    <button onclick="diversify('Ethereum', 'mission4-4')">Ethereum</button>
+                    <button onclick="diversify('Ripple', 'mission4-4')">Ripple</button>
+                    <p class="hint">Indice : Varie tes trésors pour plus de stabilité.</p>
                 </div>
             </article>
-            <!-- Mission 4 -->
-            <article class="mission" id="mission4-4">
-                <h3>Mission 4 : Volatilité</h3>
-                <p>Qu’est-ce que la volatilité ?</p>
-                <div class="activity" role="region" aria-label="Volatilité">
-                    <button onclick="checkAnswerWeek4('Variation des prix', 'mission4-4')">Variation des prix</button>
-                    <button onclick="checkAnswerWeek4('Stabilité', 'mission4-4')">Stabilité</button>
-                    <p class="hint">Indice : Fluctuations rapides.</p>
-                </div>
-            </article>
-            <!-- Mission 5 -->
-            <article class="mission" id="mission4-5">
-                <h3>Mission 5 : Stratégie HODL</h3>
-                <p>Que signifie HODL ?</p>
-                <div class="activity" role="region" aria-label="Stratégie HODL">
-                    <button onclick="checkAnswerWeek4('HODL', 'mission4-5')">Hold On for Dear Life</button>
-                    <button onclick="checkAnswerWeek4('Trading', 'mission4-5')">Trading actif</button>
-                    <p class="hint">Indice : Garder longtemps.</p>
-                </div>
-            </article>
-            <!-- Mission 6 -->
-            <article class="mission" id="mission4-6">
-                <h3>Mission 6 : Day Trading</h3>
-                <p>Que signifie day trading ?</p>
-                <div class="activity" role="region" aria-label="Day trading">
-                    <button onclick="checkAnswerWeek4('Acheter/vendre dans la journée', 'mission4-6')">Acheter/vendre dans la journée</button>
-                    <button onclick="checkAnswerWeek4('Investir à long terme', 'mission4-6')">Investir à long terme</button>
-                    <p class="hint">Indice : Rapide.</p>
-                </div>
-            </article>
-            <!-- Mission 7 -->
-            <article class="mission" id="mission4-7">
-                <h3>Mission 7 : Analyse Technique</h3>
-                <p>Que regarde l’analyse technique ?</p>
-                <div class="activity" role="region" aria-label="Analyse technique">
-                    <button onclick="checkAnswerWeek4('Graphiques', 'mission4-7')">Graphiques</button>
-                    <button onclick="checkAnswerWeek4('Nouvelles', 'mission4-7')">Nouvelles</button>
-                    <p class="hint">Indice : Tendances.</p>
-                </div>
-            </article>
-            <!-- Mission 8 -->
-            <article class="mission" id="mission4-8">
-                <h3>Mission 8 : Analyse Fondamentale</h3>
-                <p>Que regarde l’analyse fondamentale ?</p>
-                <div class="activity" role="region" aria-label="Analyse fondamentale">
-                    <button onclick="checkAnswerWeek4('Valeur intrinsèque', 'mission4-8')">Valeur intrinsèque</button>
-                    <button onclick="checkAnswerWeek4('Graphiques', 'mission4-8')">Graphiques</button>
-                    <p class="hint">Indice : Projet derrière.</p>
-                </div>
-            </article>
-            <!-- Mission 9 -->
-            <article class="mission" id="mission4-9">
-                <h3>Mission 9 : Stop Loss</h3>
-                <p>À quoi sert un stop loss ?</p>
-                <div class="activity" role="region" aria-label="Stop loss">
-                    <button onclick="checkAnswerWeek4('Limiter les pertes', 'mission4-9')">Limiter les pertes</button>
-                    <button onclick="checkAnswerWeek4('Augmenter les gains', 'mission4-9')">Augmenter les gains</button>
-                    <p class="hint">Indice : Sécurité.</p>
-                </div>
-            </article>
-            <!-- Mission 10 -->
-            <article class="mission" id="mission4-10">
-                <h3>Mission 10 : Take Profit</h3>
-                <p>À quoi sert un take profit ?</p>
-                <div class="activity" role="region" aria-label="Take profit">
-                    <button onclick="checkAnswerWeek4('Sécuriser les gains', 'mission4-10')">Sécuriser les gains</button>
-                    <button onclick="checkAnswerWeek4('Réduire les frais', 'mission4-10')">Réduire les frais</button>
-                    <p class="hint">Indice : Verrouiller.</p>
-                </div>
-            </article>
-            <!-- Mission 11 -->
-            <article class="mission" id="mission4-11">
-                <h3>Mission 11 : Calcul de Perte</h3>
-                <p>Tu achètes 1 ETH à 3000 €, il tombe à 2500 €. Quelle est ta perte ?</p>
-                <div class="activity" role="region" aria-label="Calcul de perte">
-                    <input type="number" id="loss4-1" placeholder="Ta perte en €" aria-required="true">
-                    <button onclick="checkLossWeek4('mission4-11')">Vérifier</button>
-                    <p class="hint">Indice : Soustrais 3000 - 2500.</p>
-                </div>
-            </article>
-            <!-- Mission 12 -->
-            <article class="mission" id="mission4-12">
-                <h3>Mission 12 : Calcul de Frais</h3>
-                <p>Calcule les frais sur 1000 € à 0,2 %.</p>
-                <div class="activity" role="region" aria-label="Calcul de frais">
-                    <input type="number" id="fees4-1" placeholder="Frais en €" aria-required="true">
-                    <button onclick="checkFeesWeek4('mission4-12')">Vérifier</button>
-                    <p class="hint">Indice : Multiplie 1000 par 0,002.</p>
-                </div>
-            </article>
-            <!-- Mission 13 -->
-            <article class="mission" id="mission4-13">
-                <h3>Mission 13 : DCA</h3>
-                <p>Que signifie DCA ?</p>
-                <div class="activity" role="region" aria-label="DCA">
-                    <button onclick="checkAnswerWeek4('Dollar-Cost Averaging', 'mission4-13')">Dollar-Cost Averaging</button>
-                    <button onclick="checkAnswerWeek4('Daily Crypto Analysis', 'mission4-13')">Daily Crypto Analysis</button>
-                    <p class="hint">Indice : Investissement régulier.</p>
-                </div>
-            </article>
-            <!-- Mission 14 -->
-            <article class="mission" id="mission4-14">
-                <h3>Mission 14 : Avantage du DCA</h3>
-                <p>Quel est l’avantage du DCA ?</p>
-                <div class="activity" role="region" aria-label="Avantage du DCA">
-                    <button onclick="checkAnswerWeek4('Moyenner les prix', 'mission4-14')">Moyenner les prix</button>
-                    <button onclick="checkAnswerWeek4('Acheter au plus bas', 'mission4-14')">Acheter au plus bas</button>
-                    <p class="hint">Indice : Réduire la volatilité.</p>
-                </div>
-            </article>
-            <!-- Mission 15 -->
-            <article class="mission" id="mission4-15">
-                <h3>Mission 15 : Capitalisation</h3>
-                <p>Que mesure la capitalisation boursière ?</p>
-                <div class="activity" role="region" aria-label="Capitalisation">
-                    <button onclick="checkAnswerWeek4('Valeur totale', 'mission4-15')">Valeur totale</button>
-                    <button onclick="checkAnswerWeek4('Prix actuel', 'mission4-15')">Prix actuel</button>
-                    <p class="hint">Indice : Prix × quantité.</p>
-                </div>
-            </article>
-            <!-- Mission 16 -->
-            <article class="mission" id="mission4-16">
-                <h3>Mission 16 : Volume</h3>
-                <p>Que mesure le volume d’échange ?</p>
-                <div class="activity" role="region" aria-label="Volume">
-                    <button onclick="checkAnswerWeek4('Activité sur 24h', 'mission4-16')">Activité sur 24h</button>
-                    <button onclick="checkAnswerWeek4('Nombre de pièces', 'mission4-16')">Nombre de pièces</button>
-                    <p class="hint">Indice : Transactions.</p>
-                </div>
-            </article>
-            <!-- Mission 17 -->
-            <article class="mission" id="mission4-17">
-                <h3>Mission 17 : Bull Market</h3>
-                <p>Que signifie un bull market ?</p>
-                <div class="activity" role="region" aria-label="Bull market">
-                    <button onclick="checkAnswerWeek4('Hausse des prix', 'mission4-17')">Hausse des prix</button>
-                    <button onclick="checkAnswerWeek4('Baisse des prix', 'mission4-17')">Baisse des prix</button>
-                    <p class="hint">Indice : Optimisme.</p>
-                </div>
-            </article>
-            <!-- Mission 18 -->
-            <article class="mission" id="mission4-18">
-                <h3>Mission 18 : Bear Market</h3>
-                <p>Que signifie un bear market ?</p>
-                <div class="activity" role="region" aria-label="Bear market">
-                    <button onclick="checkAnswerWeek4('Baisse des prix', 'mission4-18')">Baisse des prix</button>
-                    <button onclick="checkAnswerWeek4('Hausse des prix', 'mission4-18')">Hausse des prix</button>
-                    <p class="hint">Indice : Pessimisme.</p>
-                </div>
-            </article>
-            <!-- Mission 19 -->
-            <article class="mission" id="mission4-19">
-                <h3>Mission 19 : Rug Pull</h3>
-                <p>Qu’est-ce qu’un rug pull ?</p>
-                <div class="activity" role="region" aria-label="Rug pull">
-                    <button onclick="checkAnswerWeek4('Arnaque', 'mission4-19')">Arnaque</button>
-                    <button onclick="checkAnswerWeek4('Investissement sûr', 'mission4-19')">Investissement sûr</button>
-                    <p class="hint">Indice : Disparition des fonds.</p>
-                </div>
-            </article>
-            <!-- Mission 20 -->
-            <article class="mission" id="mission4-20">
-                <h3>Mission 20 : Whitepaper</h3>
-                <p>Que contient un whitepaper ?</p>
-                <div class="activity" role="region" aria-label="Whitepaper">
-                    <button onclick="checkAnswerWeek4('Projet et technologie', 'mission4-20')">Projet et technologie</button>
-                    <button onclick="checkAnswerWeek4('Prix actuel', 'mission4-20')">Prix actuel</button>
-                    <p class="hint">Indice : Document technique.</p>
-                </div>
-            </article>
-            <!-- Mission 21 -->
-            <article class="mission" id="mission4-21">
-                <h3>Mission 21 : FOMO</h3>
-                <p>Que signifie FOMO dans le contexte crypto ?</p>
-                <div class="activity" role="region" aria-label="FOMO">
-                    <button onclick="checkAnswerWeek4('Fear Of Missing Out', 'mission4-21')">Fear Of Missing Out</button>
-                    <button onclick="checkAnswerWeek4('First Order Market Option', 'mission4-21')">First Order Market Option</button>
-                    <p class="hint">Indice : Peur de rater une opportunité.</p>
-                </div>
-            </article>
-            <!-- Mission 22 -->
-            <article class="mission" id="mission4-22">
-                <h3>Mission 22 : FUD</h3>
-                <p>Que signifie FUD dans le contexte crypto ?</p>
-                <div class="activity" role="region" aria-label="FUD">
-                    <button onclick="checkAnswerWeek4('Fear, Uncertainty, Doubt', 'mission4-22')">Fear, Uncertainty, Doubt</button>
-                    <button onclick="checkAnswerWeek4('Fast Upward Development', 'mission4-22')">Fast Upward Development</button>
-                    <p class="hint">Indice : Négativité répandue.</p>
-                </div>
-            </article>
-            <!-- Mission 23 -->
-            <article class="mission" id="mission4-23">
-                <h3>Mission 23 : HODL vs Trading</h3>
-                <p>Quelle stratégie est plus adaptée à un débutant ?</p>
-                <div class="activity" role="region" aria-label="HODL vs Trading">
-                    <button onclick="checkAnswerWeek4('HODL', 'mission4-23')">HODL</button>
-                    <button onclick="checkAnswerWeek4('Day trading', 'mission4-23')">Day trading</button>
-                    <p class="hint">Indice : Moins de stress.</p>
-                </div>
-            </article>
-            <!-- Mission 24 -->
-            <article class="mission" id="mission4-24">
-                <h3>Mission 24 : Liquidité</h3>
-                <p>Que signifie une bonne liquidité sur un marché ?</p>
-                <div class="activity" role="region" aria-label="Liquidité">
-                    <button onclick="checkAnswerWeek4('Facilité d’achat/vente', 'mission4-24')">Facilité d’achat/vente</button>
-                    <button onclick="checkAnswerWeek4('Hausse des prix', 'mission4-24')">Hausse des prix</button>
-                    <p class="hint">Indice : Volume élevé.</p>
-                </div>
-            </article>
-            <!-- Mission 25 -->
-            <article class="mission" id="mission4-25">
-                <h3>Mission 25 : Test Final</h3>
-                <p>Quelle est la clé d’une stratégie réussie ?</p>
-                <div class="activity" role="region" aria-label="Clé de la stratégie">
-                    <button onclick="checkAnswerWeek4('Recherche et patience', 'mission4-25')">Recherche et patience</button>
-                    <button onclick="checkAnswerWeek4('Chance', 'mission4-25')">Chance</button>
-                    <p class="hint">Indice : Analyse et discipline.</p>
-                </div>
-            </article>
-            <!-- Boss -->
-            <article class="mission boss" id="boss4">
-                <h3>Boss : Le Seigneur des Marchés</h3>
-                <p>"Quelle stratégie vaincra le marché ? (3 mots)"</p>
+
+            <article class="mission boss" id="boss4" style="display: none;">
+                <h3>Boss : Le Kraken des Profits</h3>
+                <p>"Quelle est ta stratégie en 5 mots ?"</p>
                 <div class="activity" role="region" aria-label="Combat contre le boss">
-                    <input type="text" id="strategy4-1" placeholder="Ta réponse" aria-required="true">
-                    <button onclick="checkStrategyWeek4('boss4')">Soumettre</button>
-                    <p class="hint">Indice : Analyse, patience, diversification.</p>
+                    <input type="text" id="strategy" placeholder="Ta stratégie" aria-required="true">
+                    <button onclick="checkStrategy('boss4')">Soumettre</button>
+                    <p class="hint">Indice : Sois clair et précis !</p>
                 </div>
             </article>
-            <!-- Récompense -->
-            <div class="reward" id="reward4">
-                <h3>Récompense : Couronne du Maître</h3>
-                <p>Tu es un expert des cryptos !</p>
-                <img src="master-crown.png" alt="Couronne du Maître" class="reward-img">
-                <p><strong>Couronne du Maître</strong></p>
-                <button onclick="endQuest()">Quête Terminée</button>
+
+            <div class="reward" id="reward4" style="display: none;" aria-label="Récompense Semaine 4">
+                <h3>Récompense : Couronne de Maître Crypto</h3>
+                <p>Félicitations ! Tu es un Maître de Cryptopia.</p>
+                <img src="master-crown.png" alt="Couronne de Maître Crypto" class="reward-img">
+                <button onclick="nextWeek('week4', 'bonus')">Quêtes Bonus</button>
             </div>
         </section>
 
-        <!-- Section de fin -->
-        <section id="end">
-            <h2>Félicitations, Maître des Cryptos !</h2>
-            <p>Tu as terminé la quête avec succès ! Reviens quand tu veux pour perfectionner tes compétences.</p>
-            <button onclick="restartQuest()">Recommencer</button>
+        <!-- Quêtes Bonus -->
+        <section id="bonus" class="week" style="display: none;" aria-label="Quêtes Bonus">
+            <h2 class="week-title">Bonus : Les Secrets du Roi Crypto</h2>
+            <p class="week-theme">Thème : Des quêtes secrètes pour les plus curieux !</p>
+            <div class="week-description">
+                <p>Le Roi Crypto t’invite dans sa salle secrète. Prouve ta valeur une dernière fois.</p>
+            </div>
+
+            <article class="mission" id="bonus1">
+                <h3>Quête Bonus 1 : Le Trésor Fiscal</h3>
+                <p>Le Roi te demande : "Tu gagnes 500 € fictifs, taxe à 20 %. Combien payes-tu ?"</p>
+                <div class="activity" role="region" aria-label="Calcul fiscal">
+                    <input type="number" id="tax" placeholder="Ton calcul en €" aria-required="true">
+                    <button onclick="checkTax('bonus1')">Payer</button>
+                    <p class="hint">Indice : 20 % de 500, c’est simple !</p>
+                </div>
+            </article>
+
+            <article class="mission" id="bonus2" style="display: none;">
+                <h3>Quête Bonus 2 : Long Terme ou Éclair Rapide ?</h3>
+                <p>L’Oracle te propose : "Investir ou trader ? Choisis ton destin."</p>
+                <div class="activity" role="region" aria-label="Choix de destin">
+                    <button onclick="checkDestiny('Investir', 'bonus2')">Investir</button>
+                    <button onclick="checkDestiny('Trader', 'bonus2')">Trader</button>
+                    <p class="hint">Indice : Chaque chemin a ses richesses.</p>
+                </div>
+            </article>
+
+            <div class="reward" id="rewardBonus" style="display: none;" aria-label="Récompenses Bonus">
+                <h3>Récompenses Bonus</h3>
+                <p>Tu as percé les secrets ultimes !</p>
+                <img src="tax-crown.png" alt="Couronne Fiscale" class="reward-img">
+                <p><strong>Couronne Fiscale</strong></p>
+                <img src="vision-star.png" alt="Étoile de Vision" class="reward-img">
+                <p><strong>Étoile de Vision</strong></p>
+                <button onclick="endQuest()">Terminer l’Aventure</button>
+            </div>
+        </section>
+
+        <!-- Fin -->
+        <section id="end" class="end-section" style="display: none;" aria-label="Fin de l'aventure">
+            <h2>Fin de l’Aventure</h2>
+            <p>Bravo, Légende de Cryptopia ! Tu as tout conquis.</p>
+            <p>Reviens quand tu veux pour de nouvelles quêtes ou partage ton savoir avec d’autres aventuriers !</p>
+            <button class="btn-restart" onclick="restartQuest()">Recommencer</button>
         </section>
     </div>
 
-    <script>
-        // Variables globales
-        let globalProgress = {
-            week1: 0,
-            week2: 0,
-            week3: 0,
-            week4: 0
-        };
-        let globalInventory = {
-            medals: 0,
-            keys: 0,
-            crystals: 0,
-            crowns: 0
-        };
+    <footer class="footer">
+        <p>Créé par xAI - Mars 2025</p>
+    </footer>
 
-        // Fonctions générales
-        function startQuest() {
-            console.log("Démarrage de la quête...");
-            const welcome = document.getElementById('welcome');
-            const week1 = document.getElementById('week1');
-            const mission1_1 = document.getElementById('mission1-1');
-
-            if (welcome && week1 && mission1_1) {
-                welcome.classList.remove('active');
-                week1.classList.add('active');
-                mission1_1.classList.add('active');
-                console.log("Semaine 1 et Mission 1-1 activées.");
-            } else {
-                console.error("Erreur : Éléments welcome, week1 ou mission1-1 non trouvés.");
-            }
-        }
-
-        function nextWeek(currentWeekId, nextWeekId) {
-            console.log(`Passage de ${currentWeekId} à ${nextWeekId}`);
-            const currentWeek = document.getElementById(currentWeekId);
-            const nextWeek = document.getElementById(nextWeekId);
-            const firstMission = document.getElementById(`mission${nextWeekId.charAt(4)}-1`);
-
-            if (currentWeek && nextWeek && firstMission) {
-                currentWeek.classList.remove('active');
-                nextWeek.classList.add('active');
-                firstMission.classList.add('active');
-                console.log(`Semaine ${nextWeekId} et première mission activées.`);
-            } else {
-                console.error("Erreur : Éléments non trouvés pour passer à la semaine suivante.");
-            }
-        }
-
-        function endQuest() {
-            console.log("Fin de la quête...");
-            const week4 = document.getElementById('week4');
-            const endSection = document.getElementById('end');
-
-            if (week4 && endSection) {
-                week4.classList.remove('active');
-                endSection.classList.add('active');
-                console.log("Section de fin activée.");
-            } else {
-                console.error("Erreur : Éléments week4 ou end non trouvés.");
-            }
-        }
-
-        function restartQuest() {
-            console.log("Redémarrage de la quête...");
-            const endSection = document.getElementById('end');
-            const welcome = document.getElementById('welcome');
-
-            if (endSection && welcome) {
-                endSection.classList.remove('active');
-                welcome.classList.add('active');
-                globalProgress = { week1: 0, week2: 0, week3: 0, week4: 0 };
-                globalInventory = { medals: 0, keys: 0, crystals: 0, crowns: 0 };
-                hideAllMissions();
-                console.log("Quête redémarrée, progression réinitialisée.");
-            } else {
-                console.error("Erreur : Éléments end ou welcome non trouvés.");
-            }
-        }
-
-        function hideAllMissions() {
-            const missions = document.querySelectorAll('.mission');
-            const rewards = document.querySelectorAll('.reward');
-            const weeks = document.querySelectorAll('.week');
-
-            missions.forEach(mission => mission.classList.remove('active'));
-            rewards.forEach(reward => reward.classList.remove('active'));
-            weeks.forEach(week => week.classList.remove('active'));
-            console.log("Toutes les missions, récompenses et semaines masquées.");
-        }
-
-        // Fonctions pour la Semaine 1
-        function checkAnswerWeek1(answer, missionId) {
-            console.log(`Vérification réponse pour ${missionId} : ${answer}`);
-            if (answer === getCorrectAnswerWeek1(missionId)) {
-                alert('Bonne réponse !');
-                globalProgress.week1++;
-                console.log(`Progression semaine 1 : ${globalProgress.week1}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week1', missionId);
-            } else {
-                alert('Mauvaise réponse. Réessaie !');
-            }
-        }
-
-        function checkPasswordWeek1(missionId) {
-            console.log(`Vérification mot de passe pour ${missionId}`);
-            const password = document.getElementById('password1-1').value;
-            if (password.length >= 12 && /\d/.test(password) && /[!@#$%^&*]/.test(password)) {
-                alert('Mot de passe forgé avec succès !');
-                globalProgress.week1++;
-                console.log(`Progression semaine 1 : ${globalProgress.week1}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week1', missionId);
-            } else {
-                alert('Mot de passe trop faible. Utilise 12 caractères avec chiffres et symboles.');
-            }
-        }
-
-        function checkCoffreWeek1(answer, missionId) {
-            console.log(`Vérification coffre pour ${missionId} : ${answer}`);
-            if (answer === 'Matériel') {
-                alert('Bonne réponse !');
-                globalProgress.week1++;
-                console.log(`Progression semaine 1 : ${globalProgress.week1}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week1', missionId);
-            } else {
-                alert('Mauvaise réponse. Réessaie !');
-            }
-        }
-
-        function checkPhishingWeek1(answer, missionId) {
-            console.log(`Vérification phishing pour ${missionId} : ${answer}`);
-            if (answer === 'Faux') {
-                alert('Bonne réponse !');
-                globalProgress.week1++;
-                console.log(`Progression semaine 1 : ${globalProgress.week1}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week1', missionId);
-            } else {
-                alert('Mauvaise réponse. Méfie-toi des arnaques !');
-            }
-        }
-
-        function checkBossWeek1(answer, missionId) {
-            console.log(`Vérification boss semaine 1 : ${answer}`);
-            if (answer === '2FA') {
-                alert('Victoire contre le Dragon !');
-                globalProgress.week1 = 25; // Toutes les missions terminées
-                globalInventory.medals++;
-                console.log(`Progression semaine 1 terminée : ${globalProgress.week1}, Médailles : ${globalInventory.medals}`);
-                document.getElementById('boss1').classList.remove('active');
-                document.getElementById('reward1').classList.add('active');
-            } else {
-                alert('Le Dragon te défie encore ! Réessaie.');
-            }
-        }
-
-        function getCorrectAnswerWeek1(missionId) {
-            const answers = {
-                'mission1-1': 'Décentralisation',
-                'mission1-5': 'Cryptographie',
-                'mission1-6': 'Ignorer',
-                'mission1-7': 'Cryptographie',
-                'mission1-8': '2FA',
-                'mission1-9': 'Satoshi Nakamoto',
-                'mission1-10': 'Bitcoin',
-                'mission1-11': 'Ignorer',
-                'mission1-12': '12',
-                'mission1-13': 'Décentralisé',
-                'mission1-14': 'Wi-Fi public',
-                'mission1-15': 'Les noter sur papier',
-                'mission1-16': 'Hachage',
-                'mission1-17': '2009',
-                'mission1-18': 'Phishing',
-                'mission1-19': 'Sécurité supplémentaire',
-                'mission1-20': '21 millions',
-                'mission1-21': 'Recevoir des fonds',
-                'mission1-22': 'Tes fonds',
-                'mission1-23': 'Pirates informatiques',
-                'mission1-24': 'Sécuriser les blocs',
-                'mission1-25': 'Sauvegarde hors ligne'
-            };
-            return answers[missionId] || '';
-        }
-
-        function showNextMission(weekId, currentMissionId) {
-            console.log(`Affichage mission suivante pour ${weekId}, mission actuelle : ${currentMissionId}`);
-            const missionNum = parseInt(currentMissionId.split('-')[1]) + 1;
-            const nextMissionId = `mission${weekId.charAt(4)}-${missionNum}`;
-            const nextMission = document.getElementById(nextMissionId);
-
-            if (nextMission && globalProgress[weekId] < 25) {
-                nextMission.classList.add('active');
-                console.log(`Mission suivante ${nextMissionId} activée.`);
-            } else if (missionNum === 26) { // Boss après la mission 25
-                const bossId = `boss${weekId.charAt(4)}`;
-                const boss = document.getElementById(bossId);
-                if (boss) {
-                    boss.classList.add('active');
-                    console.log(`Boss ${bossId} activé.`);
-                } else {
-                    console.error(`Erreur : Boss ${bossId} non trouvé.`);
-                }
-            } else {
-                console.log("Aucune mission suivante à afficher ou progression terminée.");
-            }
-        }
-
-        // Fonctions pour la Semaine 2
-        function checkAnswerWeek2(answer, missionId) {
-            console.log(`Vérification réponse pour ${missionId} : ${answer}`);
-            if (answer === getCorrectAnswerWeek2(missionId)) {
-                alert('Bonne réponse !');
-                globalProgress.week2++;
-                console.log(`Progression semaine 2 : ${globalProgress.week2}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week2', missionId);
-            } else {
-                alert('Mauvaise réponse. Réessaie !');
-            }
-        }
-
-        function checkFeesWeek2(missionId) {
-            console.log(`Vérification frais pour ${missionId}`);
-            const feesInput = missionId === 'mission2-5' ? document.getElementById('fees2-1').value : document.getElementById('fees2-2').value;
-            const correctFees = missionId === 'mission2-5' ? 0.5 : 5;
-            if (parseFloat(feesInput) === correctFees) {
-                alert('Calcul correct !');
-                globalProgress.week2++;
-                console.log(`Progression semaine 2 : ${globalProgress.week2}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week2', missionId);
-            } else {
-                alert('Mauvais calcul. Réessaie !');
-            }
-        }
-
-        function checkProfitWeek2(missionId) {
-            console.log(`Vérification profit pour ${missionId}`);
-            const profitInput = document.getElementById('profit2-1').value;
-            if (parseFloat(profitInput) === 500) {
-                alert('Profit calculé avec succès !');
-                globalProgress.week2++;
-                console.log(`Progression semaine 2 : ${globalProgress.week2}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week2', missionId);
-            } else {
-                alert('Mauvais calcul. Réessaie !');
-            }
-        }
-
-        function checkReasonWeek2(missionId) {
-            console.log(`Vérification raison pour ${missionId}`);
-            const reason = document.getElementById('reason2-1').value.toLowerCase();
-            if (reason.includes('décentralisation') && reason.includes('sécurité') && reason.includes('valeur')) {
-                alert('Victoire contre le Géant !');
-                globalProgress.week2 = 25; // Toutes les missions terminées
-                globalInventory.keys++;
-                console.log(`Progression semaine 2 terminée : ${globalProgress.week2}, Clés : ${globalInventory.keys}`);
-                document.getElementById('boss2').classList.remove('active');
-                document.getElementById('reward2').classList.add('active');
-            } else {
-                alert('Réponse insuffisante. Réessaie avec 3 mots clés (ex: décentralisation, sécurité, valeur).');
-            }
-        }
-
-        function getCorrectAnswerWeek2(missionId) {
-            const answers = {
-                'mission2-1': 'Ethereum',
-                'mission2-2': 'Ripple',
-                'mission2-3': 'Durable',
-                'mission2-4': 'Sécurité',
-                'mission2-6': 'Contrats intelligents',
-                'mission2-7': 'USDT',
-                'mission2-8': 'Acheter/vendre',
-                'mission2-9': 'Bitcoin',
-                'mission2-10': 'Alternative à Bitcoin',
-                'mission2-11': 'Kraken',
-                'mission2-13': 'Monero',
-                'mission2-14': 'Exchange décentralisé',
-                'mission2-15': 'Réputation',
-                'mission2-16': 'Frais de retrait',
-                'mission2-17': 'Exchange',
-                'mission2-18': 'Cardano',
-                'mission2-20': 'Solana',
-                'mission2-21': 'Actif numérique',
-                'mission2-22': 'Non-Fungible Token',
-                'mission2-23': 'Finance décentralisée',
-                'mission2-24': 'Verrouiller pour des récompenses',
-                'mission2-25': 'Échanger des cryptos'
-            };
-            return answers[missionId] || '';
-        }
-
-        // Fonctions pour la Semaine 3
-        function checkAnswerWeek3(answer, missionId) {
-            console.log(`Vérification réponse pour ${missionId} : ${answer}`);
-            if (answer === getCorrectAnswerWeek3(missionId)) {
-                alert('Bonne réponse !');
-                globalProgress.week3++;
-                console.log(`Progression semaine 3 : ${globalProgress.week3}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week3', missionId);
-            } else {
-                alert('Mauvaise réponse. Réessaie !');
-            }
-        }
-
-        function transferBTCWeek3(missionId) {
-            console.log(`Transfert fictif pour ${missionId}`);
-            alert('Transfert fictif réussi !');
-            globalProgress.week3++;
-            console.log(`Progression semaine 3 : ${globalProgress.week3}`);
-            document.getElementById(missionId).classList.remove('active');
-            showNextMission('week3', missionId);
-        }
-
-        function checkBossWeek3(answer, missionId) {
-            console.log(`Vérification boss semaine 3 : ${answer}`);
-            if (answer === 'Email') {
-                alert('Victoire contre le Titan !');
-                globalProgress.week3 = 25; // Toutes les missions terminées
-                globalInventory.crystals++;
-                console.log(`Progression semaine 3 terminée : ${globalProgress.week3}, Cristaux : ${globalInventory.crystals}`);
-                document.getElementById('boss3').classList.remove('active');
-                document.getElementById('reward3').classList.add('active');
-            } else {
-                alert('Le Titan te défie encore ! Réessaie.');
-            }
-        }
-
-        function getCorrectAnswerWeek3(missionId) {
-            const answers = {
-                'mission3-1': 'Une adresse',
-                'mission3-2': 'Matériel',
-                'mission3-3': 'Oui',
-                'mission3-4': 'USB',
-                'mission3-6': 'Mobile',
-                'mission3-7': 'Oui',
-                'mission3-8': 'Email',
-                'mission3-9': 'Connecté à Internet',
-                'mission3-10': 'Hors ligne',
-                'mission3-11': 'Ledger',
-                'mission3-12': 'Multiple lieux',
-                'mission3-13': 'Piratage',
-                'mission3-14': 'Phrase de récupération',
-                'mission3-15': 'Metamask',
-                'mission3-16': 'Coffre-fort',
-                'mission3-17': 'Perte des fonds',
-                'mission3-18': '12-24',
-                'mission3-19': 'Plusieurs clés',
-                'mission3-20': 'Oui',
-                'mission3-21': 'Ne clique pas',
-                'mission3-22': 'Oui',
-                'mission3-23': 'Electrum',
-                'mission3-24': 'Coffre-fort',
-                'mission3-25': 'Sauvegarde hors ligne'
-            };
-            return answers[missionId] || '';
-        }
-
-        // Fonctions pour la Semaine 4
-        function checkAnswerWeek4(answer, missionId) {
-            console.log(`Vérification réponse pour ${missionId} : ${answer}`);
-            if (answer === getCorrectAnswerWeek4(missionId)) {
-                alert('Bonne réponse !');
-                globalProgress.week4++;
-                console.log(`Progression semaine 4 : ${globalProgress.week4}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week4', missionId);
-            } else {
-                alert('Mauvaise réponse. Réessaie !');
-            }
-        }
-
-        function checkProfitWeek4(missionId) {
-            console.log(`Vérification profit pour ${missionId}`);
-            const profitInput = document.getElementById('profit4-1').value;
-            if (parseFloat(profitInput) === 10000) {
-                alert('Profit calculé avec succès !');
-                globalProgress.week4++;
-                console.log(`Progression semaine 4 : ${globalProgress.week4}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week4', missionId);
-            } else {
-                alert('Mauvais calcul. Réessaie ! (2 × (35 000 - 30 000))');
-            }
-        }
-
-        function checkLossWeek4(missionId) {
-            console.log(`Vérification perte pour ${missionId}`);
-            const lossInput = document.getElementById('loss4-1').value;
-            if (parseFloat(lossInput) === 500) {
-                alert('Perte calculée avec succès !');
-                globalProgress.week4++;
-                console.log(`Progression semaine 4 : ${globalProgress.week4}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week4', missionId);
-            } else {
-                alert('Mauvais calcul. Réessaie ! (3000 - 2500)');
-            }
-        }
-
-        function checkFeesWeek4(missionId) {
-            console.log(`Vérification frais pour ${missionId}`);
-            const feesInput = document.getElementById('fees4-1').value;
-            if (parseFloat(feesInput) === 2) {
-                alert('Frais calculés avec succès !');
-                globalProgress.week4++;
-                console.log(`Progression semaine 4 : ${globalProgress.week4}`);
-                document.getElementById(missionId).classList.remove('active');
-                showNextMission('week4', missionId);
-            } else {
-                alert('Mauvais calcul. Réessaie ! (1000 × 0,002)');
-            }
-        }
-
-        function checkStrategyWeek4(missionId) {
-            console.log(`Vérification stratégie pour ${missionId}`);
-            const strategy = document.getElementById('strategy4-1').value.toLowerCase();
-            if (strategy.includes('analyse') && strategy.includes('patience') && strategy.includes('diversification')) {
-                alert('Victoire contre le Seigneur !');
-                globalProgress.week4 = 25; // Toutes les missions terminées
-                globalInventory.crowns++;
-                console.log(`Progression semaine 4 terminée : ${globalProgress.week4}, Couronnes : ${globalInventory.crowns}`);
-                document.getElementById('boss4').classList.remove('active');
-                document.getElementById('reward4').classList.add('active');
-            } else {
-                alert('Stratégie insuffisante. Réessaie avec 3 mots clés (ex: analyse, patience, diversification).');
-            }
-        }
-
-        function getCorrectAnswerWeek4(missionId) {
-            const answers = {
-                'mission4-1': 'Binance',
-                'mission4-3': 'Réduire les risques',
-                'mission4-4': 'Variation des prix',
-                'mission4-5': 'HODL',
-                'mission4-6': 'Acheter/vendre dans la journée',
-                'mission4-7': 'Graphiques',
-                'mission4-8': 'Valeur intrinsèque',
-                'mission4-9': 'Limiter les pertes',
-                'mission4-10': 'Sécuriser les gains',
-                'mission4-13': 'Dollar-Cost Averaging',
-                'mission4-14': 'Moyenner les prix',
-                'mission4-15': 'Valeur totale',
-                'mission4-16': 'Activité sur 24h',
-                'mission4-17': 'Hausse des prix',
-                'mission4-18': 'Baisse des prix',
-                'mission4-19': 'Arnaque',
-                'mission4-20': 'Projet et technologie',
-                'mission4-21': 'Fear Of Missing Out',
-                'mission4-22': 'Fear, Uncertainty, Doubt',
-                'mission4-23': 'HODL',
-                'mission4-24': 'Facilité d’achat/vente',
-                'mission4-25': 'Recherche et patience'
-            };
-            return answers[missionId] || '';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
