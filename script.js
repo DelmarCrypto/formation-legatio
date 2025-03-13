@@ -1,272 +1,410 @@
-// Sons
-const victorySound = document.getElementById('victorySound');
-const errorSound = document.getElementById('errorSound');
-const backgroundMusic = document.getElementById('backgroundMusic');
+// Variables globales
+let progress = 0;
+const inventory = [];
 
-// Gestion de la progression
-function saveProgress(currentSection) {
-    localStorage.setItem('cryptoQuestProgress', currentSection);
-}
-
+// Fonction pour charger la progression initiale
 function loadProgress() {
-    const progress = localStorage.getItem('cryptoQuestProgress');
-    if (progress) {
-        document.getElementById('welcome').style.display = 'none';
-        document.getElementById(progress).style.display = 'block';
-    }
-    backgroundMusic.play(); // Joue la musique de fond au chargement
+    updateProgress();
 }
 
+// Fonction pour démarrer la quête
 function startQuest() {
     document.getElementById('welcome').style.display = 'none';
     document.getElementById('week1').style.display = 'block';
-    saveProgress('week1');
-    backgroundMusic.play();
+    const adventureMusic = document.getElementById('adventureMusic');
+    adventureMusic.play().catch(error => console.log("Erreur lecture musique aventure :", error));
+    progress += 5;
+    updateProgress();
 }
 
-function nextWeek(currentWeek, nextWeek) {
-    document.getElementById(currentWeek).style.display = 'none';
-    document.getElementById(nextWeek).style.display = 'block';
-    saveProgress(nextWeek);
-}
+// Fonction pour vérifier les réponses des QCM
+function checkAnswer(correctAnswer, missionId) {
+    const userAnswer = event.target.textContent;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
 
-function endQuest() {
-    document.getElementById('bonus').style.display = 'none';
-    document.getElementById('end').style.display = 'block';
-    saveProgress('end');
-    backgroundMusic.pause(); // Arrête la musique à la fin
-}
-
-// Semaine 1
-function checkAnswer(answer, missionId) {
-    if (missionId === 'mission1-1' && answer === 'Décentralisation') {
-        alert('Correct ! Bitcoin est décentralisé.');
-        victorySound.play();
-        document.getElementById('mission1-1').style.display = 'none';
-        document.getElementById('mission1-2').style.display = 'block';
-    } else if (missionId === 'mission2-1' && answer === 'Ethereum') {
-        alert('Correct ! Ethereum est la magie des contrats intelligents.');
-        victorySound.play();
-        document.getElementById('mission2-1').style.display = 'none';
-        document.getElementById('mission2-2').style.display = 'block';
-    } else if (missionId === 'mission3-1' && answer === 'Une adresse') {
-        alert('Correct ! La clé publique est ton adresse publique.');
-        victorySound.play();
-        document.getElementById('mission3-1').style.display = 'none';
-        document.getElementById('mission3-2').style.display = 'block';
+    if (userAnswer === correctAnswer) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
+        document.getElementById(missionId).style.display = 'none';
+        const nextMissionId = missionId.replace(/\d+$/, num => parseInt(num) + 1);
+        const nextMission = document.getElementById(nextMissionId);
+        if (nextMission) {
+            nextMission.style.display = 'block';
+        } else {
+            document.getElementById(missionId.replace('mission', 'boss')).style.display = 'block';
+        }
     } else {
-        alert('Erreur ! Réessaie, aventurier.');
-        errorSound.play();
+        wrongSound.play();
+        alert("Mauvaise réponse ! Réessaie.");
     }
 }
 
+// Fonction pour vérifier le mot de passe (Semaine 1, Mission 2)
 function checkPassword(missionId) {
     const password = document.getElementById('password1').value;
-    if (password.length >= 8 && /[A-Z]/.test(password) && /[0-9]/.test(password)) {
-        alert('Superbe bouclier ! Le Forgeron 2FA approuve.');
-        victorySound.play();
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (password.length >= 12 && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password)) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
         document.getElementById(missionId).style.display = 'none';
         document.getElementById('mission1-3').style.display = 'block';
     } else {
-        alert('Trop faible ! Ajoute 8+ caractères, une majuscule et un chiffre.');
-        errorSound.play();
+        wrongSound.play();
+        alert("Le mot de passe doit avoir au moins 12 caractères, inclure des chiffres et des symboles !");
     }
 }
 
-function checkCoffre(choice, missionId) {
-    alert(`Tu as choisi le ${choice} ! Chaque coffre a ses forces.`);
-    victorySound.play();
-    document.getElementById(missionId).style.display = 'none';
-    document.getElementById('mission1-4').style.display = 'block';
+// Fonction pour vérifier le choix du coffre (Semaine 1, Mission 3)
+function checkCoffre(correctCoffre, missionId) {
+    const userCoffre = event.target.textContent.split(' ')[1];
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (userCoffre === correctCoffre) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
+        document.getElementById(missionId).style.display = 'none';
+        document.getElementById('mission1-4').style.display = 'block';
+    } else {
+        wrongSound.play();
+        alert("Ce coffre est moins sûr. Réessaie !");
+    }
 }
 
-function checkPhishing(answer, missionId) {
-    if (answer === 'Faux') {
-        alert('Bien vu ! Les Bandits du Phishing ne t’auront pas.');
-        victorySound.play();
+// Fonction pour vérifier le phishing (Semaine 1, Mission 4)
+function checkPhishing(correctAnswer, missionId) {
+    const userAnswer = event.target.textContent;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (userAnswer === correctAnswer) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
         document.getElementById(missionId).style.display = 'none';
         document.getElementById('boss1').style.display = 'block';
     } else {
-        alert('Attention ! C’est un piège.');
-        errorSound.play();
+        wrongSound.play();
+        alert("Mauvaise réponse ! Réessaie.");
     }
 }
 
-function checkBoss(answer, missionId) {
-    if (missionId === 'boss1' && answer === '2FA') {
-        alert('Victoire ! Le Dragon s’incline.');
-        victorySound.play();
-        document.getElementById('boss1').style.display = 'none';
-        document.getElementById('reward1').style.display = 'block';
-    } else if (missionId === 'boss2' && answer === 'Any') {
-        alert('Le Géant approuve ta sagesse !');
-        victorySound.play();
-        document.getElementById('boss2').style.display = 'none';
-        document.getElementById('reward2').style.display = 'block';
-    } else if (missionId === 'boss3' && answer === 'Email') {
-        alert('Victoire ! Le Titan des Clés est vaincu.');
-        victorySound.play();
-        document.getElementById('boss3').style.display = 'none';
-        document.getElementById('reward3').style.display = 'block';
-    } else if (missionId === 'boss4' && answer === 'Any') {
-        alert('Le Kraken salue ta stratégie !');
-        victorySound.play();
-        document.getElementById('boss4').style.display = 'none';
-        document.getElementById('reward4').style.display = 'block';
+// Fonction pour vérifier les réponses des boss
+function checkBoss(correctAnswer, bossId) {
+    const userAnswer = event.target.textContent;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (userAnswer === correctAnswer) {
+        winSound.play();
+        progress += 10;
+        updateProgress();
+        document.getElementById(bossId).style.display = 'none';
+        const rewardId = 'reward' + bossId.replace('boss', '');
+        document.getElementById(rewardId).style.display = 'block';
+        inventory.push(document.querySelector(`#${rewardId} p strong`).textContent);
+        updateInventory();
     } else {
-        alert('Mauvaise réponse ! Réessaie.');
-        errorSound.play();
+        wrongSound.play();
+        alert("Mauvaise réponse ! Réessaie.");
     }
 }
 
-// Semaine 2
-function checkStyle(choice, missionId) {
-    alert(`Tu es un aventurier ${choice === 'Rapide' ? 'audacieux' : 'patient'} !`);
-    victorySound.play();
+// Fonction pour vérifier le style (Semaine 2, Mission 2)
+function checkStyle(userStyle, missionId) {
+    const winSound = document.getElementById('winSound');
+    winSound.play();
+    progress += 5;
+    updateProgress();
     document.getElementById(missionId).style.display = 'none';
     document.getElementById('mission2-3').style.display = 'block';
 }
 
-function checkMarket(choice, missionId) {
-    alert(`Tu privilégies ${choice} ! Bonne stratégie.`);
-    victorySound.play();
-    document.getElementById(missionId).style.display = 'none';
-    document.getElementById('mission2-4').style.display = 'block';
+// Fonction pour vérifier le marché (Semaine 2, Mission 3)
+function checkMarket(correctMarket, missionId) {
+    const userMarket = event.target.textContent;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (userMarket === correctMarket) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
+        document.getElementById(missionId).style.display = 'none';
+        document.getElementById('mission2-4').style.display = 'block';
+    } else {
+        wrongSound.play();
+        alert("Ce marché est moins sûr. Réessaie !");
+    }
 }
 
+// Fonction pour vérifier les frais (Semaine 2, Mission 4)
 function checkFees(missionId) {
-    const fees = document.getElementById('fees').value;
-    if (fees == 0.5) {
-        alert('Correct ! 0,5 % de 100 € = 0,50 €.');
-        victorySound.play();
+    const userFees = document.getElementById('fees').value;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (userFees == 0.5) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
         document.getElementById(missionId).style.display = 'none';
         document.getElementById('boss2').style.display = 'block';
     } else {
-        alert('Erreur ! Calcule encore.');
-        errorSound.play();
+        wrongSound.play();
+        alert("Faux ! Les frais sont 0,5 €. Réessaie.");
     }
 }
 
-function checkReason(missionId) {
+// Fonction pour vérifier la raison (Semaine 2, Boss)
+function checkReason(bossId) {
     const reason = document.getElementById('reason').value;
-    if (reason.split(' ').length >= 3) {
-        checkBoss('Any', missionId);
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (reason.split(' ').length <= 3 && reason.trim() !== '') {
+        winSound.play();
+        progress += 10;
+        updateProgress();
+        document.getElementById(bossId).style.display = 'none';
+        document.getElementById('reward2').style.display = 'block';
+        inventory.push(document.querySelector('#reward2 p strong').textContent);
+        updateInventory();
     } else {
-        alert('Il faut au moins 3 mots !');
-        errorSound.play();
+        wrongSound.play();
+        alert("Ta réponse doit être en 3 mots maximum ! Réessaie.");
     }
 }
 
-// Semaine 3
-function checkWalletType(choice, missionId) {
-    if (choice === 'Matériel') {
-        alert('Correct ! Les portefeuilles matériels sont les plus sécurisés.');
-        victorySound.play();
+// Fonction pour vérifier le type de portefeuille (Semaine 3, Mission 2)
+function checkWalletType(correctType, missionId) {
+    const userType = event.target.textContent;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (userType === correctType) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
         document.getElementById(missionId).style.display = 'none';
         document.getElementById('mission3-3').style.display = 'block';
     } else {
-        alert('Pas tout à fait ! Les portefeuilles matériels sont les meilleurs.');
-        errorSound.play();
+        wrongSound.play();
+        alert("Ce type de portefeuille est moins sûr. Réessaie !");
     }
 }
 
-function activate2FA(choice, missionId) {
-    if (choice === 'Oui') {
-        alert('Bien joué ! 2FA renforce ta tour.');
-        victorySound.play();
+// Fonction pour activer 2FA (Semaine 3, Mission 3)
+function activate2FA(correctChoice, missionId) {
+    const userChoice = event.target.textContent;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (userChoice === correctChoice) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
         document.getElementById(missionId).style.display = 'none';
         document.getElementById('mission3-4').style.display = 'block';
     } else {
-        alert('Erreur ! 2FA est essentiel.');
-        errorSound.play();
+        wrongSound.play();
+        alert("Mauvaise réponse ! Réessaie.");
     }
 }
 
-function checkBackup(choice, missionId) {
-    if (choice === 'USB') {
-        alert('Correct ! Une sauvegarde hors ligne est sûre.');
-        victorySound.play();
+// Fonction pour vérifier la sauvegarde (Semaine 3, Mission 4)
+function checkBackup(correctBackup, missionId) {
+    const userBackup = event.target.textContent;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (userBackup === correctBackup) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
         document.getElementById(missionId).style.display = 'none';
         document.getElementById('mission3-5').style.display = 'block';
     } else {
-        alert('Danger ! Le cloud est risqué.');
-        errorSound.play();
+        wrongSound.play();
+        alert("Ce n'est pas sécurisé. Réessaie !");
     }
 }
 
+// Fonction pour transférer BTC (Semaine 3, Mission 5)
 function transferBTC(missionId) {
-    alert('Transfert réussi ! 10 BTC fictifs sont en sécurité.');
-    victorySound.play();
+    const winSound = document.getElementById('winSound');
+    winSound.play();
+    progress += 5;
+    updateProgress();
     document.getElementById(missionId).style.display = 'none';
     document.getElementById('boss3').style.display = 'block';
 }
 
-// Semaine 4
-function checkPurchaseMethod(choice, missionId) {
-    alert(`Tu choisis ${choice} ! Chaque méthode a ses avantages.`);
-    victorySound.play();
-    document.getElementById(missionId).style.display = 'none';
-    document.getElementById('mission4-2').style.display = 'block';
-}
+// Fonction pour vérifier la méthode d'achat (Semaine 4, Mission 1)
+function checkPurchaseMethod(correctMethod, missionId) {
+    const userMethod = event.target.textContent;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
 
-function checkDeposit(missionId) {
-    const deposit = document.getElementById('deposit').value;
-    if (deposit >= 500) {
-        alert('Achat réussi ! 0,01 BTC est à toi.');
-        victorySound.play();
+    if (userMethod === correctMethod) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
         document.getElementById(missionId).style.display = 'none';
-        document.getElementById('mission4-3').style.display = 'block';
+        document.getElementById('mission4-2').style.display = 'block';
     } else {
-        alert('Pas assez ! Il faut au moins 500 €.');
-        errorSound.play();
+        wrongSound.play();
+        alert("Ce n'est pas la meilleure méthode. Réessaie !");
     }
 }
 
+// Fonction pour vérifier le dépôt (Semaine 4, Mission 2)
+function checkDeposit(missionId) {
+    const userDeposit = document.getElementById('deposit').value;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (userDeposit == 500) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
+        document.getElementById(missionId).style.display = 'none';
+        document.getElementById('mission4-3').style.display = 'block';
+    } else {
+        wrongSound.play();
+        alert("Faux ! Le dépôt doit être de 500 €. Réessaie.");
+    }
+}
+
+// Fonction pour lancer le dé (Semaine 4, Mission 3)
 function rollDice(missionId) {
-    const roll = Math.floor(Math.random() * 20) + 1; // 1 à 20%
-    document.getElementById('diceResult').innerText = `Résultat : -${roll}% ! Que fais-tu ?`;
+    const diceResult = Math.floor(Math.random() * 10) + 1;
+    document.getElementById('diceResult').textContent = `Résultat du dé : ${diceResult}%`;
+    const winSound = document.getElementById('winSound');
+    winSound.play();
+    progress += 5;
+    updateProgress();
     setTimeout(() => {
-        alert(`Ton trésor a chuté de ${roll}%. Reste calme et avance !`);
-        victorySound.play();
         document.getElementById(missionId).style.display = 'none';
         document.getElementById('mission4-4').style.display = 'block';
     }, 1000);
 }
 
-function diversify(choice, missionId) {
-    alert(`${choice} ajouté ! Ton portefeuille est plus équilibré.`);
-    victorySound.play();
+// Fonction pour diversifier (Semaine 4, Mission 4)
+function diversify(crypto, missionId) {
+    const winSound = document.getElementById('winSound');
+    winSound.play();
+    progress += 5;
+    updateProgress();
     document.getElementById(missionId).style.display = 'none';
     document.getElementById('boss4').style.display = 'block';
 }
 
-function checkStrategy(missionId) {
+// Fonction pour vérifier la stratégie (Semaine 4, Boss)
+function checkStrategy(bossId) {
     const strategy = document.getElementById('strategy').value;
-    if (strategy.split(' ').length >= 5) {
-        checkBoss('Any', missionId);
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (strategy.split(' ').length <= 5 && strategy.trim() !== '') {
+        winSound.play();
+        progress += 10;
+        updateProgress();
+        document.getElementById(bossId).style.display = 'none';
+        document.getElementById('reward4').style.display = 'block';
+        inventory.push(document.querySelector('#reward4 p strong').textContent);
+        updateInventory();
     } else {
-        alert('Il faut au moins 5 mots !');
-        errorSound.play();
+        wrongSound.play();
+        alert("Ta stratégie doit être en 5 mots maximum ! Réessaie.");
     }
 }
 
-// Quêtes Bonus
+// Fonction pour vérifier la taxe (Bonus, Quête 1)
 function checkTax(missionId) {
-    const tax = document.getElementById('tax').value;
-    if (tax == 100) {
-        alert('Correct ! 20 % de 500 € = 100 €. Le Roi est satisfait.');
-        victorySound.play();
+    const userTax = document.getElementById('tax').value;
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+
+    if (userTax == 100) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
         document.getElementById(missionId).style.display = 'none';
         document.getElementById('bonus2').style.display = 'block';
     } else {
-        alert('Erreur ! Recalcule : 20 % de 500 €.');
-        errorSound.play();
+        wrongSound.play();
+        alert("Faux ! La taxe est de 100 €. Réessaie.");
     }
 }
 
-function checkDestiny(choice, missionId) {
-    alert(`Tu as choisi ${choice === 'Investir' ? 'la patience' : 'l’agilité'} ! L’Oracle te sourit.`);
-    victorySound.play();
+// Fonction pour vérifier le destin (Bonus, Quête 2)
+function checkDestiny(userDestiny, missionId) {
+    const winSound = document.getElementById('winSound');
+    winSound.play();
+    progress += 5;
+    updateProgress();
     document.getElementById(missionId).style.display = 'none';
     document.getElementById('rewardBonus').style.display = 'block';
+    inventory.push("Couronne Fiscale");
+    inventory.push("Étoile de Vision");
+    updateInventory();
+}
+
+// Fonction pour passer à la semaine suivante
+function nextWeek(currentWeek, nextWeek) {
+    const winSound = document.getElementById('winSound');
+    winSound.play();
+    document.getElementById(currentWeek).style.display = 'none';
+    document.getElementById(nextWeek).style.display = 'block';
+    progress += 5;
+    updateProgress();
+}
+
+// Fonction pour terminer la quête
+function endQuest() {
+    const winSound = document.getElementById('winSound');
+    winSound.play();
+    document.getElementById('bonus').style.display = 'none';
+    document.getElementById('end').style.display = 'block';
+    progress = 100;
+    updateProgress();
+}
+
+// Fonction pour recommencer la quête
+function restartQuest() {
+    progress = 0;
+    inventory.length = 0;
+    updateProgress();
+    updateInventory();
+    document.getElementById('end').style.display = 'none';
+    document.getElementById('welcome').style.display = 'block';
+    const adventureMusic = document.getElementById('adventureMusic');
+    adventureMusic.currentTime = 0;
+    adventureMusic.play();
+}
+
+// Fonction pour mettre à jour la barre de progression
+function updateProgress() {
+    const progressBar = document.getElementById('progress');
+    const progressText = document.getElementById('progress-text');
+    progressBar.value = progress;
+    progressText.textContent = `Progression : ${progress}%`;
+}
+
+// Fonction pour mettre à jour l'inventaire
+function updateInventory() {
+    const inventoryList = document.getElementById('inventory-list');
+    inventoryList.innerHTML = '';
+    inventory.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        inventoryList.appendChild(li);
+    });
 }
