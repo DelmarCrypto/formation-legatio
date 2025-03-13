@@ -33,7 +33,7 @@
             background: rgba(0, 0, 0, 0.5);
             border-radius: 10px;
             margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .main-title {
@@ -440,7 +440,78 @@
                 <h3>Récompense : Cristal de Protection</h3>
                 <p>Ta forteresse est imprenable !</p>
                 <img src="protection-crystal.png" alt="Cristal de Protection">
-                <button onclick="endWeek3()">Terminer la Semaine 3</button>
+                <button onclick="nextWeek('week3', 'week4')">Semaine Suivante</button>
+            </div>
+        </section>
+
+        <section id="week4" class="week" style="display: none;">
+            <h2 class="week-title">Semaine 4 : Montagnes de la Blockchain</h2>
+            <p class="week-theme">Thème : Découvre la puissance de la blockchain</p>
+
+            <article class="mission" id="mission4-1">
+                <h3>Mission 1 : Fondations de la Blockchain</h3>
+                <p>Le Gardien des Chaines te demande : "Quel est le rôle principal d’une blockchain ?"</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Registre décentralisé', 'mission4-1')">Registre décentralisé</button>
+                    <button onclick="checkAnswer('Stockage centralisé', 'mission4-1')">Stockage centralisé</button>
+                    <p class="hint">Indice : Pense à un livre comptable partagé.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission4-2" style="display: none;">
+                <h3>Mission 2 : Vérification des Blocs</h3>
+                <p>Combien de blocs sont nécessaires pour confirmer une transaction Bitcoin ?</p>
+                <div class="activity">
+                    <input type="number" id="blocks" placeholder="Ta réponse">
+                    <button onclick="checkBlocks('mission4-2')">Vérifier</button>
+                    <p class="hint">Indice : C’est généralement 6.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission4-3" style="display: none;">
+                <h3>Mission 3 : Preuve de Travail</h3>
+                <p>Le Mineur te demande : "Quel mécanisme sécurise Bitcoin ?"</p>
+                <div class="activity">
+                    <button onclick="checkProof('Preuve de travail', 'mission4-3')">Preuve de travail</button>
+                    <button onclick="checkProof('Preuve d’enjeu', 'mission4-3')">Preuve d’enjeu</button>
+                    <p class="hint">Indice : C’est lié au minage.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission4-4" style="display: none;">
+                <h3>Mission 4 : Vitesse des Chaines</h3>
+                <p>Quelle blockchain est plus rapide pour les transactions ?</p>
+                <div class="activity">
+                    <button onclick="checkSpeed('Solana', 'mission4-4')">Solana</button>
+                    <button onclick="checkSpeed('Bitcoin', 'mission4-4')">Bitcoin</button>
+                    <p class="hint">Indice : Pense aux TPS (transactions par seconde).</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission4-5" style="display: none;">
+                <h3>Mission 5 : Explorer un Bloc</h3>
+                <p>Simule l’exploration d’un bloc en cliquant sur "Explorer".</p>
+                <div class="activity">
+                    <button onclick="exploreBlock('mission4-5')">Explorer</button>
+                    <p class="hint">Indice : Imagine un registre immuable.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="boss4" style="display: none;">
+                <h3>Boss : Spectre de la Centralisation</h3>
+                <p>"Quel est l’ennemi de la blockchain ?"</p>
+                <div class="activity">
+                    <button onclick="checkBoss('Centralisation', 'boss4')">Centralisation</button>
+                    <button onclick="checkBoss('Décentralisation', 'boss4')">Décentralisation</button>
+                    <p class="hint">Indice : Pense à l’opposé de la liberté.</p>
+                </div>
+            </article>
+
+            <div class="reward" id="reward4" style="display: none;">
+                <h3>Récompense : Sceptre de la Blockchain</h3>
+                <p>Tu as conquis les montagnes !</p>
+                <img src="blockchain-scepter.png" alt="Sceptre de la Blockchain">
+                <button onclick="endWeek4()">Terminer la Semaine 4</button>
             </div>
         </section>
 
