@@ -88,6 +88,10 @@ function checkBoss(userAnswer, bossId) {
         document.getElementById(rewardId).style.display = 'block';
         inventory.push(document.querySelector(`#${rewardId} p strong`).textContent);
         updateInventory();
+        // Délai pour voir la récompense avant de passer à la semaine suivante
+        if (bossId === 'boss1') setTimeout(() => nextWeek('week1', 'week2'), 2000);
+        if (bossId === 'boss2') setTimeout(() => nextWeek('week2', 'week3'), 2000);
+        if (bossId === 'boss3') setTimeout(() => nextWeek('week3', 'week4'), 2000);
     } else {
         wrongSound.play();
         alert('Mauvaise réponse. Réessaie !');
@@ -137,6 +141,7 @@ function checkReason(bossId) {
         document.getElementById(rewardId).style.display = 'block';
         inventory.push(document.querySelector(`#${rewardId} p strong`).textContent);
         updateInventory();
+        if (bossId === 'boss2') setTimeout(() => nextWeek('week2', 'week3'), 2000);
     } else {
         wrongSound.play();
         alert('Ta réponse doit contenir 3 mots maximum !');
@@ -243,6 +248,7 @@ function checkStrategy(bossId) {
         document.getElementById(rewardId).style.display = 'block';
         inventory.push(document.querySelector(`#${rewardId} p strong`).textContent);
         updateInventory();
+        if (bossId === 'boss4') setTimeout(() => nextWeek('week4', 'bonus'), 2000);
     } else {
         wrongSound.play();
         alert('Ta stratégie doit contenir 5 mots maximum !');
@@ -273,16 +279,19 @@ function checkDestiny(destiny, missionId) {
 }
 
 function nextMission(missionId) {
-    const missionNumber = parseInt(missionId.split('-')[1] || missionId.split('mission')[1]);
-    const weekId = missionId.split('-')[0].replace('mission', 'week');
-    const nextMissionId = `${weekId}-${missionNumber + 1}`;
-    const nextMission = document.getElementById(`mission${nextMissionId}`);
+    const weekPrefix = missionId.includes('mission') ? missionId.split('-')[0].replace('mission', 'week') : `week${missionId.replace('boss', '')}`;
+    const missionNumber = missionId.includes('-') ? parseInt(missionId.split('-')[1]) : null;
 
     document.getElementById(missionId).style.display = 'none';
-    if (nextMission) {
-        nextMission.style.display = 'block';
-    } else {
-        const bossId = `boss${weekId.replace('week', '')}`;
+
+    if (missionNumber && ((weekPrefix === 'week3' && missionNumber < 5) || (weekPrefix !== 'week3' && missionNumber < 4))) {
+        const nextMissionId = `mission${weekPrefix}-${missionNumber + 1}`;
+        const nextMission = document.getElementById(nextMissionId);
+        if (nextMission) {
+            nextMission.style.display = 'block';
+        }
+    } else if ((missionNumber === 4 && weekPrefix !== 'week3') || (missionNumber === 5 && weekPrefix === 'week3')) {
+        const bossId = `boss${weekPrefix.replace('week', '')}`;
         const boss = document.getElementById(bossId);
         if (boss) {
             boss.style.display = 'block';
@@ -313,6 +322,7 @@ function restartQuest() {
 }
 
 function updateProgress() {
+    progress = Math.min(progress, 100); // Limite à 100%
     document.getElementById('progress').value = progress;
     document.getElementById('progress-text').textContent = `Progression : ${progress}%`;
 }
