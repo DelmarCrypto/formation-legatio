@@ -348,7 +348,7 @@
                 <h3>Mission 4 : Taxes et Pièges</h3>
                 <p>Calcule les frais : 100 € à 0,5 %.</p>
                 <div class="activity">
-                    <input type="number" id="fees" placeholder="Ta réponse">
+                    <input type="number" id="fees" placeholder="Ta réponse" step="0.01">
                     <button onclick="checkFees('mission2-4')">Vérifier</button>
                     <p class="hint">Indice : Multiplie 100 par 0,005.</p>
                 </div>
@@ -368,7 +368,79 @@
                 <h3>Récompense : Clé d’Or du Marché</h3>
                 <p>Tu as conquis la forêt !</p>
                 <img src="golden-key.png" alt="Clé d’Or du Marché">
-                <button onclick="endWeek2()">Terminer la Semaine 2</button>
+                <button onclick="nextWeek('week2', 'week3')">Semaine Suivante</button>
+            </div>
+        </section>
+
+        <section id="week3" class="week" style="display: none;">
+            <h2 class="week-title">Semaine 3 : Forteresse des Portefeuilles</h2>
+            <p class="week-theme">Thème : Protège ton butin avec sagesse</p>
+
+            <article class="mission" id="mission3-1">
+                <h3>Mission 1 : Tours de Défense</h3>
+                <p>L’Architecte explique : "Une clé publique est comme…"</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Une adresse', 'mission3-1')">Une adresse</button>
+                    <button onclick="checkAnswer('Un mot de passe', 'mission3-1')">Un mot de passe</button>
+                    <p class="hint">Indice : C’est partageable sans risque.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission3-2" style="display: none;">
+                <h3>Mission 2 : Types de Tours</h3>
+                <p>Quel portefeuille est le plus sécurisé ?</p>
+                <div class="activity">
+                    <button onclick="checkWalletType('Matériel', 'mission3-2')">Matériel</button>
+                    <button onclick="checkWalletType('En ligne', 'mission3-2')">En ligne</button>
+                    <button onclick="checkWalletType('Papier', 'mission3-2')">Papier</button>
+                    <p class="hint">Indice : La tour la plus robuste.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission3-3" style="display: none;">
+                <h3>Mission 3 : Tour en Ligne</h3>
+                <p>Le Mage du Cloud dit : "Active 2FA ?"</p>
+                <div class="activity">
+                    <button onclick="activate2FA('Oui', 'mission3-3')">Oui</button>
+                    <button onclick="activate2FA('Non', 'mission3-3')">Non</button>
+                    <p class="hint">Indice : Double sécurité !</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission3-4" style="display: none;">
+                <h3>Mission 4 : Tour Hors Ligne</h3>
+                <p>Où sauvegardes-tu tes clés ?</p>
+                <div class="activity">
+                    <button onclick="checkBackup('USB', 'mission3-4')">USB</button>
+                    <button onclick="checkBackup('Cloud', 'mission3-4')">Cloud</button>
+                    <p class="hint">Indice : Évite les nuages.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission3-5" style="display: none;">
+                <h3>Mission 5 : Tour Matérielle</h3>
+                <p>Transfère 10 BTC fictifs.</p>
+                <div class="activity">
+                    <button onclick="transferBTC('mission3-5')">Transférer</button>
+                    <p class="hint">Indice : Imagine un coffre-fort.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="boss3" style="display: none;">
+                <h3>Boss : Titan des Clés</h3>
+                <p>"Où ne jamais stocker ta clé privée ?"</p>
+                <div class="activity">
+                    <button onclick="checkBoss('Email', 'boss3')">Email</button>
+                    <button onclick="checkBoss('Portefeuille matériel', 'boss3')">Portefeuille matériel</button>
+                    <p class="hint">Indice : Évite les endroits exposés.</p>
+                </div>
+            </article>
+
+            <div class="reward" id="reward3" style="display: none;">
+                <h3>Récompense : Cristal de Protection</h3>
+                <p>Ta forteresse est imprenable !</p>
+                <img src="protection-crystal.png" alt="Cristal de Protection">
+                <button onclick="endWeek3()">Terminer la Semaine 3</button>
             </div>
         </section>
 
