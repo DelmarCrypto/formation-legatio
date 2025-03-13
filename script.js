@@ -18,14 +18,18 @@ function startQuest() {
 }
 
 function checkAnswer(userAnswer, missionId) {
-    const correctAnswer = {
-        'mission1-1': 'Décentralisation',
-        'mission2-1': 'Ethereum'
-    }[missionId];
+    // Normalisation des réponses (suppression des espaces et mise en minuscules pour éviter les erreurs de casse)
+    const normalizedUserAnswer = userAnswer.trim().toLowerCase();
+    const correctAnswers = {
+        'mission1-1': 'décentralisation',
+        'mission2-1': 'ethereum',
+        'mission3-1': 'une adresse'
+    };
+    const correctAnswer = correctAnswers[missionId];
 
-    if (userAnswer === correctAnswer) {
+    if (normalizedUserAnswer === correctAnswer) {
         winSound.play();
-        progress += 10; // 10% par étape, 10 étapes au total (5 par semaine)
+        progress += 6.67; // Environ 6.67% par étape (15 étapes totales pour 3 semaines)
         updateProgress();
         nextMission(missionId);
     } else {
@@ -38,7 +42,7 @@ function checkPassword(missionId) {
     const password = document.getElementById('password1').value;
     if (password.length >= 12 && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password)) {
         winSound.play();
-        progress += 10;
+        progress += 6.67;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -48,9 +52,9 @@ function checkPassword(missionId) {
 }
 
 function checkCoffre(coffre, missionId) {
-    if (coffre === 'Matériel') {
+    if (coffre.toLowerCase() === 'matériel') {
         winSound.play();
-        progress += 10;
+        progress += 6.67;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -60,9 +64,9 @@ function checkCoffre(coffre, missionId) {
 }
 
 function checkPhishing(answer, missionId) {
-    if (answer === 'Faux') {
+    if (answer.toLowerCase() === 'faux') {
         winSound.play();
-        progress += 10;
+        progress += 6.67;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -73,17 +77,23 @@ function checkPhishing(answer, missionId) {
 
 function checkBoss(userAnswer, bossId) {
     const correctAnswer = {
-        'boss1': '2FA',
-        'boss2': null // Géré par checkReason pour boss2
+        'boss1': '2fa',
+        'boss3': 'email'
     }[bossId];
 
-    if (userAnswer === correctAnswer) {
+    if (userAnswer.toLowerCase() === correctAnswer) {
         winSound.play();
-        progress += 10;
+        progress += 6.67;
         updateProgress();
         document.getElementById(bossId).style.display = 'none';
-        document.getElementById('reward1').style.display = 'block';
-        inventory.push('Crypto-Médaille du Courage');
+        const rewardId = `reward${bossId.replace('boss', '')}`;
+        document.getElementById(rewardId).style.display = 'block';
+        const rewards = {
+            'boss1': 'Crypto-Médaille du Courage',
+            'boss2': 'Clé d’Or du Marché',
+            'boss3': 'Cristal de Protection'
+        };
+        inventory.push(rewards[bossId]);
         updateInventory();
     } else {
         wrongSound.play();
@@ -93,15 +103,15 @@ function checkBoss(userAnswer, bossId) {
 
 function checkStyle(style, missionId) {
     winSound.play();
-    progress += 10;
+    progress += 6.67;
     updateProgress();
     nextMission(missionId);
 }
 
 function checkMarket(market, missionId) {
-    if (market === 'Sécurité') {
+    if (market.toLowerCase() === 'sécurité') {
         winSound.play();
-        progress += 10;
+        progress += 6.67;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -112,9 +122,9 @@ function checkMarket(market, missionId) {
 
 function checkFees(missionId) {
     const fees = document.getElementById('fees').value;
-    if (fees == 0.5) {
+    if (parseFloat(fees) === 0.5) {
         winSound.play();
-        progress += 10;
+        progress += 6.67;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -127,7 +137,7 @@ function checkReason(bossId) {
     const reason = document.getElementById('reason').value;
     if (reason.split(' ').length <= 3) {
         winSound.play();
-        progress += 10;
+        progress += 6.67;
         updateProgress();
         document.getElementById(bossId).style.display = 'none';
         document.getElementById('reward2').style.display = 'block';
@@ -137,6 +147,49 @@ function checkReason(bossId) {
         wrongSound.play();
         alert('Trop long ! 3 mots maximum.');
     }
+}
+
+function checkWalletType(type, missionId) {
+    if (type.toLowerCase() === 'matériel') {
+        winSound.play();
+        progress += 6.67;
+        updateProgress();
+        nextMission(missionId);
+    } else {
+        wrongSound.play();
+        alert('Mauvais choix ! Le matériel est le plus sûr.');
+    }
+}
+
+function activate2FA(answer, missionId) {
+    if (answer.toLowerCase() === 'oui') {
+        winSound.play();
+        progress += 6.67;
+        updateProgress();
+        nextMission(missionId);
+    } else {
+        wrongSound.play();
+        alert('Erreur ! 2FA est essentiel.');
+    }
+}
+
+function checkBackup(backup, missionId) {
+    if (backup.toLowerCase() === 'usb') {
+        winSound.play();
+        progress += 6.67;
+        updateProgress();
+        nextMission(missionId);
+    } else {
+        wrongSound.play();
+        alert('Mauvais choix ! Le Cloud est risqué.');
+    }
+}
+
+function transferBTC(missionId) {
+    winSound.play();
+    progress += 6.67;
+    updateProgress();
+    nextMission(missionId);
 }
 
 function nextMission(currentMissionId) {
@@ -149,7 +202,12 @@ function nextMission(currentMissionId) {
         'mission2-1': 'mission2-2',
         'mission2-2': 'mission2-3',
         'mission2-3': 'mission2-4',
-        'mission2-4': 'boss2'
+        'mission2-4': 'boss2',
+        'mission3-1': 'mission3-2',
+        'mission3-2': 'mission3-3',
+        'mission3-3': 'mission3-4',
+        'mission3-4': 'mission3-5',
+        'mission3-5': 'boss3'
     };
     const nextMissionId = nextIds[currentMissionId];
     if (nextMissionId) {
@@ -163,8 +221,8 @@ function nextWeek(currentWeek, nextWeek) {
     document.getElementById(`mission${nextWeek.replace('week', '')}-1`).style.display = 'block';
 }
 
-function endWeek2() {
-    document.getElementById('week2').style.display = 'none';
+function endWeek3() {
+    document.getElementById('week3').style.display = 'none';
     document.getElementById('end').style.display = 'block';
     adventureMusic.pause();
 }
@@ -177,6 +235,7 @@ function restartQuest() {
     document.getElementById('end').style.display = 'none';
     document.getElementById('week1').style.display = 'none';
     document.getElementById('week2').style.display = 'none';
+    document.getElementById('week3').style.display = 'none';
     document.getElementById('welcome').style.display = 'block';
     adventureMusic.currentTime = 0;
     adventureMusic.play();
@@ -185,7 +244,7 @@ function restartQuest() {
 function updateProgress() {
     progress = Math.min(progress, 100);
     document.getElementById('progress').value = progress;
-    document.getElementById('progress-text').textContent = `Progression : ${progress}%`;
+    document.getElementById('progress-text').textContent = `Progression : ${Math.round(progress)}%`;
 }
 
 function updateInventory() {
