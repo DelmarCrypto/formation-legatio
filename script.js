@@ -85,13 +85,19 @@ function checkBoss(userAnswer, bossId) {
         updateProgress();
         document.getElementById(bossId).style.display = 'none';
         const rewardId = 'reward' + bossId.replace('boss', '');
-        document.getElementById(rewardId).style.display = 'block';
-        inventory.push(document.querySelector(`#${rewardId} p strong`).textContent);
-        updateInventory();
-        // Délai pour voir la récompense avant de passer à la semaine suivante
-        if (bossId === 'boss1') setTimeout(() => nextWeek('week1', 'week2'), 2000);
-        if (bossId === 'boss2') setTimeout(() => nextWeek('week2', 'week3'), 2000);
-        if (bossId === 'boss3') setTimeout(() => nextWeek('week3', 'week4'), 2000);
+        const rewardElement = document.getElementById(rewardId);
+        if (rewardElement) {
+            rewardElement.style.display = 'block';
+            const rewardText = document.querySelector(`#${rewardId} p strong`);
+            if (rewardText) inventory.push(rewardText.textContent);
+            updateInventory();
+            // Délai pour voir la récompense avant de passer à la semaine suivante
+            if (bossId === 'boss1') setTimeout(() => nextWeek('week1', 'week2'), 2000);
+            if (bossId === 'boss2') setTimeout(() => nextWeek('week2', 'week3'), 2000);
+            if (bossId === 'boss3') setTimeout(() => nextWeek('week3', 'week4'), 2000);
+        } else {
+            console.error(`Reward element ${rewardId} not found`);
+        }
     } else {
         wrongSound.play();
         alert('Mauvaise réponse. Réessaie !');
@@ -138,10 +144,14 @@ function checkReason(bossId) {
         updateProgress();
         document.getElementById(bossId).style.display = 'none';
         const rewardId = 'reward' + bossId.replace('boss', '');
-        document.getElementById(rewardId).style.display = 'block';
-        inventory.push(document.querySelector(`#${rewardId} p strong`).textContent);
-        updateInventory();
-        if (bossId === 'boss2') setTimeout(() => nextWeek('week2', 'week3'), 2000);
+        const rewardElement = document.getElementById(rewardId);
+        if (rewardElement) {
+            rewardElement.style.display = 'block';
+            const rewardText = document.querySelector(`#${rewardId} p strong`);
+            if (rewardText) inventory.push(rewardText.textContent);
+            updateInventory();
+            if (bossId === 'boss2') setTimeout(() => nextWeek('week2', 'week3'), 2000);
+        }
     } else {
         wrongSound.play();
         alert('Ta réponse doit contenir 3 mots maximum !');
@@ -245,10 +255,14 @@ function checkStrategy(bossId) {
         updateProgress();
         document.getElementById(bossId).style.display = 'none';
         const rewardId = 'reward' + bossId.replace('boss', '');
-        document.getElementById(rewardId).style.display = 'block';
-        inventory.push(document.querySelector(`#${rewardId} p strong`).textContent);
-        updateInventory();
-        if (bossId === 'boss4') setTimeout(() => nextWeek('week4', 'bonus'), 2000);
+        const rewardElement = document.getElementById(rewardId);
+        if (rewardElement) {
+            rewardElement.style.display = 'block';
+            const rewardText = document.querySelector(`#${rewardId} p strong`);
+            if (rewardText) inventory.push(rewardText.textContent);
+            updateInventory();
+            if (bossId === 'boss4') setTimeout(() => nextWeek('week4', 'bonus'), 2000);
+        }
     } else {
         wrongSound.play();
         alert('Ta stratégie doit contenir 5 mots maximum !');
@@ -273,9 +287,12 @@ function checkDestiny(destiny, missionId) {
     progress += 5;
     updateProgress();
     document.getElementById(missionId).style.display = 'none';
-    document.getElementById('rewardBonus').style.display = 'block';
-    inventory.push('Couronne Fiscale', 'Étoile de Vision');
-    updateInventory();
+    const rewardElement = document.getElementById('rewardBonus');
+    if (rewardElement) {
+        rewardElement.style.display = 'block';
+        inventory.push('Couronne Fiscale', 'Étoile de Vision');
+        updateInventory();
+    }
 }
 
 function nextMission(missionId) {
@@ -301,7 +318,12 @@ function nextMission(missionId) {
 
 function nextWeek(currentWeek, nextWeek) {
     document.getElementById(currentWeek).style.display = 'none';
-    document.getElementById(nextWeek).style.display = 'block';
+    const nextWeekElement = document.getElementById(nextWeek);
+    if (nextWeekElement) {
+        nextWeekElement.style.display = 'block';
+    } else {
+        console.error(`Next week element ${nextWeek} not found`);
+    }
 }
 
 function endQuest() {
