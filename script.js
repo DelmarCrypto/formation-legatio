@@ -18,7 +18,9 @@ function startQuest() {
 }
 
 function checkAnswer(userAnswer, missionId) {
-    // Normalisation des réponses (suppression des espaces et mise en minuscules pour éviter les erreurs de casse)
+    // Débogage pour vérifier les valeurs
+    console.log('userAnswer:', userAnswer);
+    console.log('missionId:', missionId);
     const normalizedUserAnswer = userAnswer.trim().toLowerCase();
     const correctAnswers = {
         'mission1-1': 'décentralisation',
@@ -26,6 +28,8 @@ function checkAnswer(userAnswer, missionId) {
         'mission3-1': 'une adresse'
     };
     const correctAnswer = correctAnswers[missionId];
+    console.log('normalizedUserAnswer:', normalizedUserAnswer);
+    console.log('correctAnswer:', correctAnswer);
 
     if (normalizedUserAnswer === correctAnswer) {
         winSound.play();
@@ -34,7 +38,7 @@ function checkAnswer(userAnswer, missionId) {
         nextMission(missionId);
     } else {
         wrongSound.play();
-        alert('Mauvaise réponse ! Réessaie.');
+        alert('Mauvaise réponse ! Réessaie. (Débogage: ' + normalizedUserAnswer + ' vs ' + correctAnswer + ')');
     }
 }
 
