@@ -9,9 +9,11 @@ function loadProgress() {
 
 // Fonction pour démarrer la quête
 function startQuest() {
+    console.log("startQuest appelé");
     document.getElementById('welcome').style.display = 'none';
     document.getElementById('week1').style.display = 'block';
     const adventureMusic = document.getElementById('adventureMusic');
+    console.log("adventureMusic :", adventureMusic);
     adventureMusic.play().catch(error => console.log("Erreur lecture musique aventure :", error));
     progress += 5;
     updateProgress();
@@ -22,9 +24,11 @@ function checkAnswer(correctAnswer, missionId) {
     const userAnswer = event.target.textContent;
     const winSound = document.getElementById('winSound');
     const wrongSound = document.getElementById('wrongSound');
+    console.log("checkAnswer appelé, réponse utilisateur :", userAnswer);
 
     if (userAnswer === correctAnswer) {
-        winSound.play();
+        console.log("Réponse correcte, jouer winSound");
+        winSound.play().catch(error => console.log("Erreur lecture son victoire :", error));
         progress += 5;
         updateProgress();
         document.getElementById(missionId).style.display = 'none';
@@ -36,7 +40,8 @@ function checkAnswer(correctAnswer, missionId) {
             document.getElementById(missionId.replace('mission', 'boss')).style.display = 'block';
         }
     } else {
-        wrongSound.play();
+        console.log("Mauvaise réponse, jouer wrongSound");
+        wrongSound.play().catch(error => console.log("Erreur lecture son erreur :", error));
         alert("Mauvaise réponse ! Réessaie.");
     }
 }
@@ -408,3 +413,14 @@ function updateInventory() {
         inventoryList.appendChild(li);
     });
 }
+
+// Déverrouiller l'audio après une interaction utilisateur
+document.addEventListener('click', function unlockAudio() {
+    const adventureMusic = document.getElementById('adventureMusic');
+    const winSound = document.getElementById('winSound');
+    const wrongSound = document.getElementById('wrongSound');
+    adventureMusic.load();
+    winSound.load();
+    wrongSound.load();
+    document.removeEventListener('click', unlockAudio); // Ne s'exécute qu'une fois
+}, { once: true });
