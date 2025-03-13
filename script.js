@@ -18,27 +18,23 @@ function startQuest() {
 }
 
 function checkAnswer(userAnswer, missionId) {
-    // Débogage pour vérifier les valeurs
-    console.log('userAnswer:', userAnswer);
-    console.log('missionId:', missionId);
     const normalizedUserAnswer = userAnswer.trim().toLowerCase();
     const correctAnswers = {
         'mission1-1': 'décentralisation',
         'mission2-1': 'ethereum',
-        'mission3-1': 'une adresse'
+        'mission3-1': 'une adresse',
+        'mission4-1': 'registre décentralisé'
     };
     const correctAnswer = correctAnswers[missionId];
-    console.log('normalizedUserAnswer:', normalizedUserAnswer);
-    console.log('correctAnswer:', correctAnswer);
 
     if (normalizedUserAnswer === correctAnswer) {
         winSound.play();
-        progress += 6.67; // Environ 6.67% par étape (15 étapes totales pour 3 semaines)
+        progress += 5; // 20 étapes au total (4 semaines × 5 étapes) = 100%
         updateProgress();
         nextMission(missionId);
     } else {
         wrongSound.play();
-        alert('Mauvaise réponse ! Réessaie. (Débogage: ' + normalizedUserAnswer + ' vs ' + correctAnswer + ')');
+        alert('Mauvaise réponse ! Réessaie.');
     }
 }
 
@@ -46,7 +42,7 @@ function checkPassword(missionId) {
     const password = document.getElementById('password1').value;
     if (password.length >= 12 && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password)) {
         winSound.play();
-        progress += 6.67;
+        progress += 5;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -58,7 +54,7 @@ function checkPassword(missionId) {
 function checkCoffre(coffre, missionId) {
     if (coffre.toLowerCase() === 'matériel') {
         winSound.play();
-        progress += 6.67;
+        progress += 5;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -70,7 +66,7 @@ function checkCoffre(coffre, missionId) {
 function checkPhishing(answer, missionId) {
     if (answer.toLowerCase() === 'faux') {
         winSound.play();
-        progress += 6.67;
+        progress += 5;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -82,12 +78,13 @@ function checkPhishing(answer, missionId) {
 function checkBoss(userAnswer, bossId) {
     const correctAnswer = {
         'boss1': '2fa',
-        'boss3': 'email'
+        'boss3': 'email',
+        'boss4': 'centralisation'
     }[bossId];
 
     if (userAnswer.toLowerCase() === correctAnswer) {
         winSound.play();
-        progress += 6.67;
+        progress += 5;
         updateProgress();
         document.getElementById(bossId).style.display = 'none';
         const rewardId = `reward${bossId.replace('boss', '')}`;
@@ -95,7 +92,8 @@ function checkBoss(userAnswer, bossId) {
         const rewards = {
             'boss1': 'Crypto-Médaille du Courage',
             'boss2': 'Clé d’Or du Marché',
-            'boss3': 'Cristal de Protection'
+            'boss3': 'Cristal de Protection',
+            'boss4': 'Sceptre de la Blockchain'
         };
         inventory.push(rewards[bossId]);
         updateInventory();
@@ -107,7 +105,7 @@ function checkBoss(userAnswer, bossId) {
 
 function checkStyle(style, missionId) {
     winSound.play();
-    progress += 6.67;
+    progress += 5;
     updateProgress();
     nextMission(missionId);
 }
@@ -115,7 +113,7 @@ function checkStyle(style, missionId) {
 function checkMarket(market, missionId) {
     if (market.toLowerCase() === 'sécurité') {
         winSound.play();
-        progress += 6.67;
+        progress += 5;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -128,7 +126,7 @@ function checkFees(missionId) {
     const fees = document.getElementById('fees').value;
     if (parseFloat(fees) === 0.5) {
         winSound.play();
-        progress += 6.67;
+        progress += 5;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -141,7 +139,7 @@ function checkReason(bossId) {
     const reason = document.getElementById('reason').value;
     if (reason.split(' ').length <= 3) {
         winSound.play();
-        progress += 6.67;
+        progress += 5;
         updateProgress();
         document.getElementById(bossId).style.display = 'none';
         document.getElementById('reward2').style.display = 'block';
@@ -156,7 +154,7 @@ function checkReason(bossId) {
 function checkWalletType(type, missionId) {
     if (type.toLowerCase() === 'matériel') {
         winSound.play();
-        progress += 6.67;
+        progress += 5;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -168,7 +166,7 @@ function checkWalletType(type, missionId) {
 function activate2FA(answer, missionId) {
     if (answer.toLowerCase() === 'oui') {
         winSound.play();
-        progress += 6.67;
+        progress += 5;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -180,7 +178,7 @@ function activate2FA(answer, missionId) {
 function checkBackup(backup, missionId) {
     if (backup.toLowerCase() === 'usb') {
         winSound.play();
-        progress += 6.67;
+        progress += 5;
         updateProgress();
         nextMission(missionId);
     } else {
@@ -191,7 +189,51 @@ function checkBackup(backup, missionId) {
 
 function transferBTC(missionId) {
     winSound.play();
-    progress += 6.67;
+    progress += 5;
+    updateProgress();
+    nextMission(missionId);
+}
+
+function checkBlocks(missionId) {
+    const blocks = document.getElementById('blocks').value;
+    if (parseInt(blocks) === 6) {
+        winSound.play();
+        progress += 5;
+        updateProgress();
+        nextMission(missionId);
+    } else {
+        wrongSound.play();
+        alert('Faux ! Il faut 6 blocs pour confirmer une transaction Bitcoin.');
+    }
+}
+
+function checkProof(proof, missionId) {
+    if (proof.toLowerCase() === 'preuve de travail') {
+        winSound.play();
+        progress += 5;
+        updateProgress();
+        nextMission(missionId);
+    } else {
+        wrongSound.play();
+        alert('Mauvais choix ! Bitcoin utilise la preuve de travail.');
+    }
+}
+
+function checkSpeed(blockchain, missionId) {
+    if (blockchain.toLowerCase() === 'solana') {
+        winSound.play();
+        progress += 5;
+        updateProgress();
+        nextMission(missionId);
+    } else {
+        wrongSound.play();
+        alert('Mauvais choix ! Solana est plus rapide que Bitcoin.');
+    }
+}
+
+function exploreBlock(missionId) {
+    winSound.play();
+    progress += 5;
     updateProgress();
     nextMission(missionId);
 }
@@ -211,7 +253,12 @@ function nextMission(currentMissionId) {
         'mission3-2': 'mission3-3',
         'mission3-3': 'mission3-4',
         'mission3-4': 'mission3-5',
-        'mission3-5': 'boss3'
+        'mission3-5': 'boss3',
+        'mission4-1': 'mission4-2',
+        'mission4-2': 'mission4-3',
+        'mission4-3': 'mission4-4',
+        'mission4-4': 'mission4-5',
+        'mission4-5': 'boss4'
     };
     const nextMissionId = nextIds[currentMissionId];
     if (nextMissionId) {
@@ -231,6 +278,12 @@ function endWeek3() {
     adventureMusic.pause();
 }
 
+function endWeek4() {
+    document.getElementById('week4').style.display = 'none';
+    document.getElementById('end').style.display = 'block';
+    adventureMusic.pause();
+}
+
 function restartQuest() {
     progress = 0;
     inventory = [];
@@ -240,6 +293,7 @@ function restartQuest() {
     document.getElementById('week1').style.display = 'none';
     document.getElementById('week2').style.display = 'none';
     document.getElementById('week3').style.display = 'none';
+    document.getElementById('week4').style.display = 'none';
     document.getElementById('welcome').style.display = 'block';
     adventureMusic.currentTime = 0;
     adventureMusic.play();
