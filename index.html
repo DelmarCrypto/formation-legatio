@@ -305,13 +305,76 @@
                 <h3>Récompense : Médaille du Courage</h3>
                 <p>Félicitations ! Tu as vaincu le Dragon.</p>
                 <img src="crypto-medal.png" alt="Crypto-Médaille du Courage">
-                <button onclick="endWeek1()">Terminer la Semaine 1</button>
+                <button onclick="nextWeek('week1', 'week2')">Semaine Suivante</button>
+            </div>
+        </section>
+
+        <section id="week2" class="week" style="display: none;">
+            <h2 class="week-title">Semaine 2 : Trésors Numériques</h2>
+            <p class="week-theme">Thème : Explore la Forêt des Cryptos</p>
+
+            <article class="mission" id="mission2-1">
+                <h3>Mission 1 : Identifier les Trésors</h3>
+                <p>L’Alchimiste te demande : "Quelle crypto est pour les contrats intelligents ?"</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Ethereum', 'mission2-1')">Ethereum</button>
+                    <button onclick="checkAnswer('Bitcoin', 'mission2-1')">Bitcoin</button>
+                    <button onclick="checkAnswer('Ripple', 'mission2-1')">Ripple</button>
+                    <p class="hint">Indice : Pense aux sorts complexes.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission2-2" style="display: none;">
+                <h3>Mission 2 : Style d’Aventurier</h3>
+                <p>L’Oracle te questionne : "Rapide ou durable ?"</p>
+                <div class="activity">
+                    <button onclick="checkStyle('Rapide', 'mission2-2')">Rapide</button>
+                    <button onclick="checkStyle('Durable', 'mission2-2')">Durable</button>
+                    <p class="hint">Indice : Choisis ton rythme.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission2-3" style="display: none;">
+                <h3>Mission 3 : Marchés de Cryptopia</h3>
+                <p>Quel marché privilégies-tu ?</p>
+                <div class="activity">
+                    <button onclick="checkMarket('Sécurité', 'mission2-3')">Sécurité</button>
+                    <button onclick="checkMarket('Frais bas', 'mission2-3')">Frais bas</button>
+                    <p class="hint">Indice : Protège ton butin.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="mission2-4" style="display: none;">
+                <h3>Mission 4 : Taxes et Pièges</h3>
+                <p>Calcule les frais : 100 € à 0,5 %.</p>
+                <div class="activity">
+                    <input type="number" id="fees" placeholder="Ta réponse">
+                    <button onclick="checkFees('mission2-4')">Vérifier</button>
+                    <p class="hint">Indice : Multiplie 100 par 0,005.</p>
+                </div>
+            </article>
+
+            <article class="mission" id="boss2" style="display: none;">
+                <h3>Boss : Géant du Choix</h3>
+                <p>"Pourquoi Bitcoin ? Réponds en 3 mots max."</p>
+                <div class="activity">
+                    <input type="text" id="reason" placeholder="Ta réponse">
+                    <button onclick="checkReason('boss2')">Soumettre</button>
+                    <p class="hint">Indice : Sois concis !</p>
+                </div>
+            </article>
+
+            <div class="reward" id="reward2" style="display: none;">
+                <h3>Récompense : Clé d’Or du Marché</h3>
+                <p>Tu as conquis la forêt !</p>
+                <img src="golden-key.png" alt="Clé d’Or du Marché">
+                <button onclick="endWeek2()">Terminer la Semaine 2</button>
             </div>
         </section>
 
         <section id="end" class="week" style="display: none;">
-            <h2 class="week-title">Fin de la Semaine 1</h2>
-            <p>Bravo ! Tu as terminé la première étape de ton aventure.</p>
+            <h2 class="week-title">Fin de l’Aventure</h2>
+            <p>Bravo ! Tu as terminé les semaines disponibles.</p>
             <button class="btn-start" onclick="restartQuest()">Recommencer</button>
         </section>
     </div>
