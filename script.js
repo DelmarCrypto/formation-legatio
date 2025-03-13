@@ -25,6 +25,8 @@ function checkAnswer(userAnswer, missionId) {
         'mission3-1': 'Une adresse'
     }[missionId];
 
+    console.log(`Checking answer for ${missionId}: User = ${userAnswer}, Correct = ${correctAnswer}`); // Debug
+
     if (userAnswer === correctAnswer) {
         winSound.play();
         progress += 5;
@@ -91,7 +93,6 @@ function checkBoss(userAnswer, bossId) {
             const rewardText = document.querySelector(`#${rewardId} p strong`);
             if (rewardText) inventory.push(rewardText.textContent);
             updateInventory();
-            // Délai pour voir la récompense avant de passer à la semaine suivante
             if (bossId === 'boss1') setTimeout(() => nextWeek('week1', 'week2'), 2000);
             if (bossId === 'boss2') setTimeout(() => nextWeek('week2', 'week3'), 2000);
             if (bossId === 'boss3') setTimeout(() => nextWeek('week3', 'week4'), 2000);
@@ -296,22 +297,29 @@ function checkDestiny(destiny, missionId) {
 }
 
 function nextMission(missionId) {
-    const weekPrefix = missionId.includes('mission') ? missionId.split('-')[0].replace('mission', 'week') : `week${missionId.replace('boss', '')}`;
+    const weekNumber = missionId.split('-')[0].replace('mission', ''); // Extrait "1" de "mission1-1"
     const missionNumber = missionId.includes('-') ? parseInt(missionId.split('-')[1]) : null;
 
+    console.log(`Hiding mission: ${missionId}`); // Debug
     document.getElementById(missionId).style.display = 'none';
 
-    if (missionNumber && ((weekPrefix === 'week3' && missionNumber < 5) || (weekPrefix !== 'week3' && missionNumber < 4))) {
-        const nextMissionId = `mission${weekPrefix}-${missionNumber + 1}`;
+    if (missionNumber && ((weekNumber === '3' && missionNumber < 5) || (weekNumber !== '3' && missionNumber < 4))) {
+        const nextMissionId = `mission${weekNumber}-${missionNumber + 1}`;
         const nextMission = document.getElementById(nextMissionId);
+        console.log(`Trying to show next mission: ${nextMissionId}`); // Debug
         if (nextMission) {
             nextMission.style.display = 'block';
+        } else {
+            console.error(`Next mission ${nextMissionId} not found`);
         }
-    } else if ((missionNumber === 4 && weekPrefix !== 'week3') || (missionNumber === 5 && weekPrefix === 'week3')) {
-        const bossId = `boss${weekPrefix.replace('week', '')}`;
+    } else if ((missionNumber === 4 && weekNumber !== '3') || (missionNumber === 5 && weekNumber === '3')) {
+        const bossId = `boss${weekNumber}`;
         const boss = document.getElementById(bossId);
+        console.log(`Showing boss: ${bossId}`); // Debug
         if (boss) {
             boss.style.display = 'block';
+        } else {
+            console.error(`Boss ${bossId} not found`);
         }
     }
 }
