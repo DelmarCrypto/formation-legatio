@@ -29,7 +29,7 @@ function checkAnswer(userAnswer, missionId) {
 
     if (normalizedUserAnswer === correctAnswer) {
         winSound.play();
-        progress += 5; // 20 étapes au total (4 semaines × 5 étapes) = 100%
+        progress += 5; // 20 étapes pour les semaines (4 × 5) = 100%
         updateProgress();
         nextMission(missionId);
     } else {
@@ -258,7 +258,9 @@ function nextMission(currentMissionId) {
         'mission4-2': 'mission4-3',
         'mission4-3': 'mission4-4',
         'mission4-4': 'mission4-5',
-        'mission4-5': 'boss4'
+        'mission4-5': 'boss4',
+        'bonus-tax-1': 'bonus-tax-2',
+        'bonus-tax-2': 'bonus-tax-3'
     };
     const nextMissionId = nextIds[currentMissionId];
     if (nextMissionId) {
@@ -284,6 +286,59 @@ function endWeek4() {
     adventureMusic.pause();
 }
 
+function startBonus() {
+    document.getElementById('week4').style.display = 'none';
+    document.getElementById('bonus-tax').style.display = 'block';
+    document.getElementById('bonus-tax-1').style.display = 'block';
+    adventureMusic.play();
+}
+
+function checkTaxAnswer(answer, missionId) {
+    if (answer.toLowerCase() === 'oui') {
+        winSound.play();
+        progress += 3.33; // 3 missions × 3.33% = 10% bonus
+        updateProgress();
+        nextMission(missionId);
+    } else {
+        wrongSound.play();
+        alert('Faux ! La déclaration est obligatoire.');
+    }
+}
+
+function checkTaxGain(missionId) {
+    const gain = document.getElementById('tax-gain').value;
+    if (parseFloat(gain) === 20000) {
+        winSound.play();
+        progress += 3.33;
+        updateProgress();
+        nextMission(missionId);
+    } else {
+        wrongSound.play();
+        alert('Faux ! Le gain imposable est de 20 000 €.');
+    }
+}
+
+function checkTaxStrategy(strategy, missionId) {
+    if (strategy.toLowerCase() === 'défiscalisation') {
+        winSound.play();
+        progress += 3.33;
+        updateProgress();
+        document.getElementById(missionId).style.display = 'none';
+        document.getElementById('bonus-tax-reward').style.display = 'block';
+        inventory.push('Bouclier Fiscal');
+        updateInventory();
+    } else {
+        wrongSound.play();
+        alert('Mauvais choix ! L’évasion fiscale est illégale.');
+    }
+}
+
+function endGame() {
+    document.getElementById('bonus-tax').style.display = 'none';
+    document.getElementById('end').style.display = 'block';
+    adventureMusic.pause();
+}
+
 function restartQuest() {
     progress = 0;
     inventory = [];
@@ -294,13 +349,14 @@ function restartQuest() {
     document.getElementById('week2').style.display = 'none';
     document.getElementById('week3').style.display = 'none';
     document.getElementById('week4').style.display = 'none';
+    document.getElementById('bonus-tax').style.display = 'none';
     document.getElementById('welcome').style.display = 'block';
     adventureMusic.currentTime = 0;
     adventureMusic.play();
 }
 
 function updateProgress() {
-    progress = Math.min(progress, 100);
+    progress = Math.min(progress, 110);
     document.getElementById('progress').value = progress;
     document.getElementById('progress-text').textContent = `Progression : ${Math.round(progress)}%`;
 }
