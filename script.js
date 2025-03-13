@@ -25,29 +25,34 @@ function checkAnswer(userAnswer, missionId) {
         'mission3-1': 'Une adresse'
     }[missionId];
 
-    console.log(`Checking answer for ${missionId}: User = ${userAnswer}, Correct = ${correctAnswer}`); // Debug
-
+    console.log(`Checking answer for ${missionId}: User = ${userAnswer}, Correct = ${correctAnswer}`);
     if (userAnswer === correctAnswer) {
-        winSound.play();
+        console.log("Correct answer!");
         progress += 5;
         updateProgress();
         nextMission(missionId);
     } else {
-        wrongSound.play();
+        console.log("Wrong answer!");
         alert('Mauvaise réponse. Réessaie !');
     }
 }
 
-function checkPassword(missionId) {
-    const password = document.getElementById('password1').value;
-    if (password.length >= 12 && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password)) {
-        winSound.play();
-        progress += 5;
-        updateProgress();
-        nextMission(missionId);
-    } else {
-        wrongSound.play();
-        alert('Ton mot de passe doit contenir au moins 12 caractères, des chiffres et des symboles !');
+function nextMission(missionId) {
+    const weekNumber = missionId.split('-')[0].replace('mission', '');
+    const missionNumber = missionId.includes('-') ? parseInt(missionId.split('-')[1]) : null;
+
+    console.log(`Hiding mission: ${missionId}`);
+    document.getElementById(missionId).style.display = 'none';
+
+    if (missionNumber && ((weekNumber === '3' && missionNumber < 5) || (weekNumber !== '3' && missionNumber < 4))) {
+        const nextMissionId = `mission${weekNumber}-${missionNumber + 1}`;
+        console.log(`Trying to show next mission: ${nextMissionId}`);
+        const nextMission = document.getElementById(nextMissionId);
+        if (nextMission) {
+            nextMission.style.display = 'block';
+        } else {
+            console.error(`Next mission ${nextMissionId} not found`);
+        }
     }
 }
 
