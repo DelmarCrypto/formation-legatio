@@ -93,7 +93,7 @@
             padding: 5px 0;
         }
 
-        .intro-section, .week {
+        .intro-section, .week, .bonus {
             background: rgba(255, 255, 255, 0.05);
             padding: 30px;
             border-radius: 15px;
@@ -107,20 +107,20 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .week-title {
+        .week-title, .bonus-title {
             font-family: 'Cinzel', serif;
             font-size: 2.5rem;
             color: #ffd700;
             margin-bottom: 10px;
         }
 
-        .week-theme {
+        .week-theme, .bonus-theme {
             font-style: italic;
             color: #00ccff;
             margin-bottom: 20px;
         }
 
-        .mission {
+        .mission, .bonus-mission {
             background: rgba(0, 0, 0, 0.3);
             padding: 20px;
             border-radius: 10px;
@@ -128,11 +128,11 @@
             transition: transform 0.3s ease;
         }
 
-        .mission:hover {
+        .mission:hover, .bonus-mission:hover {
             transform: scale(1.02);
         }
 
-        .mission h3 {
+        .mission h3, .bonus-mission h3 {
             color: #ffd700;
             margin-bottom: 10px;
         }
@@ -175,26 +175,26 @@
             margin-top: 10px;
         }
 
-        .reward {
+        .reward, .bonus-reward {
             text-align: center;
             padding: 20px;
             background: rgba(255, 215, 0, 0.1);
             border-radius: 10px;
         }
 
-        .reward h3 {
+        .reward h3, .bonus-reward h3 {
             color: #ffd700;
             margin-bottom: 10px;
         }
 
-        .reward img {
+        .reward img, .bonus-reward img {
             max-width: 150px;
             margin: 10px 0;
             border-radius: 10px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
-        .btn-start, .reward button {
+        .btn-start, .reward button, .bonus-reward button {
             background: #ffd700;
             color: #1a1a2e;
             padding: 15px 30px;
@@ -205,7 +205,7 @@
             transition: background 0.3s ease;
         }
 
-        .btn-start:hover, .reward button:hover {
+        .btn-start:hover, .reward button:hover, .bonus-reward button:hover {
             background: #e6c200;
         }
 
@@ -223,7 +223,7 @@
             <h1 class="main-title">Crypto Quest</h1>
             <div class="progress-bar">
                 <span id="progress-text">Progression : 0%</span>
-                <progress id="progress" value="0" max="100"></progress>
+                <progress id="progress" value="0" max="110"></progress>
             </div>
             <div class="inventory">
                 <h3>Inventaire</h3>
@@ -511,13 +511,55 @@
                 <h3>Récompense : Sceptre de la Blockchain</h3>
                 <p>Tu as conquis les montagnes !</p>
                 <img src="blockchain-scepter.png" alt="Sceptre de la Blockchain">
-                <button onclick="endWeek4()">Terminer la Semaine 4</button>
+                <button onclick="startBonus()">Bonus : Fiscalité</button>
+            </div>
+        </section>
+
+        <section id="bonus-tax" class="bonus" style="display: none;">
+            <h2 class="bonus-title">Bonus : Canyon de la Fiscalité</h2>
+            <p class="bonus-theme">Thème : Maîtrise la fiscalité des cryptos</p>
+
+            <article class="bonus-mission" id="bonus-tax-1">
+                <h3>Mission 1 : Déclaration Légale</h3>
+                <p>L’Inspecteur Fiscal te demande : "Dois-tu déclarer tes cryptos ?"</p>
+                <div class="activity">
+                    <button onclick="checkTaxAnswer('Oui', 'bonus-tax-1')">Oui</button>
+                    <button onclick="checkTaxAnswer('Non', 'bonus-tax-1')">Non</button>
+                    <p class="hint">Indice : C’est obligatoire dans la plupart des pays.</p>
+                </div>
+            </article>
+
+            <article class="bonus-mission" id="bonus-tax-2" style="display: none;">
+                <h3>Mission 2 : Calcul d’Impôt</h3>
+                <p>Si tu vends 1 BTC à 50 000 € avec un achat à 30 000 €, quel est le gain imposable ?</p>
+                <div class="activity">
+                    <input type="number" id="tax-gain" placeholder="Ta réponse" step="0.01">
+                    <button onclick="checkTaxGain('bonus-tax-2')">Vérifier</button>
+                    <p class="hint">Indice : Soustrais le prix d’achat du prix de vente.</p>
+                </div>
+            </article>
+
+            <article class="bonus-mission" id="bonus-tax-3" style="display: none;">
+                <h3>Mission 3 : Optimisation</h3>
+                <p>Quelle stratégie réduit tes impôts légaux ?</p>
+                <div class="activity">
+                    <button onclick="checkTaxStrategy('Défiscalisation', 'bonus-tax-3')">Défiscalisation</button>
+                    <button onclick="checkTaxStrategy('Évasion fiscale', 'bonus-tax-3')">Évasion fiscale</button>
+                    <p class="hint">Indice : Choisis une option légale.</p>
+                </div>
+            </article>
+
+            <div class="bonus-reward" id="bonus-tax-reward" style="display: none;">
+                <h3>Récompense : Bouclier Fiscal</h3>
+                <p>Tu es un maître de la fiscalité !</p>
+                <img src="tax-shield.png" alt="Bouclier Fiscal">
+                <button onclick="endGame()">Terminer</button>
             </div>
         </section>
 
         <section id="end" class="week" style="display: none;">
             <h2 class="week-title">Fin de l’Aventure</h2>
-            <p>Bravo ! Tu as terminé les semaines disponibles.</p>
+            <p>Bravo ! Tu as terminé les semaines et le bonus.</p>
             <button class="btn-start" onclick="restartQuest()">Recommencer</button>
         </section>
     </div>
