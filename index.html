@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Une aventure interactive pour maîtriser les cryptomonnaies !">
     <title>Crypto Quest - Formation Interactive</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="particles" id="particles-js"></div> <!-- Conteneur pour particules -->
     <div class="container">
         <header class="header">
             <h1 class="main-title">Crypto Quest</h1>
             <div class="progress-bar">
                 <span id="progress-text">Progression : 0%</span>
                 <progress id="progress" value="0" max="110"></progress>
+            </div>
+            <div class="health-bar"> <!-- Jauge de vie -->
+                <span id="health-text">Vie : 100/100</span>
+                <progress id="health" value="100" max="100"></progress>
             </div>
             <div class="inventory">
                 <h3>Inventaire</h3>
@@ -95,7 +100,7 @@
             <div class="reward" id="reward1" style="display: none;">
                 <h3>Récompense : Médaille du Courage</h3>
                 <p>Félicitations ! Tu as vaincu le Dragon.</p>
-                <img src="crypto-medal.png" alt="Crypto-Médaille du Courage">
+                <img src="crypto-medal.png" alt="Crypto-Médaille du Courage" class="reward-img">
                 <button onclick="nextWeek('week1', 'week2')">Semaine Suivante</button>
             </div>
         </section>
@@ -158,7 +163,7 @@
             <div class="reward" id="reward2" style="display: none;">
                 <h3>Récompense : Clé d’Or du Marché</h3>
                 <p>Tu as conquis la forêt !</p>
-                <img src="golden-key.png" alt="Clé d’Or du Marché">
+                <img src="golden-key.png" alt="Clé d’Or du Marché" class="reward-img">
                 <button onclick="nextWeek('week2', 'week3')">Semaine Suivante</button>
             </div>
         </section>
@@ -230,7 +235,7 @@
             <div class="reward" id="reward3" style="display: none;">
                 <h3>Récompense : Cristal de Protection</h3>
                 <p>Ta forteresse est imprenable !</p>
-                <img src="protection-crystal.png" alt="Cristal de Protection">
+                <img src="protection-crystal.png" alt="Cristal de Protection" class="reward-img">
                 <button onclick="nextWeek('week3', 'week4')">Semaine Suivante</button>
             </div>
         </section>
@@ -301,12 +306,11 @@
             <div class="reward" id="reward4" style="display: none;">
                 <h3>Récompense : Sceptre de la Blockchain</h3>
                 <p>Tu as conquis les montagnes !</p>
-                <img src="blockchain-scepter.png" alt="Sceptre de la Blockchain">
+                <img src="blockchain-scepter.png" alt="Sceptre de la Blockchain" class="reward-img">
                 <button onclick="startBonus()">Bonus : Fiscalité</button>
             </div>
         </section>
 
-        <!-- Section mise à jour -->
         <section id="bonus-tax" class="week" style="display: none;">
             <h2 class="week-title">Bonus : Canyon de la Fiscalité</h2>
             <p class="week-theme">Thème : Maîtrise la fiscalité des cryptos</p>
@@ -339,6 +343,22 @@
         <p>Créé par xAI - Mars 2025</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#e94560' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                move: { speed: 2, direction: 'none', random: true }
+            },
+            interactivity: {
+                events: { onhover: { enable: true, mode: 'repulse' } }
+            }
+        });
+    </script>
 </body>
 </html>
