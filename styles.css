@@ -58,78 +58,111 @@ body::before {
     to { text-shadow: 0 0 20px rgba(233, 69, 96, 0.5); }
 }
 
-/* Barre de progression */
+/* Barre de progression (style jeu vidéo) */
 .progress-bar {
     margin: 20px 0;
-    background: rgba(0, 0, 0, 0.7);
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #e94560;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    border: 3px solid #e94560;
+    box-shadow: 0 0 20px rgba(233, 69, 96, 0.5), inset 0 0 10px rgba(233, 69, 96, 0.3);
+    position: relative;
 }
 
 #progress-text {
     display: block;
+    font-family: 'Cinzel', serif;
     font-size: 1.2em;
     margin-bottom: 10px;
     color: #f5f5f5;
     text-shadow: 0 0 5px #e94560;
+    text-align: center;
 }
 
 progress {
     width: 100%;
-    height: 20px;
-    border: 2px solid #e94560;
-    background: #333;
-    border-radius: 5px;
+    height: 30px;
+    border: none;
+    background: #1a1a2e;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.8);
+    transition: all 0.5s ease;
 }
 
 progress::-webkit-progress-bar {
-    background: #333;
+    background: #1a1a2e;
+    border-radius: 15px;
 }
 
 progress::-webkit-progress-value {
     background: linear-gradient(90deg, #e94560, #ff6f61);
-    border-radius: 5px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.7);
+    transition: width 0.5s ease;
 }
 
 progress::-moz-progress-bar {
     background: linear-gradient(90deg, #e94560, #ff6f61);
-    border-radius: 5px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.7);
 }
 
-/* Inventaire */
+/* Inventaire (style HUD jeu vidéo) */
 .inventory {
     margin: 20px 0;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    border: 1px solid #e94560;
-    box-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.85);
+    border-radius: 10px;
+    border: 3px solid #e94560;
+    box-shadow: 0 0 20px rgba(233, 69, 96, 0.5), inset 0 0 10px rgba(233, 69, 96, 0.3);
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.inventory:hover {
+    transform: scale(1.05);
 }
 
 .inventory h3 {
     font-family: 'Cinzel', serif;
     color: #e94560;
     font-size: 1.5em;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     text-shadow: 0 0 5px #e94560;
+    text-align: center;
 }
 
 #inventory-list {
     list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
 #inventory-list li {
-    padding: 5px 0;
+    padding: 8px 12px;
     font-size: 1em;
     color: #d4d4d4;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid #e94560;
+    border-radius: 5px;
     display: flex;
     align-items: center;
+    box-shadow: 0 0 10px rgba(233, 69, 96, 0.3);
+    transition: all 0.3s ease;
+}
+
+#inventory-list li:hover {
+    background: rgba(233, 69, 96, 0.2);
+    transform: translateY(-3px);
 }
 
 #inventory-list li img {
-    width: 25px;
+    width: 30px;
     margin-right: 10px;
+    filter: drop-shadow(0 0 5px #e94560);
 }
 
 /* Section de bienvenue */
@@ -164,6 +197,7 @@ progress::-moz-progress-bar {
 .btn-start:hover {
     background: linear-gradient(45deg, #ff6f61, #e94560);
     box-shadow: 0 0 15px rgba(233, 69, 96, 0.7);
+    animation: pulse 0.8s infinite;
 }
 
 /* Sections de semaine */
@@ -225,6 +259,30 @@ progress::-moz-progress-bar {
     color: #e94560;
     margin-bottom: 10px;
     text-shadow: 0 0 5px #e94560;
+}
+
+/* Bonus Missions (nouvelle classe) */
+.bonus-mission {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    border: 2px solid #ff6f61;
+    transition: all 0.3s ease;
+    animation: slideInGlitch 0.5s ease-in-out;
+}
+
+.bonus-mission:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 20px rgba(255, 111, 97, 0.5);
+}
+
+.bonus-mission h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
+    color: #ff6f61;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px #ff6f61;
 }
 
 .activity {
@@ -309,6 +367,28 @@ progress::-moz-progress-bar {
     pointer-events: none;
 }
 
+/* Bonus Reward (nouvelle classe) */
+.bonus-reward {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 111, 97, 0.2);
+    border-radius: 10px;
+    border: 2px solid #ff6f61;
+    box-shadow: 0 0 20px rgba(255, 111, 97, 0.5);
+    position: relative;
+    animation: lootDrop 1s ease-out;
+}
+
+.bonus-reward::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
 .reward-img {
     width: 150px;
     height: auto;
@@ -326,11 +406,19 @@ progress::-moz-progress-bar {
     text-shadow: 0 0 5px #e94560;
 }
 
-.reward p {
+.bonus-reward h3 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5em;
+    color: #ff6f61;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px #ff6f61;
+}
+
+.reward p, .bonus-reward p {
     margin-bottom: 10px;
 }
 
-.reward button {
+.reward button, .bonus-reward button {
     padding: 10px 20px;
     font-size: 1.2em;
     font-family: 'Cinzel', serif;
@@ -344,7 +432,7 @@ progress::-moz-progress-bar {
     overflow: hidden;
 }
 
-.reward button:hover {
+.reward button:hover, .bonus-reward button:hover {
     background: linear-gradient(45deg, #ff6f61, #e94560);
     box-shadow: 0 0 15px rgba(233, 69, 96, 0.7);
 }
