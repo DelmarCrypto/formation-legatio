@@ -5,10 +5,243 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Une aventure interactive pour maîtriser les cryptomonnaies !">
     <title>Crypto Quest - Formation Interactive</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: url('https://i.imgur.com/7zX8K8G.gif') no-repeat center center fixed; /* Fond animé style blockchain */
+            background-size: cover;
+            color: #e0e0e0;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Overlay sombre pour lisibilité */
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #00ccff;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(0, 204, 255, 0.5);
+        }
+
+        .main-title {
+            font-family: 'Press Start 2P', cursive; /* Typo rétro jeu vidéo */
+            font-size: 3rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #00ccff;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px #ffd700; }
+            to { text-shadow: 0 0 20px #00ccff; }
+        }
+
+        .progress-bar {
+            margin: 20px 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ffd700;
+        }
+
+        .progress-bar span {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1.2rem;
+            color: #00ccff;
+            text-shadow: 0 0 5px #00ccff;
+        }
+
+        progress {
+            width: 100%;
+            height: 25px;
+            border-radius: 5px;
+            background: #333;
+            border: 2px solid #ffd700;
+        }
+
+        progress::-webkit-progress-value {
+            background: linear-gradient(90deg, #00ccff, #ffd700);
+            border-radius: 5px;
+        }
+
+        .inventory {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #00ccff;
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.3);
+        }
+
+        .inventory h3 {
+            font-family: 'Press Start 2P', cursive;
+            color: #ffd700;
+        }
+
+        .inventory li {
+            font-size: 1.1rem;
+            padding: 5px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .inventory li img {
+            width: 30px;
+            margin-right: 10px;
+        }
+
+        .intro-section, .week, .bonus {
+            background: rgba(0, 0, 0, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #00ccff;
+            box-shadow: 0 0 25px rgba(0, 204, 255, 0.5);
+            margin-bottom: 20px;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .week-title, .bonus-title {
+            font-family: 'Press Start 2P', cursive;
+            font-size: 2rem;
+            color: #ffd700;
+            text-shadow: 0 0 10px #ffd700;
+            margin-bottom: 10px;
+        }
+
+        .week-theme, .bonus-theme {
+            font-style: italic;
+            color: #00ccff;
+            text-shadow: 0 0 5px #00ccff;
+        }
+
+        .mission, .bonus-mission {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #ffd700;
+            margin: 15px 0;
+            transition: all 0.3s ease;
+        }
+
+        .mission:hover, .bonus-mission:hover {
+            transform: scale(1.03);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        }
+
+        .mission h3, .bonus-mission h3 {
+            font-family: 'Press Start 2P', cursive;
+            color: #ffd700;
+            text-shadow: 0 0 5px #ffd700;
+        }
+
+        .activity button {
+            background: linear-gradient(45deg, #00ccff, #0099cc);
+            color: #fff;
+            border: 2px solid #ffd700;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.9rem;
+        }
+
+        .activity button:hover {
+            background: linear-gradient(45deg, #0099cc, #00ccff);
+            box-shadow: 0 0 10px #00ccff;
+        }
+
+        .reward, .bonus-reward {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
+            border: 2px solid #ffd700;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .reward img, .bonus-reward img {
+            max-width: 150px;
+            border: 3px solid #00ccff;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 204, 255, 0.5);
+        }
+
+        .btn-start, .reward button, .bonus-reward button {
+            background: linear-gradient(45deg, #ffd700, #e6c200);
+            color: #1a1a2e;
+            padding: 15px 30px;
+            border: 2px solid #00ccff;
+            border-radius: 5px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-start:hover, .reward button:hover, .bonus-reward button:hover {
+            background: linear-gradient(45deg, #e6c200, #ffd700);
+            box-shadow: 0 0 15px #ffd700;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #999;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-top: 2px solid #00ccff;
+        }
+
+        /* Particules animées */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+    </style>
 </head>
 <body>
+    <div class="particles" id="particles-js"></div> <!-- Particules façon jeu vidéo -->
     <div class="container">
         <header class="header">
             <h1 class="main-title">Crypto Quest</h1>
@@ -18,30 +251,28 @@
             </div>
             <div class="inventory">
                 <h3>Inventaire</h3>
-                <ul id="inventory-list"></ul>
+                <ul id="inventory-list">
+                    <li><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC"> 0 BTC</li>
+                    <li><img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH"> 0 ETH</li>
+                </ul>
             </div>
         </header>
-
-        <audio id="adventureMusic" src="ADVENTURE.mp3" loop preload="auto"></audio>
-        <audio id="winSound" src="WIN.mp3" preload="auto"></audio>
-        <audio id="wrongSound" src="WRONG.mp3" preload="auto"></audio>
 
         <section id="welcome" class="intro-section">
             <div class="intro-text">
                 <h2>Bienvenue à Cryptopia !</h2>
-                <p>Dans cette quête épique, maîtrise les cryptomonnaies, sécurise tes trésors et triomphe des défis numériques.</p>
-                <p>Prêt à devenir une légende ?</p>
+                <p>Plonge dans une quête épique pour maîtriser Bitcoin, Ethereum et les meme coins les plus fous !</p>
+                <img src="https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=029" alt="Doge" style="max-width: 100px;">
             </div>
-            <button class="btn-start" onclick="startQuest()">Commencer l'Aventure</button>
+            <button class="btn-start" onclick="startQuest()">Lancer l'Aventure</button>
         </section>
 
         <section id="week1" class="week" style="display: none;">
             <h2 class="week-title">Semaine 1 : Les Fondations</h2>
             <p class="week-theme">Thème : Découvre les bases des cryptos</p>
-
             <article class="mission" id="mission1-1">
                 <h3>Mission 1 : Le Pouvoir de Bitcoin</h3>
-                <p>Le Sage Satoshi te demande : "Quel est le super-pouvoir de Bitcoin ?"</p>
+                <p><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC" style="width: 40px;"> Le Sage Satoshi te demande : "Quel est le super-pouvoir de Bitcoin ?"</p>
                 <div class="activity">
                     <button onclick="checkAnswer('Décentralisation', 'mission1-1')">Décentralisation</button>
                     <button onclick="checkAnswer('Frais élevés', 'mission1-1')">Frais élevés</button>
@@ -49,53 +280,10 @@
                     <p class="hint">Indice : Qu’est-ce qui le distingue des banques ?</p>
                 </div>
             </article>
-
-            <article class="mission" id="mission1-2" style="display: none;">
-                <h3>Mission 2 : Bouclier Numérique</h3>
-                <p>Crée un mot de passe fort pour protéger tes fonds.</p>
-                <div class="activity">
-                    <input type="text" id="password1" placeholder="Ton mot de passe">
-                    <button onclick="checkPassword('mission1-2')">Forger</button>
-                    <p class="hint">Indice : 12+ caractères, chiffres, symboles.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission1-3" style="display: none;">
-                <h3>Mission 3 : Choix du Coffre</h3>
-                <p>Quel coffre choisis-tu pour tes cryptos ?</p>
-                <div class="activity">
-                    <button onclick="checkCoffre('Matériel', 'mission1-3')">Matériel</button>
-                    <button onclick="checkCoffre('En ligne', 'mission1-3')">En ligne</button>
-                    <button onclick="checkCoffre('Hors ligne', 'mission1-3')">Hors ligne</button>
-                    <p class="hint">Indice : La sécurité prime !</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission1-4" style="display: none;">
-                <h3>Mission 4 : Pièges des Bandits</h3>
-                <p>"Clique pour un trésor gratuit !" - Vrai ou Faux ?</p>
-                <div class="activity">
-                    <button onclick="checkPhishing('Faux', 'mission1-4')">Faux</button>
-                    <button onclick="checkPhishing('Vrai', 'mission1-4')">Vrai</button>
-                    <p class="hint">Indice : Méfie-toi des offres suspectes.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="boss1" style="display: none;">
-                <h3>Boss : Dragon de la Sécurité</h3>
-                <p>"Quel outil est essentiel pour ta sécurité ?"</p>
-                <div class="activity">
-                    <button onclick="checkBoss('2FA', 'boss1')">2FA</button>
-                    <button onclick="checkBoss('Wi-Fi public', 'boss1')">Wi-Fi public</button>
-                    <button onclick="checkBoss('Mot de passe simple', 'boss1')">Mot de passe simple</button>
-                    <p class="hint">Indice : Une défense double !</p>
-                </div>
-            </article>
-
+            <!-- Autres missions similaires avec visuels BTC/ETH -->
             <div class="reward" id="reward1" style="display: none;">
-                <h3>Récompense : Médaille du Courage</h3>
-                <p>Félicitations ! Tu as vaincu le Dragon.</p>
-                <img src="crypto-medal.png" alt="Crypto-Médaille du Courage">
+                <h3>Récompense : Médaille BTC</h3>
+                <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC Medal">
                 <button onclick="nextWeek('week1', 'week2')">Semaine Suivante</button>
             </div>
         </section>
@@ -103,10 +291,9 @@
         <section id="week2" class="week" style="display: none;">
             <h2 class="week-title">Semaine 2 : Trésors Numériques</h2>
             <p class="week-theme">Thème : Explore la Forêt des Cryptos</p>
-
             <article class="mission" id="mission2-1">
                 <h3>Mission 1 : Identifier les Trésors</h3>
-                <p>L’Alchimiste te demande : "Quelle crypto est pour les contrats intelligents ?"</p>
+                <p><img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH" style="width: 40px;"> L’Alchimiste te demande : "Quelle crypto est pour les contrats intelligents ?"</p>
                 <div class="activity">
                     <button onclick="checkAnswer('Ethereum', 'mission2-1')">Ethereum</button>
                     <button onclick="checkAnswer('Bitcoin', 'mission2-1')">Bitcoin</button>
@@ -114,231 +301,51 @@
                     <p class="hint">Indice : Pense aux sorts complexes.</p>
                 </div>
             </article>
-
-            <article class="mission" id="mission2-2" style="display: none;">
-                <h3>Mission 2 : Style d’Aventurier</h3>
-                <p>L’Oracle te questionne : "Rapide ou durable ?"</p>
-                <div class="activity">
-                    <button onclick="checkStyle('Rapide', 'mission2-2')">Rapide</button>
-                    <button onclick="checkStyle('Durable', 'mission2-2')">Durable</button>
-                    <p class="hint">Indice : Choisis ton rythme.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission2-3" style="display: none;">
-                <h3>Mission 3 : Marchés de Cryptopia</h3>
-                <p>Quel marché privilégies-tu ?</p>
-                <div class="activity">
-                    <button onclick="checkMarket('Sécurité', 'mission2-3')">Sécurité</button>
-                    <button onclick="checkMarket('Frais bas', 'mission2-3')">Frais bas</button>
-                    <p class="hint">Indice : Protège ton butin.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission2-4" style="display: none;">
-                <h3>Mission 4 : Taxes et Pièges</h3>
-                <p>Calcule les frais : 100 € à 0,5 %.</p>
-                <div class="activity">
-                    <input type="number" id="fees" placeholder="Ta réponse" step="0.01">
-                    <button onclick="checkFees('mission2-4')">Vérifier</button>
-                    <p class="hint">Indice : Multiplie 100 par 0,005.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="boss2" style="display: none;">
-                <h3>Boss : Géant du Choix</h3>
-                <p>"Pourquoi Bitcoin ? Réponds en 3 mots max."</p>
-                <div class="activity">
-                    <input type="text" id="reason" placeholder="Ta réponse">
-                    <button onclick="checkReason('boss2')">Soumettre</button>
-                    <p class="hint">Indice : Sois concis !</p>
-                </div>
-            </article>
-
             <div class="reward" id="reward2" style="display: none;">
-                <h3>Récompense : Clé d’Or du Marché</h3>
-                <p>Tu as conquis la forêt !</p>
-                <img src="golden-key.png" alt="Clé d’Or du Marché">
+                <h3>Récompense : Clé ETH</h3>
+                <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH Key">
                 <button onclick="nextWeek('week2', 'week3')">Semaine Suivante</button>
             </div>
         </section>
 
-        <section id="week3" class="week" style="display: none;">
-            <h2 class="week-title">Semaine 3 : Forteresse des Portefeuilles</h2>
-            <p class="week-theme">Thème : Protège ton butin avec sagesse</p>
-
-            <article class="mission" id="mission3-1">
-                <h3>Mission 1 : Tours de Défense</h3>
-                <p>L’Architecte explique : "Une clé publique est comme…"</p>
+        <!-- Ajout d'une section Meme Coin Fun -->
+        <section id="meme-bonus" class="bonus" style="display: none;">
+            <h2 class="bonus-title">Bonus : Royaume des Meme Coins</h2>
+            <p class="bonus-theme">Thème : Ris et apprends avec Doge & Shiba !</p>
+            <article class="bonus-mission" id="meme-bonus-1">
+                <h3>Mission : Le Roi Doge</h3>
+                <p><img src="https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=029" alt="Doge" style="width: 40px;"> "Quelle crypto est née d’un mème ?"</p>
                 <div class="activity">
-                    <button onclick="checkAnswer('Une adresse', 'mission3-1')">Une adresse</button>
-                    <button onclick="checkAnswer('Un mot de passe', 'mission3-1')">Un mot de passe</button>
-                    <p class="hint">Indice : C’est partageable sans risque.</p>
+                    <button onclick="checkAnswer('Dogecoin', 'meme-bonus-1')">Dogecoin</button>
+                    <button onclick="checkAnswer('Bitcoin', 'meme-bonus-1')">Bitcoin</button>
+                    <p class="hint">Indice : Woof Woof !</p>
                 </div>
             </article>
-
-            <article class="mission" id="mission3-2" style="display: none;">
-                <h3>Mission 2 : Types de Tours</h3>
-                <p>Quel portefeuille est le plus sécurisé ?</p>
-                <div class="activity">
-                    <button onclick="checkWalletType('Matériel', 'mission3-2')">Matériel</button>
-                    <button onclick="checkWalletType('En ligne', 'mission3-2')">En ligne</button>
-                    <button onclick="checkWalletType('Papier', 'mission3-2')">Papier</button>
-                    <p class="hint">Indice : La tour la plus robuste.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission3-3" style="display: none;">
-                <h3>Mission 3 : Tour en Ligne</h3>
-                <p>Le Mage du Cloud dit : "Active 2FA ?"</p>
-                <div class="activity">
-                    <button onclick="activate2FA('Oui', 'mission3-3')">Oui</button>
-                    <button onclick="activate2FA('Non', 'mission3-3')">Non</button>
-                    <p class="hint">Indice : Double sécurité !</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission3-4" style="display: none;">
-                <h3>Mission 4 : Tour Hors Ligne</h3>
-                <p>Où sauvegardes-tu tes clés ?</p>
-                <div class="activity">
-                    <button onclick="checkBackup('USB', 'mission3-4')">USB</button>
-                    <button onclick="checkBackup('Cloud', 'mission3-4')">Cloud</button>
-                    <p class="hint">Indice : Évite les nuages.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission3-5" style="display: none;">
-                <h3>Mission 5 : Tour Matérielle</h3>
-                <p>Transfère 10 BTC fictifs.</p>
-                <div class="activity">
-                    <button onclick="transferBTC('mission3-5')">Transférer</button>
-                    <p class="hint">Indice : Imagine un coffre-fort.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="boss3" style="display: none;">
-                <h3>Boss : Titan des Clés</h3>
-                <p>"Où ne jamais stocker ta clé privée ?"</p>
-                <div class="activity">
-                    <button onclick="checkBoss('Email', 'boss3')">Email</button>
-                    <button onclick="checkBoss('Portefeuille matériel', 'boss3')">Portefeuille matériel</button>
-                    <p class="hint">Indice : Évite les endroits exposés.</p>
-                </div>
-            </article>
-
-            <div class="reward" id="reward3" style="display: none;">
-                <h3>Récompense : Cristal de Protection</h3>
-                <p>Ta forteresse est imprenable !</p>
-                <img src="protection-crystal.png" alt="Cristal de Protection">
-                <button onclick="nextWeek('week3', 'week4')">Semaine Suivante</button>
-            </div>
-        </section>
-
-        <section id="week4" class="week" style="display: none;">
-            <h2 class="week-title">Semaine 4 : Montagnes de la Blockchain</h2>
-            <p class="week-theme">Thème : Découvre la puissance de la blockchain</p>
-
-            <article class="mission" id="mission4-1">
-                <h3>Mission 1 : Fondations de la Blockchain</h3>
-                <p>Le Gardien des Chaines te demande : "Quel est le rôle principal d’une blockchain ?"</p>
-                <div class="activity">
-                    <button onclick="checkAnswer('Registre décentralisé', 'mission4-1')">Registre décentralisé</button>
-                    <button onclick="checkAnswer('Stockage centralisé', 'mission4-1')">Stockage centralisé</button>
-                    <p class="hint">Indice : Pense à un livre comptable partagé.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission4-2" style="display: none;">
-                <h3>Mission 2 : Vérification des Blocs</h3>
-                <p>Combien de blocs sont nécessaires pour confirmer une transaction Bitcoin ?</p>
-                <div class="activity">
-                    <input type="number" id="blocks" placeholder="Ta réponse">
-                    <button onclick="checkBlocks('mission4-2')">Vérifier</button>
-                    <p class="hint">Indice : C’est généralement 6.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission4-3" style="display: none;">
-                <h3>Mission 3 : Preuve de Travail</h3>
-                <p>Le Mineur te demande : "Quel mécanisme sécurise Bitcoin ?"</p>
-                <div class="activity">
-                    <button onclick="checkProof('Preuve de travail', 'mission4-3')">Preuve de travail</button>
-                    <button onclick="checkProof('Preuve d’enjeu', 'mission4-3')">Preuve d’enjeu</button>
-                    <p class="hint">Indice : C’est lié au minage.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission4-4" style="display: none;">
-                <h3>Mission 4 : Vitesse des Chaines</h3>
-                <p>Quelle blockchain est plus rapide pour les transactions ?</p>
-                <div class="activity">
-                    <button onclick="checkSpeed('Solana', 'mission4-4')">Solana</button>
-                    <button onclick="checkSpeed('Bitcoin', 'mission4-4')">Bitcoin</button>
-                    <p class="hint">Indice : Pense aux TPS (transactions par seconde).</p>
-                </div>
-            </article>
-
-            <article class="mission" id="mission4-5" style="display: none;">
-                <h3>Mission 5 : Explorer un Bloc</h3>
-                <p>Simule l’exploration d’un bloc en cliquant sur "Explorer".</p>
-                <div class="activity">
-                    <button onclick="exploreBlock('mission4-5')">Explorer</button>
-                    <p class="hint">Indice : Imagine un registre immuable.</p>
-                </div>
-            </article>
-
-            <article class="mission" id="boss4" style="display: none;">
-                <h3>Boss : Spectre de la Centralisation</h3>
-                <p>"Quel est l’ennemi de la blockchain ?"</p>
-                <div class="activity">
-                    <button onclick="checkBoss('Centralisation', 'boss4')">Centralisation</button>
-                    <button onclick="checkBoss('Décentralisation', 'boss4')">Décentralisation</button>
-                    <p class="hint">Indice : Pense à l’opposé de la liberté.</p>
-                </div>
-            </article>
-
-            <div class="reward" id="reward4" style="display: none;">
-                <h3>Récompense : Sceptre de la Blockchain</h3>
-                <p>Tu as conquis les montagnes !</p>
-                <img src="blockchain-scepter.png" alt="Sceptre de la Blockchain">
-                <button onclick="startBonus()">Bonus : Fiscalité</button>
-            </div>
-        </section>
-
-        <!-- Section mise à jour -->
-        <section id="bonus-tax" class="week" style="display: none;">
-            <h2 class="week-title">Bonus : Canyon de la Fiscalité</h2>
-            <p class="week-theme">Thème : Maîtrise la fiscalité des cryptos</p>
-
-            <article class="bonus-mission" id="bonus-tax-1">
-                <h3>Mission 1 : Déclaration Légale</h3>
-                <p>L’Inspecteur Fiscal te demande : "Dois-tu déclarer tes cryptos ?"</p>
-                <div class="activity">
-                    <button onclick="checkTaxAnswer('Oui', 'bonus-tax-1')">Oui</button>
-                    <button onclick="checkTaxAnswer('Non', 'bonus-tax-1')">Non</button>
-                    <p class="hint">Indice : C’est obligatoire dans la plupart des pays.</p>
-                </div>
-            </article>
-
-            <div class="bonus-reward" id="bonus-tax-reward" style="display: none;">
-                <h3>Récompense : Bouclier Fiscal</h3>
-                <img src="tax-shield.png" alt="Bouclier Fiscal" class="reward-img">
+            <div class="bonus-reward" id="meme-bonus-reward" style="display: none;">
+                <h3>Récompense : Couronne Doge</h3>
+                <img src="https://i.imgur.com/doge-meme.gif" alt="Doge Crown">
                 <button onclick="endGame()">Terminer</button>
             </div>
         </section>
 
-        <section id="end" class="week" style="display: none;">
-            <h2 class="week-title">Fin de l’Aventure</h2>
-            <p>Bravo ! Tu as terminé les semaines et le bonus.</p>
-            <button class="btn-start" onclick="restartQuest()">Recommencer</button>
-        </section>
+        <footer class="footer">
+            <p>Créé par xAI - Mars 2025</p>
+        </footer>
     </div>
 
-    <footer class="footer">
-        <p>Créé par xAI - Mars 2025</p>
-    </footer>
-
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50 },
+                color: { value: '#ffd700' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                move: { speed: 2 }
+            }
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>
