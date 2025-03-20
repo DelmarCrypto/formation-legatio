@@ -285,7 +285,7 @@
                     <button onclick="checkAnswer('Frais élevés', 'mission1-1')">Frais élevés</button>
                     <button onclick="checkAnswer('Centralisation', 'mission1-1')">Centralisation</button>
                     <p class="hint">Indice : Qu’est-ce qui le distingue des banques ?</p>
-                    <p class="feedback" id="feedback1-1"></p>
+                    <p class="feedback" id="feedback-mission1-1"></p>
                 </div>
             </article>
             <div class="reward" id="reward1" style="display: none;">
@@ -306,7 +306,7 @@
                     <button onclick="checkAnswer('Bitcoin', 'mission2-1')">Bitcoin</button>
                     <button onclick="checkAnswer('Ripple', 'mission2-1')">Ripple</button>
                     <p class="hint">Indice : Pense aux sorts complexes.</p>
-                    <p class="feedback" id="feedback2-1"></p>
+                    <p class="feedback" id="feedback-mission2-1"></p>
                 </div>
             </article>
             <div class="reward" id="reward2" style="display: none;">
@@ -326,7 +326,7 @@
                     <button onclick="checkAnswer('Dogecoin', 'meme-bonus-1')">Dogecoin</button>
                     <button onclick="checkAnswer('Bitcoin', 'meme-bonus-1')">Bitcoin</button>
                     <p class="hint">Indice : Woof Woof !</p>
-                    <p class="feedback" id="feedback-meme-1"></p>
+                    <p class="feedback" id="feedback-meme-bonus-1"></p>
                 </div>
             </article>
             <div class="bonus-reward" id="meme-bonus-reward" style="display: none;">
@@ -341,13 +341,14 @@
         </footer>
     </div>
 
-    <!-- Intégration des fichiers audio du dépôt -->
+    <!-- Intégration des fichiers audio -->
     <audio id="adventure-sound" src="ADVENTURE.mp3"></audio>
     <audio id="win-sound" src="WIN.mp3"></audio>
     <audio id="wrong-sound" src="WRONG.mp3"></audio>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        // Initialisation des particules
         particlesJS('particles-js', {
             particles: {
                 number: { value: 50 },
@@ -359,6 +360,7 @@
             }
         });
 
+        // Variables globales
         let progress = 0;
         let btcCount = 0;
         let ethCount = 0;
@@ -369,17 +371,26 @@
         const wrongSound = document.getElementById('wrong-sound');
 
         function startQuest() {
+            console.log("startQuest called");
             document.getElementById('welcome').style.display = 'none';
             document.getElementById('week1').style.display = 'block';
             updateProgress(10);
-            adventureSound.play(); // Jouer le son d'aventure au démarrage
+            try {
+                adventureSound.play();
+            } catch (error) {
+                console.error("Erreur lors de la lecture du son d'aventure:", error);
+            }
         }
 
         function checkAnswer(answer, missionId) {
-            const feedback = document.getElementById(`feedback-${missionId.split('-')[1]}-${missionId.split('-')[2]}`);
-            let correctAnswer;
+            console.log(`checkAnswer called with answer: ${answer}, missionId: ${missionId}`);
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (!feedback) {
+                console.error(`Feedback element not found for missionId: ${missionId}`);
+                return;
+            }
 
-            // Définir la bonne réponse selon la mission
+            let correctAnswer;
             if (missionId === 'mission1-1') correctAnswer = 'Décentralisation';
             if (missionId === 'mission2-1') correctAnswer = 'Ethereum';
             if (missionId === 'meme-bonus-1') correctAnswer = 'Dogecoin';
@@ -387,21 +398,31 @@
             if (answer === correctAnswer) {
                 feedback.textContent = 'Correct ! Bien joué !';
                 feedback.className = 'feedback correct';
-                winSound.play(); // Jouer le son de victoire
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
                 updateProgress(30);
                 updateInventory(missionId);
                 setTimeout(() => {
                     document.getElementById(missionId).style.display = 'none';
-                    document.getElementById(`reward${missionId.split('-')[1] === 'bonus' ? '-meme' : ''}`).style.display = 'block';
+                    const rewardId = missionId.includes('meme-bonus') ? 'meme-bonus-reward' : `reward${missionId.split('-')[1]}`;
+                    document.getElementById(rewardId).style.display = 'block';
                 }, 1000);
             } else {
                 feedback.textContent = 'Incorrect. Réessaie !';
                 feedback.className = 'feedback incorrect';
-                wrongSound.play(); // Jouer le son d'erreur
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
             }
         }
 
         function updateProgress(amount) {
+            console.log(`updateProgress called with amount: ${amount}`);
             progress += amount;
             if (progress > 110) progress = 110;
             document.getElementById('progress').value = progress;
@@ -409,6 +430,7 @@
         }
 
         function updateInventory(missionId) {
+            console.log(`updateInventory called for missionId: ${missionId}`);
             if (missionId === 'mission1-1') {
                 btcCount += 1;
                 document.getElementById('btc-count').textContent = btcCount;
@@ -419,11 +441,13 @@
         }
 
         function nextWeek(currentWeek, nextWeek) {
+            console.log(`nextWeek called from ${currentWeek} to ${nextWeek}`);
             document.getElementById(currentWeek).style.display = 'none';
             document.getElementById(nextWeek).style.display = 'block';
         }
 
         function endGame() {
+            console.log("endGame called");
             alert('Félicitations ! Tu as terminé Crypto Quest !');
             document.getElementById('meme-bonus').style.display = 'none';
             document.getElementById('welcome').style.display = 'block';
