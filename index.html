@@ -423,40 +423,61 @@
             }
         }
 
-        function checkAnswer(answer, missionId) {
-            const feedback = document.getElementById(`feedback-${missionId}`);
-            let correctAnswer;
-            if (missionId === 'mission1-1') correctAnswer = 'Décentralisation';
-            if (missionId === 'mission2-1') correctAnswer = 'Ethereum';
-            if (missionId === 'mission3-1') correctAnswer = 'Une adresse';
-            if (missionId === 'mission4-1') correctAnswer = 'Registre décentralisé';
-            if (missionId === 'bonus-tax-1') correctAnswer = 'Oui';
+     function checkAnswer(answer, missionId) {
+    const feedback = document.getElementById(`feedback-${missionId}`); // Ligne 1
+    let correctAnswer; // Ligne 2
+    if (missionId === 'mission1-1') correctAnswer = 'Décentralisation'; // Ligne 3
+    if (missionId === 'mission2-1') correctAnswer = 'Ethereum'; // Ligne 4
+    if (missionId === 'mission3-1') correctAnswer = 'Une adresse'; // Ligne 5
+    if (missionId === 'mission4-1') correctAnswer = 'Registre décentralisé'; // Ligne 6
+    if (missionId === 'bonus-tax-1') correctAnswer = 'Oui'; // Ligne 7
 
-            if (answer === correctAnswer) {
-                feedback.textContent = 'Correct ! Bien joué !';
-                feedback.className = 'feedback correct';
-                try {
-                    winSound.play();
-                } catch (error) {
-                    console.error("Erreur lors de la lecture du son de victoire:", error);
-                }
-                updateProgress(10);
-                if (missionId === 'mission1-1') updateInventory('BTC');
-                if (missionId === 'mission2-1') updateInventory('ETH');
-                setTimeout(() => {
-                    document.getElementById(missionId).style.display = 'none';
-                    document.getElementById(missionId === 'bonus-tax-1' ? 'bonus-tax-2' : missionId.replace('mission', 'mission')).style.display = 'block';
-                }, 1000);
-            } else {
-                feedback.textContent = 'Incorrect. Réessaie !';
-                feedback.className = 'feedback incorrect';
-                try {
-                    wrongSound.play();
-                } catch (error) {
-                    console.error("Erreur lors de la lecture du son d'erreur:", error);
-                }
+    if (answer === correctAnswer) { // Ligne 8
+        feedback.textContent = 'Correct ! Bien joué !'; // Ligne 9
+        feedback.className = 'feedback correct'; // Ligne 10
+        try { // Ligne 11
+            winSound.play(); // Ligne 12
+        } catch (error) { // Ligne 13
+            console.error("Erreur lors de la lecture du son de victoire:", error); // Ligne 14
+        }
+        updateProgress(10); // Ligne 15
+        if (missionId === 'mission1-1') updateInventory('BTC'); // Ligne 16
+        if (missionId === 'mission2-1') updateInventory('ETH'); // Ligne 17
+
+        // Calculer l'ID de la mission suivante
+        if (missionId === 'bonus-tax-1') { // Ligne 18
+            // Cas spécial pour le bonus : passer à bonus-tax-2
+            setTimeout(() => { // Ligne 19
+                document.getElementById(missionId).style.display = 'none'; // Ligne 20
+                document.getElementById('bonus-tax-2').style.display = 'block'; // Ligne 21
+            }, 1000); // Ligne 22
+        } else { // Ligne 23
+            // Extraire les numéros de semaine et de mission (ex: mission1-1 -> semaine 1, mission 1)
+            const [_, weekNum, missionNum] = missionId.match(/mission(\d+)-(\d+)/); // Ligne 24
+            const nextMissionNum = parseInt(missionNum) + 1; // Ligne 25
+            const nextMissionId = `mission${weekNum}-${nextMissionNum}`; // Ligne 26
+
+            // Vérifier si la mission suivante existe
+            const nextMissionElement = document.getElementById(nextMissionId); // Ligne 27
+            if (nextMissionElement) { // Ligne 28
+                setTimeout(() => { // Ligne 29
+                    document.getElementById(missionId).style.display = 'none'; // Ligne 30
+                    nextMissionElement.style.display = 'block'; // Ligne 31
+                }, 1000); // Ligne 32
+            } else { // Ligne 33
+                console.warn(`Mission suivante (${nextMissionId}) non trouvée. Vérifiez l'ID.`); // Ligne 34
             }
         }
+    } else { // Ligne 35
+        feedback.textContent = 'Incorrect. Réessaie !'; // Ligne 36
+        feedback.className = 'feedback incorrect'; // Ligne 37
+        try { // Ligne 38
+            wrongSound.play(); // Ligne 39
+        } catch (error) { // Ligne 40
+            console.error("Erreur lors de la lecture du son d'erreur:", error); // Ligne 41
+        }
+    }
+}
 
         function checkPassword(missionId) {
             const password = document.getElementById('password1').value;
