@@ -15,7 +15,7 @@
         }
 
         body {
-            background: url('https://i.imgur.com/7zX8K8G.gif') no-repeat center center fixed; /* Fond animé style blockchain */
+            background: url('https://i.imgur.com/7zX8K8G.gif') no-repeat center center fixed;
             background-size: cover;
             color: #e0e0e0;
             line-height: 1.6;
@@ -30,7 +30,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Overlay sombre pour lisibilité */
+            background: rgba(0, 0, 0, 0.6);
             z-index: -1;
         }
 
@@ -53,7 +53,7 @@
         }
 
         .main-title {
-            font-family: 'Press Start 2P', cursive; /* Typo rétro jeu vidéo */
+            font-family: 'Press Start 2P', cursive;
             font-size: 3rem;
             color: #ffd700;
             text-shadow: 0 0 10px #ffd700, 0 0 20px #00ccff;
@@ -228,7 +228,6 @@
             border-top: 2px solid #00ccff;
         }
 
-        /* Particules animées */
         .particles {
             position: fixed;
             top: 0;
@@ -238,10 +237,18 @@
             pointer-events: none;
             z-index: 0;
         }
+
+        .feedback {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+        .correct { color: #00ff00; }
+        .incorrect { color: #ff0000; }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles-js"></div> <!-- Particules façon jeu vidéo -->
+    <div class="particles" id="particles-js"></div>
     <div class="container">
         <header class="header">
             <h1 class="main-title">Crypto Quest</h1>
@@ -252,8 +259,8 @@
             <div class="inventory">
                 <h3>Inventaire</h3>
                 <ul id="inventory-list">
-                    <li><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC"> 0 BTC</li>
-                    <li><img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH"> 0 ETH</li>
+                    <li><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC"> <span id="btc-count">0</span> BTC</li>
+                    <li><img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH"> <span id="eth-count">0</span> ETH</li>
                 </ul>
             </div>
         </header>
@@ -278,9 +285,9 @@
                     <button onclick="checkAnswer('Frais élevés', 'mission1-1')">Frais élevés</button>
                     <button onclick="checkAnswer('Centralisation', 'mission1-1')">Centralisation</button>
                     <p class="hint">Indice : Qu’est-ce qui le distingue des banques ?</p>
+                    <p class="feedback" id="feedback1-1"></p>
                 </div>
             </article>
-            <!-- Autres missions similaires avec visuels BTC/ETH -->
             <div class="reward" id="reward1" style="display: none;">
                 <h3>Récompense : Médaille BTC</h3>
                 <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC Medal">
@@ -299,16 +306,16 @@
                     <button onclick="checkAnswer('Bitcoin', 'mission2-1')">Bitcoin</button>
                     <button onclick="checkAnswer('Ripple', 'mission2-1')">Ripple</button>
                     <p class="hint">Indice : Pense aux sorts complexes.</p>
+                    <p class="feedback" id="feedback2-1"></p>
                 </div>
             </article>
             <div class="reward" id="reward2" style="display: none;">
                 <h3>Récompense : Clé ETH</h3>
                 <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH Key">
-                <button onclick="nextWeek('week2', 'week3')">Semaine Suivante</button>
+                <button onclick="nextWeek('week2', 'meme-bonus')">Semaine Suivante</button>
             </div>
         </section>
 
-        <!-- Ajout d'une section Meme Coin Fun -->
         <section id="meme-bonus" class="bonus" style="display: none;">
             <h2 class="bonus-title">Bonus : Royaume des Meme Coins</h2>
             <p class="bonus-theme">Thème : Ris et apprends avec Doge & Shiba !</p>
@@ -319,6 +326,7 @@
                     <button onclick="checkAnswer('Dogecoin', 'meme-bonus-1')">Dogecoin</button>
                     <button onclick="checkAnswer('Bitcoin', 'meme-bonus-1')">Bitcoin</button>
                     <p class="hint">Indice : Woof Woof !</p>
+                    <p class="feedback" id="feedback-meme-1"></p>
                 </div>
             </article>
             <div class="bonus-reward" id="meme-bonus-reward" style="display: none;">
@@ -333,6 +341,11 @@
         </footer>
     </div>
 
+    <!-- Intégration des fichiers audio du dépôt -->
+    <audio id="adventure-sound" src="ADVENTURE.mp3"></audio>
+    <audio id="win-sound" src="WIN.mp3"></audio>
+    <audio id="wrong-sound" src="WRONG.mp3"></audio>
+
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         particlesJS('particles-js', {
@@ -345,7 +358,82 @@
                 move: { speed: 2 }
             }
         });
+
+        let progress = 0;
+        let btcCount = 0;
+        let ethCount = 0;
+
+        // Sons
+        const adventureSound = document.getElementById('adventure-sound');
+        const winSound = document.getElementById('win-sound');
+        const wrongSound = document.getElementById('wrong-sound');
+
+        function startQuest() {
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('week1').style.display = 'block';
+            updateProgress(10);
+            adventureSound.play(); // Jouer le son d'aventure au démarrage
+        }
+
+        function checkAnswer(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId.split('-')[1]}-${missionId.split('-')[2]}`);
+            let correctAnswer;
+
+            // Définir la bonne réponse selon la mission
+            if (missionId === 'mission1-1') correctAnswer = 'Décentralisation';
+            if (missionId === 'mission2-1') correctAnswer = 'Ethereum';
+            if (missionId === 'meme-bonus-1') correctAnswer = 'Dogecoin';
+
+            if (answer === correctAnswer) {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                winSound.play(); // Jouer le son de victoire
+                updateProgress(30);
+                updateInventory(missionId);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById(`reward${missionId.split('-')[1] === 'bonus' ? '-meme' : ''}`).style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                wrongSound.play(); // Jouer le son d'erreur
+            }
+        }
+
+        function updateProgress(amount) {
+            progress += amount;
+            if (progress > 110) progress = 110;
+            document.getElementById('progress').value = progress;
+            document.getElementById('progress-text').textContent = `Progression : ${Math.round(progress / 110 * 100)}%`;
+        }
+
+        function updateInventory(missionId) {
+            if (missionId === 'mission1-1') {
+                btcCount += 1;
+                document.getElementById('btc-count').textContent = btcCount;
+            } else if (missionId === 'mission2-1') {
+                ethCount += 1;
+                document.getElementById('eth-count').textContent = ethCount;
+            }
+        }
+
+        function nextWeek(currentWeek, nextWeek) {
+            document.getElementById(currentWeek).style.display = 'none';
+            document.getElementById(nextWeek).style.display = 'block';
+        }
+
+        function endGame() {
+            alert('Félicitations ! Tu as terminé Crypto Quest !');
+            document.getElementById('meme-bonus').style.display = 'none';
+            document.getElementById('welcome').style.display = 'block';
+            progress = 0;
+            btcCount = 0;
+            ethCount = 0;
+            updateProgress(0);
+            document.getElementById('btc-count').textContent = '0';
+            document.getElementById('eth-count').textContent = '0';
+        }
     </script>
-    <script src="script.js"></script>
 </body>
 </html>
