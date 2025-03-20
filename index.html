@@ -1,4 +1,4 @@
-améliore le design et le theme de formation crypto pour qu'on ai réellement l'inmpression de jouer à un jeu vidéo en ajoutant des visuels BTC, ETH ou autres via cryptologos et integre aussi d'autres images ou cinématiques fun sur des memes coins notmamment. Voici le code :  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -6,218 +6,10 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
     <meta name="description" content="Une aventure interactive pour maîtriser les cryptomonnaies !">
     <title>Crypto Quest - Formation Interactive</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Roboto', sans-serif;
-        }
-
-        body {
-            background: linear-gradient(135deg, #1a1a2e, #16213e);
-            color: #e0e0e0;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            text-align: center;
-            padding: 40px 0;
-            background: rgba(0, 0, 0, 0.5);
-            border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .main-title {
-            font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            color: #ffd700;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
-        }
-
-        .progress-bar {
-            margin: 20px 0;
-        }
-
-        .progress-bar span {
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: #00ccff;
-        }
-
-        progress {
-            width: 100%;
-            height: 20px;
-            border-radius: 10px;
-            background: #333;
-        }
-
-        progress::-webkit-progress-value {
-            background: #00ccff;
-            border-radius: 10px;
-        }
-
-        progress::-moz-progress-bar {
-            background: #00ccff;
-            border-radius: 10px;
-        }
-
-        .inventory {
-            margin-top: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 10px;
-        }
-
-        .inventory h3 {
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-
-        .inventory ul {
-            list-style: none;
-        }
-
-        .inventory li {
-            font-size: 1.1rem;
-            color: #e0e0e0;
-            padding: 5px 0;
-        }
-
-        .intro-section, .week, .bonus {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            margin-bottom: 20px;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .week-title, .bonus-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-
-        .week-theme, .bonus-theme {
-            font-style: italic;
-            color: #00ccff;
-            margin-bottom: 20px;
-        }
-
-        .mission, .bonus-mission {
-            background: rgba(0, 0, 0, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-            margin: 15px 0;
-            transition: transform 0.3s ease;
-        }
-
-        .mission:hover, .bonus-mission:hover {
-            transform: scale(1.02);
-        }
-
-        .mission h3, .bonus-mission h3 {
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-
-        .activity {
-            margin-top: 15px;
-        }
-
-        .activity p {
-            margin-bottom: 10px;
-        }
-
-        .activity button {
-            background: #00ccff;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .activity button:hover {
-            background: #0099cc;
-        }
-
-        .activity input {
-            padding: 10px;
-            margin: 5px;
-            border-radius: 5px;
-            border: 1px solid #00ccff;
-            background: #1a1a2e;
-            color: #e0e0e0;
-        }
-
-        .hint {
-            color: #999;
-            font-size: 0.9rem;
-            margin-top: 10px;
-        }
-
-        .reward, .bonus-reward {
-            text-align: center;
-            padding: 20px;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        .reward h3, .bonus-reward h3 {
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
-
-        .reward img, .bonus-reward img {
-            max-width: 150px;
-            margin: 10px 0;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-start, .reward button, .bonus-reward button {
-            background: #ffd700;
-            color: #1a1a2e;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        .btn-start:hover, .reward button:hover, .bonus-reward button:hover {
-            background: #e6c200;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #999;
-            font-size: 0.9rem;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="particles" id="particles-js"></div>
     <div class="container">
         <header class="header">
             <h1 class="main-title">Crypto Quest</h1>
@@ -227,7 +19,10 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
             </div>
             <div class="inventory">
                 <h3>Inventaire</h3>
-                <ul id="inventory-list"></ul>
+                <ul id="inventory-list">
+                    <li><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC"> <span id="btc-count">0</span> BTC</li>
+                    <li><img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH"> <span id="eth-count">0</span> ETH</li>
+                </ul>
             </div>
         </header>
 
@@ -238,8 +33,8 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
         <section id="welcome" class="intro-section">
             <div class="intro-text">
                 <h2>Bienvenue à Cryptopia !</h2>
-                <p>Dans cette quête épique, maîtrise les cryptomonnaies, sécurise tes trésors et triomphe des défis numériques.</p>
-                <p>Prêt à devenir une légende ?</p>
+                <p>Plonge dans une quête épique pour maîtriser Bitcoin, Ethereum et les meme coins les plus fous !</p>
+                <img src="https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=029" alt="Doge">
             </div>
             <button class="btn-start" onclick="startQuest()">Commencer l'Aventure</button>
         </section>
@@ -250,12 +45,13 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
 
             <article class="mission" id="mission1-1">
                 <h3>Mission 1 : Le Pouvoir de Bitcoin</h3>
-                <p>Le Sage Satoshi te demande : "Quel est le super-pouvoir de Bitcoin ?"</p>
+                <p><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC"> Le Sage Satoshi te demande : "Quel est le super-pouvoir de Bitcoin ?"</p>
                 <div class="activity">
                     <button onclick="checkAnswer('Décentralisation', 'mission1-1')">Décentralisation</button>
                     <button onclick="checkAnswer('Frais élevés', 'mission1-1')">Frais élevés</button>
                     <button onclick="checkAnswer('Centralisation', 'mission1-1')">Centralisation</button>
                     <p class="hint">Indice : Qu’est-ce qui le distingue des banques ?</p>
+                    <p class="feedback" id="feedback-mission1-1"></p>
                 </div>
             </article>
 
@@ -266,6 +62,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <input type="text" id="password1" placeholder="Ton mot de passe">
                     <button onclick="checkPassword('mission1-2')">Forger</button>
                     <p class="hint">Indice : 12+ caractères, chiffres, symboles.</p>
+                    <p class="feedback" id="feedback-mission1-2"></p>
                 </div>
             </article>
 
@@ -277,6 +74,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="checkCoffre('En ligne', 'mission1-3')">En ligne</button>
                     <button onclick="checkCoffre('Hors ligne', 'mission1-3')">Hors ligne</button>
                     <p class="hint">Indice : La sécurité prime !</p>
+                    <p class="feedback" id="feedback-mission1-3"></p>
                 </div>
             </article>
 
@@ -287,10 +85,11 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="checkPhishing('Faux', 'mission1-4')">Faux</button>
                     <button onclick="checkPhishing('Vrai', 'mission1-4')">Vrai</button>
                     <p class="hint">Indice : Méfie-toi des offres suspectes.</p>
+                    <p class="feedback" id="feedback-mission1-4"></p>
                 </div>
             </article>
 
-            <article class="mission" id="boss1" style="display: none;">
+            <article class="mission boss" id="boss1" style="display: none;">
                 <h3>Boss : Dragon de la Sécurité</h3>
                 <p>"Quel outil est essentiel pour ta sécurité ?"</p>
                 <div class="activity">
@@ -298,13 +97,14 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="checkBoss('Wi-Fi public', 'boss1')">Wi-Fi public</button>
                     <button onclick="checkBoss('Mot de passe simple', 'boss1')">Mot de passe simple</button>
                     <p class="hint">Indice : Une défense double !</p>
+                    <p class="feedback" id="feedback-boss1"></p>
                 </div>
             </article>
 
             <div class="reward" id="reward1" style="display: none;">
                 <h3>Récompense : Médaille du Courage</h3>
                 <p>Félicitations ! Tu as vaincu le Dragon.</p>
-                <img src="crypto-medal.png" alt="Crypto-Médaille du Courage">
+                <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="Crypto-Médaille du Courage">
                 <button onclick="nextWeek('week1', 'week2')">Semaine Suivante</button>
             </div>
         </section>
@@ -315,12 +115,13 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
 
             <article class="mission" id="mission2-1">
                 <h3>Mission 1 : Identifier les Trésors</h3>
-                <p>L’Alchimiste te demande : "Quelle crypto est pour les contrats intelligents ?"</p>
+                <p><img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH"> L’Alchimiste te demande : "Quelle crypto est pour les contrats intelligents ?"</p>
                 <div class="activity">
                     <button onclick="checkAnswer('Ethereum', 'mission2-1')">Ethereum</button>
                     <button onclick="checkAnswer('Bitcoin', 'mission2-1')">Bitcoin</button>
                     <button onclick="checkAnswer('Ripple', 'mission2-1')">Ripple</button>
                     <p class="hint">Indice : Pense aux sorts complexes.</p>
+                    <p class="feedback" id="feedback-mission2-1"></p>
                 </div>
             </article>
 
@@ -331,6 +132,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="checkStyle('Rapide', 'mission2-2')">Rapide</button>
                     <button onclick="checkStyle('Durable', 'mission2-2')">Durable</button>
                     <p class="hint">Indice : Choisis ton rythme.</p>
+                    <p class="feedback" id="feedback-mission2-2"></p>
                 </div>
             </article>
 
@@ -341,6 +143,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="checkMarket('Sécurité', 'mission2-3')">Sécurité</button>
                     <button onclick="checkMarket('Frais bas', 'mission2-3')">Frais bas</button>
                     <p class="hint">Indice : Protège ton butin.</p>
+                    <p class="feedback" id="feedback-mission2-3"></p>
                 </div>
             </article>
 
@@ -351,23 +154,25 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <input type="number" id="fees" placeholder="Ta réponse" step="0.01">
                     <button onclick="checkFees('mission2-4')">Vérifier</button>
                     <p class="hint">Indice : Multiplie 100 par 0,005.</p>
+                    <p class="feedback" id="feedback-mission2-4"></p>
                 </div>
             </article>
 
-            <article class="mission" id="boss2" style="display: none;">
+            <article class="mission boss" id="boss2" style="display: none;">
                 <h3>Boss : Géant du Choix</h3>
                 <p>"Pourquoi Bitcoin ? Réponds en 3 mots max."</p>
                 <div class="activity">
                     <input type="text" id="reason" placeholder="Ta réponse">
                     <button onclick="checkReason('boss2')">Soumettre</button>
                     <p class="hint">Indice : Sois concis !</p>
+                    <p class="feedback" id="feedback-boss2"></p>
                 </div>
             </article>
 
             <div class="reward" id="reward2" style="display: none;">
                 <h3>Récompense : Clé d’Or du Marché</h3>
                 <p>Tu as conquis la forêt !</p>
-                <img src="golden-key.png" alt="Clé d’Or du Marché">
+                <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="Clé d’Or du Marché">
                 <button onclick="nextWeek('week2', 'week3')">Semaine Suivante</button>
             </div>
         </section>
@@ -383,6 +188,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="checkAnswer('Une adresse', 'mission3-1')">Une adresse</button>
                     <button onclick="checkAnswer('Un mot de passe', 'mission3-1')">Un mot de passe</button>
                     <p class="hint">Indice : C’est partageable sans risque.</p>
+                    <p class="feedback" id="feedback-mission3-1"></p>
                 </div>
             </article>
 
@@ -394,6 +200,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="checkWalletType('En ligne', 'mission3-2')">En ligne</button>
                     <button onclick="checkWalletType('Papier', 'mission3-2')">Papier</button>
                     <p class="hint">Indice : La tour la plus robuste.</p>
+                    <p class="feedback" id="feedback-mission3-2"></p>
                 </div>
             </article>
 
@@ -404,6 +211,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="activate2FA('Oui', 'mission3-3')">Oui</button>
                     <button onclick="activate2FA('Non', 'mission3-3')">Non</button>
                     <p class="hint">Indice : Double sécurité !</p>
+                    <p class="feedback" id="feedback-mission3-3"></p>
                 </div>
             </article>
 
@@ -414,6 +222,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="checkBackup('USB', 'mission3-4')">USB</button>
                     <button onclick="checkBackup('Cloud', 'mission3-4')">Cloud</button>
                     <p class="hint">Indice : Évite les nuages.</p>
+                    <p class="feedback" id="feedback-mission3-4"></p>
                 </div>
             </article>
 
@@ -423,23 +232,25 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                 <div class="activity">
                     <button onclick="transferBTC('mission3-5')">Transférer</button>
                     <p class="hint">Indice : Imagine un coffre-fort.</p>
+                    <p class="feedback" id="feedback-mission3-5"></p>
                 </div>
             </article>
 
-            <article class="mission" id="boss3" style="display: none;">
+            <article class="mission boss" id="boss3" style="display: none;">
                 <h3>Boss : Titan des Clés</h3>
                 <p>"Où ne jamais stocker ta clé privée ?"</p>
                 <div class="activity">
                     <button onclick="checkBoss('Email', 'boss3')">Email</button>
                     <button onclick="checkBoss('Portefeuille matériel', 'boss3')">Portefeuille matériel</button>
                     <p class="hint">Indice : Évite les endroits exposés.</p>
+                    <p class="feedback" id="feedback-boss3"></p>
                 </div>
             </article>
 
             <div class="reward" id="reward3" style="display: none;">
                 <h3>Récompense : Cristal de Protection</h3>
                 <p>Ta forteresse est imprenable !</p>
-                <img src="protection-crystal.png" alt="Cristal de Protection">
+                <img src="https://cryptologos.cc/logos/chainlink-link-logo.png?v=029" alt="Cristal de Protection">
                 <button onclick="nextWeek('week3', 'week4')">Semaine Suivante</button>
             </div>
         </section>
@@ -450,11 +261,12 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
 
             <article class="mission" id="mission4-1">
                 <h3>Mission 1 : Fondations de la Blockchain</h3>
-                <p>Le Gardien des Chaines te demande : "Quel est le rôle principal d’une blockchain ?"</p>
+                <p><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC"> Le Gardien des Chaines te demande : "Quel est le rôle principal d’une blockchain ?"</p>
                 <div class="activity">
                     <button onclick="checkAnswer('Registre décentralisé', 'mission4-1')">Registre décentralisé</button>
                     <button onclick="checkAnswer('Stockage centralisé', 'mission4-1')">Stockage centralisé</button>
                     <p class="hint">Indice : Pense à un livre comptable partagé.</p>
+                    <p class="feedback" id="feedback-mission4-1"></p>
                 </div>
             </article>
 
@@ -465,6 +277,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <input type="number" id="blocks" placeholder="Ta réponse">
                     <button onclick="checkBlocks('mission4-2')">Vérifier</button>
                     <p class="hint">Indice : C’est généralement 6.</p>
+                    <p class="feedback" id="feedback-mission4-2"></p>
                 </div>
             </article>
 
@@ -475,6 +288,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="checkProof('Preuve de travail', 'mission4-3')">Preuve de travail</button>
                     <button onclick="checkProof('Preuve d’enjeu', 'mission4-3')">Preuve d’enjeu</button>
                     <p class="hint">Indice : C’est lié au minage.</p>
+                    <p class="feedback" id="feedback-mission4-3"></p>
                 </div>
             </article>
 
@@ -485,6 +299,7 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <button onclick="checkSpeed('Solana', 'mission4-4')">Solana</button>
                     <button onclick="checkSpeed('Bitcoin', 'mission4-4')">Bitcoin</button>
                     <p class="hint">Indice : Pense aux TPS (transactions par seconde).</p>
+                    <p class="feedback" id="feedback-mission4-4"></p>
                 </div>
             </article>
 
@@ -494,23 +309,25 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                 <div class="activity">
                     <button onclick="exploreBlock('mission4-5')">Explorer</button>
                     <p class="hint">Indice : Imagine un registre immuable.</p>
+                    <p class="feedback" id="feedback-mission4-5"></p>
                 </div>
             </article>
 
-            <article class="mission" id="boss4" style="display: none;">
+            <article class="mission boss" id="boss4" style="display: none;">
                 <h3>Boss : Spectre de la Centralisation</h3>
                 <p>"Quel est l’ennemi de la blockchain ?"</p>
                 <div class="activity">
                     <button onclick="checkBoss('Centralisation', 'boss4')">Centralisation</button>
                     <button onclick="checkBoss('Décentralisation', 'boss4')">Décentralisation</button>
                     <p class="hint">Indice : Pense à l’opposé de la liberté.</p>
+                    <p class="feedback" id="feedback-boss4"></p>
                 </div>
             </article>
 
             <div class="reward" id="reward4" style="display: none;">
                 <h3>Récompense : Sceptre de la Blockchain</h3>
                 <p>Tu as conquis les montagnes !</p>
-                <img src="blockchain-scepter.png" alt="Sceptre de la Blockchain">
+                <img src="https://cryptologos.cc/logos/solana-sol-logo.png?v=029" alt="Sceptre de la Blockchain">
                 <button onclick="startBonus()">Bonus : Fiscalité</button>
             </div>
         </section>
@@ -521,11 +338,12 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
 
             <article class="bonus-mission" id="bonus-tax-1">
                 <h3>Mission 1 : Déclaration Légale</h3>
-                <p>L’Inspecteur Fiscal te demande : "Dois-tu déclarer tes cryptos ?"</p>
+                <p><img src="https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=029" alt="Doge"> L’Inspecteur Fiscal te demande : "Dois-tu déclarer tes cryptos ?"</p>
                 <div class="activity">
                     <button onclick="checkTaxAnswer('Oui', 'bonus-tax-1')">Oui</button>
                     <button onclick="checkTaxAnswer('Non', 'bonus-tax-1')">Non</button>
                     <p class="hint">Indice : C’est obligatoire dans la plupart des pays.</p>
+                    <p class="feedback" id="feedback-bonus-tax-1"></p>
                 </div>
             </article>
 
@@ -536,31 +354,33 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
                     <input type="number" id="tax-gain" placeholder="Ta réponse" step="0.01">
                     <button onclick="checkTaxGain('bonus-tax-2')">Vérifier</button>
                     <p class="hint">Indice : Soustrais le prix d’achat du prix de vente.</p>
+                    <p class="feedback" id="feedback-bonus-tax-2"></p>
                 </div>
             </article>
 
             <article class="bonus-mission" id="bonus-tax-3" style="display: none;">
                 <h3>Mission 3 : Optimisation</h3>
-                <p>Quelle stratégie réduit tes impôts légaux ?</p>
+                <p><img src="https://cryptologos.cc/logos/shiba-inu-shib-logo.png?v=029" alt="Shiba"> Quelle stratégie réduit tes impôts légaux ?</p>
                 <div class="activity">
                     <button onclick="checkTaxStrategy('Défiscalisation', 'bonus-tax-3')">Défiscalisation</button>
                     <button onclick="checkTaxStrategy('Évasion fiscale', 'bonus-tax-3')">Évasion fiscale</button>
                     <p class="hint">Indice : Choisis une option légale.</p>
+                    <p class="feedback" id="feedback-bonus-tax-3"></p>
                 </div>
             </article>
 
             <div class="bonus-reward" id="bonus-tax-reward" style="display: none;">
                 <h3>Récompense : Bouclier Fiscal</h3>
                 <p>Tu es un maître de la fiscalité !</p>
-                <img src="tax-shield.png" alt="Bouclier Fiscal">
+                <img src="https://i.gifer.com/origin/3f/3f1e2f8d5e4d5f5e5e5e5e5e5e5e5e5e.gif" alt="Doge Dancing">
                 <button onclick="endGame()">Terminer</button>
             </div>
         </section>
 
-        <section id="end" class="week" style="display: none;">
-            <h2 class="week-title">Fin de l’Aventure</h2>
+        <section id="end" class="end-section" style="display: none;">
+            <h2>Fin de l’Aventure</h2>
             <p>Bravo ! Tu as terminé les semaines et le bonus.</p>
-            <button class="btn-start" onclick="restartQuest()">Recommencer</button>
+            <button class="btn-restart" onclick="restartQuest()">Recommencer</button>
         </section>
     </div>
 
@@ -568,6 +388,597 @@ améliore le design et le theme de formation crypto pour qu'on ai réellement l'
         <p>Créé par xAI - Mars 2025</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialisation des particules
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50 },
+                color: { value: '#e94560' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                move: { speed: 2 }
+            }
+        });
+
+        // Variables globales
+        let progress = 0;
+        let btcCount = 0;
+        let ethCount = 0;
+
+        // Sons
+        const adventureMusic = document.getElementById('adventureMusic');
+        const winSound = document.getElementById('winSound');
+        const wrongSound = document.getElementById('wrongSound');
+
+        function startQuest() {
+            document.getElementById('welcome').style.display = 'none';
+            document.getElementById('week1').style.display = 'block';
+            updateProgress(10);
+            try {
+                adventureMusic.play();
+            } catch (error) {
+                console.error("Erreur lors de la lecture de la musique d'aventure:", error);
+            }
+        }
+
+        function checkAnswer(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            let correctAnswer;
+            if (missionId === 'mission1-1') correctAnswer = 'Décentralisation';
+            if (missionId === 'mission2-1') correctAnswer = 'Ethereum';
+            if (missionId === 'mission3-1') correctAnswer = 'Une adresse';
+            if (missionId === 'mission4-1') correctAnswer = 'Registre décentralisé';
+            if (missionId === 'bonus-tax-1') correctAnswer = 'Oui';
+
+            if (answer === correctAnswer) {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                if (missionId === 'mission1-1') updateInventory('BTC');
+                if (missionId === 'mission2-1') updateInventory('ETH');
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById(missionId === 'bonus-tax-1' ? 'bonus-tax-2' : missionId.replace('mission', 'mission')).style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkPassword(missionId) {
+            const password = document.getElementById('password1').value;
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (password.length >= 12 && /[0-9]/.test(password) && /[!@#$%^&*]/.test(password)) {
+                feedback.textContent = 'Mot de passe sécurisé !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission1-3').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Trop faible. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkCoffre(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'Matériel') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission1-4').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkPhishing(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'Faux') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('boss1').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkBoss(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            let correctAnswer;
+            if (missionId === 'boss1') correctAnswer = '2FA';
+            if (missionId === 'boss3') correctAnswer = 'Email';
+            if (missionId === 'boss4') correctAnswer = 'Centralisation';
+
+            if (answer === correctAnswer) {
+                feedback.textContent = 'Boss vaincu !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(20);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById(`reward${missionId.replace('boss', '')}`).style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkStyle(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            feedback.textContent = `Style choisi : ${answer} !`;
+            feedback.className = 'feedback correct';
+            try {
+                winSound.play();
+            } catch (error) {
+                console.error("Erreur lors de la lecture du son de victoire:", error);
+            }
+            updateProgress(10);
+            setTimeout(() => {
+                document.getElementById(missionId).style.display = 'none';
+                document.getElementById('mission2-3').style.display = 'block';
+            }, 1000);
+        }
+
+        function checkMarket(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'Sécurité') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission2-4').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkFees(missionId) {
+            const fees = parseFloat(document.getElementById('fees').value);
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (fees === 0.5) {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('boss2').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkReason(missionId) {
+            const reason = document.getElementById('reason').value;
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (reason.split(' ').length <= 3) {
+                feedback.textContent = 'Réponse acceptée !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(20);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('reward2').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Trop long. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkWalletType(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'Matériel') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission3-3').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function activate2FA(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'Oui') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission3-4').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkBackup(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'USB') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission3-5').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function transferBTC(missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            feedback.textContent = 'Transfert réussi !';
+            feedback.className = 'feedback correct';
+            try {
+                winSound.play();
+            } catch (error) {
+                console.error("Erreur lors de la lecture du son de victoire:", error);
+            }
+            updateProgress(10);
+            setTimeout(() => {
+                document.getElementById(missionId).style.display = 'none';
+                document.getElementById('boss3').style.display = 'block';
+            }, 1000);
+        }
+
+        function checkBlocks(missionId) {
+            const blocks = parseInt(document.getElementById('blocks').value);
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (blocks === 6) {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission4-3').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkProof(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'Preuve de travail') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission4-4').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkSpeed(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'Solana') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission4-5').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function exploreBlock(missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            feedback.textContent = 'Bloc exploré !';
+            feedback.className = 'feedback correct';
+            try {
+                winSound.play();
+            } catch (error) {
+                console.error("Erreur lors de la lecture du son de victoire:", error);
+            }
+            updateProgress(10);
+            setTimeout(() => {
+                document.getElementById(missionId).style.display = 'none';
+                document.getElementById('boss4').style.display = 'block';
+            }, 1000);
+        }
+
+        function checkTaxAnswer(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'Oui') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('bonus-tax-2').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkTaxGain(missionId) {
+            const gain = parseFloat(document.getElementById('tax-gain').value);
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (gain === 20000) {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('bonus-tax-3').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function checkTaxStrategy(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'Défiscalisation') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('bonus-tax-reward').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
+        }
+
+        function updateProgress(amount) {
+            progress += amount;
+            if (progress > 110) progress = 110;
+            document.getElementById('progress').value = progress;
+            document.getElementById('progress-text').textContent = `Progression : ${Math.round(progress / 110 * 100)}%`;
+        }
+
+        function updateInventory(type) {
+            if (type === 'BTC') {
+                btcCount += 1;
+                document.getElementById('btc-count').textContent = btcCount;
+            } else if (type === 'ETH') {
+                ethCount += 1;
+                document.getElementById('eth-count').textContent = ethCount;
+            }
+        }
+
+        function nextWeek(currentWeek, nextWeek) {
+            document.getElementById(currentWeek).style.display = 'none';
+            document.getElementById(nextWeek).style.display = 'block';
+        }
+
+        function startBonus() {
+            document.getElementById('week4').style.display = 'none';
+            document.getElementById('bonus-tax').style.display = 'block';
+        }
+
+        function endGame() {
+            document.getElementById('bonus-tax').style.display = 'none';
+            document.getElementById('end').style.display = 'block';
+        }
+
+        function restartQuest() {
+            progress = 0;
+            btcCount = 0;
+            ethCount = 0;
+            updateProgress(0);
+            document.getElementById('btc-count').textContent = '0';
+            document.getElementById('eth-count').textContent = '0';
+            document.getElementById('end').style.display = 'none';
+            document.getElementById('welcome').style.display = 'block';
+            try {
+                adventureMusic.play();
+            } catch (error) {
+                console.error("Erreur lors de la lecture de la musique d'aventure:", error);
+            }
+        }
+    </script>
 </body>
 </html>
