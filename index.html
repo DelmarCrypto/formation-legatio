@@ -15,7 +15,7 @@
         }
 
         body {
-            background: url('https://i.imgur.com/7zX8K8G.gif') no-repeat center center fixed;
+            background: url('https://i.imgur.com/7zX8K8G.gif') no-repeat center center fixed; /* Fond animé style blockchain */
             background-size: cover;
             color: #e0e0e0;
             line-height: 1.6;
@@ -30,7 +30,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.6); /* Overlay sombre pour lisibilité */
             z-index: -1;
         }
 
@@ -53,7 +53,7 @@
         }
 
         .main-title {
-            font-family: 'Press Start 2P', cursive;
+            font-family: 'Press Start 2P', cursive; /* Typo rétro jeu vidéo */
             font-size: 3rem;
             color: #ffd700;
             text-shadow: 0 0 10px #ffd700, 0 0 20px #00ccff;
@@ -228,6 +228,7 @@
             border-top: 2px solid #00ccff;
         }
 
+        /* Particules animées */
         .particles {
             position: fixed;
             top: 0;
@@ -237,18 +238,10 @@
             pointer-events: none;
             z-index: 0;
         }
-
-        .feedback {
-            margin-top: 10px;
-            font-size: 1rem;
-            font-weight: bold;
-        }
-        .correct { color: #00ff00; }
-        .incorrect { color: #ff0000; }
     </style>
 </head>
 <body>
-    <div class="particles" id="particles-js"></div>
+    <div class="particles" id="particles-js"></div> <!-- Particules façon jeu vidéo -->
     <div class="container">
         <header class="header">
             <h1 class="main-title">Crypto Quest</h1>
@@ -259,8 +252,8 @@
             <div class="inventory">
                 <h3>Inventaire</h3>
                 <ul id="inventory-list">
-                    <li><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC"> <span id="btc-count">0</span> BTC</li>
-                    <li><img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH"> <span id="eth-count">0</span> ETH</li>
+                    <li><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC"> 0 BTC</li>
+                    <li><img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH"> 0 ETH</li>
                 </ul>
             </div>
         </header>
@@ -285,9 +278,9 @@
                     <button onclick="checkAnswer('Frais élevés', 'mission1-1')">Frais élevés</button>
                     <button onclick="checkAnswer('Centralisation', 'mission1-1')">Centralisation</button>
                     <p class="hint">Indice : Qu’est-ce qui le distingue des banques ?</p>
-                    <p class="feedback" id="feedback-mission1-1"></p>
                 </div>
             </article>
+            <!-- Autres missions similaires avec visuels BTC/ETH -->
             <div class="reward" id="reward1" style="display: none;">
                 <h3>Récompense : Médaille BTC</h3>
                 <img src="https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029" alt="BTC Medal">
@@ -306,16 +299,16 @@
                     <button onclick="checkAnswer('Bitcoin', 'mission2-1')">Bitcoin</button>
                     <button onclick="checkAnswer('Ripple', 'mission2-1')">Ripple</button>
                     <p class="hint">Indice : Pense aux sorts complexes.</p>
-                    <p class="feedback" id="feedback-mission2-1"></p>
                 </div>
             </article>
             <div class="reward" id="reward2" style="display: none;">
                 <h3>Récompense : Clé ETH</h3>
                 <img src="https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029" alt="ETH Key">
-                <button onclick="nextWeek('week2', 'meme-bonus')">Semaine Suivante</button>
+                <button onclick="nextWeek('week2', 'week3')">Semaine Suivante</button>
             </div>
         </section>
 
+        <!-- Ajout d'une section Meme Coin Fun -->
         <section id="meme-bonus" class="bonus" style="display: none;">
             <h2 class="bonus-title">Bonus : Royaume des Meme Coins</h2>
             <p class="bonus-theme">Thème : Ris et apprends avec Doge & Shiba !</p>
@@ -326,7 +319,6 @@
                     <button onclick="checkAnswer('Dogecoin', 'meme-bonus-1')">Dogecoin</button>
                     <button onclick="checkAnswer('Bitcoin', 'meme-bonus-1')">Bitcoin</button>
                     <p class="hint">Indice : Woof Woof !</p>
-                    <p class="feedback" id="feedback-meme-bonus-1"></p>
                 </div>
             </article>
             <div class="bonus-reward" id="meme-bonus-reward" style="display: none;">
@@ -341,7 +333,19 @@
         </footer>
     </div>
 
-    <!-- Intégration des fichiers audio -->
-    <audio id="adventure-sound" src="ADVENTURE.mp3"></audio>
-    <audio id="win-sound" src="WIN.mp3"></audio>
-    <
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 50 },
+                color: { value: '#ffd700' },
+                shape: { type: 'circle' },
+                opacity: { value: 0.5 },
+                size: { value: 3 },
+                move: { speed: 2 }
+            }
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
