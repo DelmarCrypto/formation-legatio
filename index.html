@@ -15,7 +15,7 @@
             <h1 class="main-title">Crypto Quest</h1>
             <div class="progress-bar">
                 <span id="progress-text">Progression : 0%</span>
-                <progress id="progress" value="0" max="110"></progress>
+                <progress id="progress" value="0" max="120"></progress> <!-- Ajusté max à 120 pour la nouvelle mission -->
             </div>
             <div class="inventory">
                 <h3>Inventaire</h3>
@@ -33,8 +33,8 @@
         <section id="welcome" class="intro-section">
             <div class="intro-text">
                 <h2>Bienvenue à Cryptopia !</h2>
-                <p>Plonge dans une quête épique pour maîtriser Bitcoin, Ethereum et les meme coins les plus fous !</p>
-                <img src="https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=029" alt="Doge">
+                <p>Plonge dans une quête épique pour maîtriser Bitcoin, Ethereum et les tokens RWA avec Legatio !</p>
+                <img src="assets/legatio-coin.png" alt="Legatio Coin"> <!-- Remplacement de Dogecoin -->
             </div>
             <button class="btn-start" onclick="startQuest()">Commencer l'Aventure</button>
         </section>
@@ -89,70 +89,65 @@
                 </div>
             </article>
 
-            <!-- Mission 1-5 -->
-<article class="mission" id="mission1-5" style="display: none;">
-    <h3>Mission 5 : Les Portefeuilles</h3>
-    <p>Quel type de portefeuille est le plus sécurisé pour stocker des cryptomonnaies ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Portefeuille matériel', 'mission1-5')">Portefeuille matériel</button>
-        <button onclick="checkAnswer('Portefeuille papier', 'mission1-5')">Portefeuille papier</button>
-        <button onclick="checkAnswer('Portefeuille en ligne', 'mission1-5')">Portefeuille en ligne</button>
-        <p class="hint">Indice : Pense à un coffre-fort numérique.</p>
-        <p class="feedback" id="feedback-mission1-5"></p>
-    </div>
-</article>
+            <article class="mission" id="mission1-5" style="display: none;">
+                <h3>Mission 5 : Les Portefeuilles</h3>
+                <p>Quel type de portefeuille est le plus sécurisé pour stocker des cryptomonnaies ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Portefeuille matériel', 'mission1-5')">Portefeuille matériel</button>
+                    <button onclick="checkAnswer('Portefeuille papier', 'mission1-5')">Portefeuille papier</button>
+                    <button onclick="checkAnswer('Portefeuille en ligne', 'mission1-5')">Portefeuille en ligne</button>
+                    <p class="hint">Indice : Pense à un coffre-fort numérique.</p>
+                    <p class="feedback" id="feedback-mission1-5"></p>
+                </div>
+            </article>
 
-<!-- Mission 1-6 -->
-<article class="mission" id="mission1-6" style="display: none;">
-    <h3>Mission 6 : Les Clés Privées</h3>
-    <p>Que représente une clé privée dans le monde de la crypto ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Un mot de passe', 'mission1-6')">Un mot de passe</button>
-        <button onclick="checkAnswer('Une adresse publique', 'mission1-6')">Une adresse publique</button>
-        <button onclick="checkAnswer('Un code de sécurité', 'mission1-6')">Un code de sécurité</button>
-        <p class="hint">Indice : C’est ce qui te donne accès à tes fonds.</p>
-        <p class="feedback" id="feedback-mission1-6"></p>
-    </div>
-</article>
+            <article class="mission" id="mission1-6" style="display: none;">
+                <h3>Mission 6 : Les Clés Privées</h3>
+                <p>Que représente une clé privée dans le monde de la crypto ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Un mot de passe', 'mission1-6')">Un mot de passe</button>
+                    <button onclick="checkAnswer('Une adresse publique', 'mission1-6')">Une adresse publique</button>
+                    <button onclick="checkAnswer('Un code de sécurité', 'mission1-6')">Un code de sécurité</button>
+                    <p class="hint">Indice : C’est ce qui te donne accès à tes fonds.</p>
+                    <p class="feedback" id="feedback-mission1-6"></p>
+                </div>
+            </article>
 
-<!-- Mission 1-7 -->
-<article class="mission" id="mission1-7" style="display: none;">
-    <h3>Mission 7 : Les Frais de Transaction</h3>
-    <p>Comment appelle-t-on les frais payés pour une transaction sur Bitcoin ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Frais de minage', 'mission1-7')">Frais de minage</button>
-        <button onclick="checkAnswer('Gas', 'mission1-7')">Gas</button>
-        <button onclick="checkAnswer('Taxe réseau', 'mission1-7')">Taxe réseau</button>
-        <p class="hint">Indice : Ce n’est pas "Gas", qui est utilisé sur Ethereum.</p>
-        <p class="feedback" id="feedback-mission1-7"></p>
-    </div>
-</article>
+            <article class="mission" id="mission1-7" style="display: none;">
+                <h3>Mission 7 : Les Frais de Transaction</h3>
+                <p>Comment appelle-t-on les frais payés pour une transaction sur Bitcoin ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Frais de minage', 'mission1-7')">Frais de minage</button>
+                    <button onclick="checkAnswer('Gas', 'mission1-7')">Gas</button>
+                    <button onclick="checkAnswer('Taxe réseau', 'mission1-7')">Taxe réseau</button>
+                    <p class="hint">Indice : Ce n’est pas "Gas", qui est utilisé sur Ethereum.</p>
+                    <p class="feedback" id="feedback-mission1-7"></p>
+                </div>
+            </article>
 
-<!-- Mission 1-8 -->
-<article class="mission" id="mission1-8" style="display: none;">
-    <h3>Mission 8 : La Preuve de Travail</h3>
-    <p>Quel mécanisme Bitcoin utilise-t-il pour valider les transactions ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Preuve de travail', 'mission1-8')">Preuve de travail</button>
-        <button onclick="checkAnswer('Preuve d\'enjeu', 'mission1-8')">Preuve d'enjeu</button>
-        <button onclick="checkAnswer('Preuve d\'autorité', 'mission1-8')">Preuve d'autorité</button>
-        <p class="hint">Indice : Cela demande beaucoup d’énergie.</p>
-        <p class="feedback" id="feedback-mission1-8"></p>
-    </div>
-</article>
+            <article class="mission" id="mission1-8" style="display: none;">
+                <h3>Mission 8 : La Preuve de Travail</h3>
+                <p>Quel mécanisme Bitcoin utilise-t-il pour valider les transactions ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Preuve de travail', 'mission1-8')">Preuve de travail</button>
+                    <button onclick="checkAnswer('Preuve d\'enjeu', 'mission1-8')">Preuve d'enjeu</button>
+                    <button onclick="checkAnswer('Preuve d\'autorité', 'mission1-8')">Preuve d'autorité</button>
+                    <p class="hint">Indice : Cela demande beaucoup d’énergie.</p>
+                    <p class="feedback" id="feedback-mission1-8"></p>
+                </div>
+            </article>
 
-<!-- Mission 1-9 -->
-<article class="mission" id="mission1-9" style="display: none;">
-    <h3>Mission 9 : Les Mineurs</h3>
-    <p>Quel est le rôle des mineurs dans le réseau Bitcoin ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Valider les transactions', 'mission1-9')">Valider les transactions</button>
-        <button onclick="checkAnswer('Créer des portefeuilles', 'mission1-9')">Créer des portefeuilles</button>
-        <button onclick="checkAnswer('Stocker les clés privées', 'mission1-9')">Stocker les clés privées</button>
-        <p class="hint">Indice : Ils maintiennent le réseau.</p>
-        <p class="feedback" id="feedback-mission1-9"></p>
-    </div>
-</article>
+            <article class="mission" id="mission1-9" style="display: none;">
+                <h3>Mission 9 : Les Mineurs</h3>
+                <p>Quel est le rôle des mineurs dans le réseau Bitcoin ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Valider les transactions', 'mission1-9')">Valider les transactions</button>
+                    <button onclick="checkAnswer('Créer des portefeuilles', 'mission1-9')">Créer des portefeuilles</button>
+                    <button onclick="checkAnswer('Stocker les clés privées', 'mission1-9')">Stocker les clés privées</button>
+                    <p class="hint">Indice : Ils maintiennent le réseau.</p>
+                    <p class="feedback" id="feedback-mission1-9"></p>
+                </div>
+            </article>
 
             <article class="mission boss" id="boss1" style="display: none;">
                 <h3>Boss : Dragon de la Sécurité</h3>
@@ -223,70 +218,65 @@
                 </div>
             </article>
 
-<!-- Mission 2-5 -->
-<article class="mission" id="mission2-5" style="display: none;">
-    <h3>Mission 5 : Les Gas Fees</h3>
-    <p>Pourquoi paye-t-on des "gas fees" sur Ethereum ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Pour exécuter des transactions', 'mission2-5')">Pour exécuter des transactions</button>
-        <button onclick="checkAnswer('Pour miner des ETH', 'mission2-5')">Pour miner des ETH</button>
-        <button onclick="checkAnswer('Pour sécuriser le portefeuille', 'mission2-5')">Pour sécuriser le portefeuille</button>
-        <p class="hint">Indice : C’est lié aux smart contracts.</p>
-        <p class="feedback" id="feedback-mission2-5"></p>
-    </div>
-</article>
+            <article class="mission" id="mission2-5" style="display: none;">
+                <h3>Mission 5 : Les Gas Fees</h3>
+                <p>Pourquoi paye-t-on des "gas fees" sur Ethereum ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Pour exécuter des transactions', 'mission2-5')">Pour exécuter des transactions</button>
+                    <button onclick="checkAnswer('Pour miner des ETH', 'mission2-5')">Pour miner des ETH</button>
+                    <button onclick="checkAnswer('Pour sécuriser le portefeuille', 'mission2-5')">Pour sécuriser le portefeuille</button>
+                    <p class="hint">Indice : C’est lié aux smart contracts.</p>
+                    <p class="feedback" id="feedback-mission2-5"></p>
+                </div>
+            </article>
 
-<!-- Mission 2-6 -->
-<article class="mission" id="mission2-6" style="display: none;">
-    <h3>Mission 6 : La Preuve d'Enjeu</h3>
-    <p>Quel mécanisme Ethereum utilise-t-il après "The Merge" ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Preuve d\'enjeu', 'mission2-6')">Preuve d'enjeu</button>
-        <button onclick="checkAnswer('Preuve de travail', 'mission2-6')">Preuve de travail</button>
-        <button onclick="checkAnswer('Preuve d\'autorité', 'mission2-6')">Preuve d'autorité</button>
-        <p class="hint">Indice : C’est plus écologique.</p>
-        <p class="feedback" id="feedback-mission2-6"></p>
-    </div>
-</article>
+            <article class="mission" id="mission2-6" style="display: none;">
+                <h3>Mission 6 : La Preuve d'Enjeu</h3>
+                <p>Quel mécanisme Ethereum utilise-t-il après "The Merge" ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Preuve d\'enjeu', 'mission2-6')">Preuve d'enjeu</button>
+                    <button onclick="checkAnswer('Preuve de travail', 'mission2-6')">Preuve de travail</button>
+                    <button onclick="checkAnswer('Preuve d\'autorité', 'mission2-6')">Preuve d'autorité</button>
+                    <p class="hint">Indice : C’est plus écologique.</p>
+                    <p class="feedback" id="feedback-mission2-6"></p>
+                </div>
+            </article>
 
-<!-- Mission 2-7 -->
-<article class="mission" id="mission2-7" style="display: none;">
-    <h3>Mission 7 : Les Tokens ERC-20</h3>
-    <p>Que sont les tokens ERC-20 ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Des tokens standards sur Ethereum', 'mission2-7')">Des tokens standards sur Ethereum</button>
-        <button onclick="checkAnswer('Des tokens sur Bitcoin', 'mission2-7')">Des tokens sur Bitcoin</button>
-        <button onclick="checkAnswer('Des tokens sur Ripple', 'mission2-7')">Des tokens sur Ripple</button>
-        <p class="hint">Indice : Ils sont utilisés pour les DApps.</p>
-        <p class="feedback" id="feedback-mission2-7"></p>
-    </div>
-</article>
+            <article class="mission" id="mission2-7" style="display: none;">
+                <h3>Mission 7 : Les Tokens ERC-20</h3>
+                <p>Que sont les tokens ERC-20 ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Des tokens standards sur Ethereum', 'mission2-7')">Des tokens standards sur Ethereum</button>
+                    <button onclick="checkAnswer('Des tokens sur Bitcoin', 'mission2-7')">Des tokens sur Bitcoin</button>
+                    <button onclick="checkAnswer('Des tokens sur Ripple', 'mission2-7')">Des tokens sur Ripple</button>
+                    <p class="hint">Indice : Ils sont utilisés pour les DApps.</p>
+                    <p class="feedback" id="feedback-mission2-7"></p>
+                </div>
+            </article>
 
-<!-- Mission 2-8 -->
-<article class="mission" id="mission2-8" style="display: none;">
-    <h3>Mission 8 : Les NFT</h3>
-    <p>Que signifie NFT ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Non-Fungible Token', 'mission2-8')">Non-Fungible Token</button>
-        <button onclick="checkAnswer('New Financial Token', 'mission2-8')">New Financial Token</button>
-        <button onclick="checkAnswer('Network File Token', 'mission2-8')">Network File Token</button>
-        <p class="hint">Indice : C’est unique et non interchangeable.</p>
-        <p class="feedback" id="feedback-mission2-8"></p>
-    </div>
-</article>
+            <article class="mission" id="mission2-8" style="display: none;">
+                <h3>Mission 8 : Les NFT</h3>
+                <p>Que signifie NFT ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Non-Fungible Token', 'mission2-8')">Non-Fungible Token</button>
+                    <button onclick="checkAnswer('New Financial Token', 'mission2-8')">New Financial Token</button>
+                    <button onclick="checkAnswer('Network File Token', 'mission2-8')">Network File Token</button>
+                    <p class="hint">Indice : C’est unique et non interchangeable.</p>
+                    <p class="feedback" id="feedback-mission2-8"></p>
+                </div>
+            </article>
 
-<!-- Mission 2-9 -->
-<article class="mission" id="mission2-9" style="display: none;">
-    <h3>Mission 9 : Les Oracles</h3>
-    <p>Quel est le rôle des oracles dans les smart contracts ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Fournir des données externes', 'mission2-9')">Fournir des données externes</button>
-        <button onclick="checkAnswer('Valider les transactions', 'mission2-9')">Valider les transactions</button>
-        <button onclick="checkAnswer('Stocker les tokens', 'mission2-9')">Stocker les tokens</button>
-        <p class="hint">Indice : Ils connectent le monde réel à la blockchain.</p>
-        <p class="feedback" id="feedback-mission2-9"></p>
-    </div>
-</article>
+            <article class="mission" id="mission2-9" style="display: none;">
+                <h3>Mission 9 : Les Oracles</h3>
+                <p>Quel est le rôle des oracles dans les smart contracts ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Fournir des données externes', 'mission2-9')">Fournir des données externes</button>
+                    <button onclick="checkAnswer('Valider les transactions', 'mission2-9')">Valider les transactions</button>
+                    <button onclick="checkAnswer('Stocker les tokens', 'mission2-9')">Stocker les tokens</button>
+                    <p class="hint">Indice : Ils connectent le monde réel à la blockchain.</p>
+                    <p class="feedback" id="feedback-mission2-9"></p>
+                </div>
+            </article>
 
             <article class="mission boss" id="boss2" style="display: none;">
                 <h3>Boss : Géant du Choix</h3>
@@ -366,57 +356,53 @@
                 </div>
             </article>
 
-            <!-- Mission 3-6 -->
-<article class="mission" id="mission3-6" style="display: none;">
-    <h3>Mission 6 : Les Seed Phrases</h3>
-    <p>Combien de mots une seed phrase contient-elle généralement ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('12', 'mission3-6')">12</button>
-        <button onclick="checkAnswer('8', 'mission3-6')">8</button>
-        <button onclick="checkAnswer('16', 'mission3-6')">16</button>
-        <p class="hint">Indice : C’est souvent un multiple de 4.</p>
-        <p class="feedback" id="feedback-mission3-6"></p>
-    </div>
-</article>
+            <article class="mission" id="mission3-6" style="display: none;">
+                <h3>Mission 6 : Les Seed Phrases</h3>
+                <p>Combien de mots une seed phrase contient-elle généralement ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('12', 'mission3-6')">12</button>
+                    <button onclick="checkAnswer('8', 'mission3-6')">8</button>
+                    <button onclick="checkAnswer('16', 'mission3-6')">16</button>
+                    <p class="hint">Indice : C’est souvent un multiple de 4.</p>
+                    <p class="feedback" id="feedback-mission3-6"></p>
+                </div>
+            </article>
 
-<!-- Mission 3-7 -->
-<article class="mission" id="mission3-7" style="display: none;">
-    <h3>Mission 7 : Les Exchanges</h3>
-    <p>Quel est un risque d'utiliser un exchange centralisé ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Piratage', 'mission3-7')">Piratage</button>
-        <button onclick="checkAnswer('Perte de connexion', 'mission3-7')">Perte de connexion</button>
-        <button onclick="checkAnswer('Manque de liquidité', 'mission3-7')">Manque de liquidité</button>
-        <p class="hint">Indice : Pense à la sécurité des fonds.</p>
-        <p class="feedback" id="feedback-mission3-7"></p>
-    </div>
-</article>
+            <article class="mission" id="mission3-7" style="display: none;">
+                <h3>Mission 7 : Les Exchanges</h3>
+                <p>Quel est un risque d'utiliser un exchange centralisé ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Piratage', 'mission3-7')">Piratage</button>
+                    <button onclick="checkAnswer('Perte de connexion', 'mission3-7')">Perte de connexion</button>
+                    <button onclick="checkAnswer('Manque de liquidité', 'mission3-7')">Manque de liquidité</button>
+                    <p class="hint">Indice : Pense à la sécurité des fonds.</p>
+                    <p class="feedback" id="feedback-mission3-7"></p>
+                </div>
+            </article>
 
-<!-- Mission 3-8 -->
-<article class="mission" id="mission3-8" style="display: none;">
-    <h3>Mission 8 : Les Ransomwares</h3>
-    <p>Quel type de malware demande souvent un paiement en crypto ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Ransomware', 'mission3-8')">Ransomware</button>
-        <button onclick="checkAnswer('Spyware', 'mission3-8')">Spyware</button>
-        <button onclick="checkAnswer('Adware', 'mission3-8')">Adware</button>
-        <p class="hint">Indice : Il prend tes données en otage.</p>
-        <p class="feedback" id="feedback-mission3-8"></p>
-    </div>
-</article>
+            <article class="mission" id="mission3-8" style="display: none;">
+                <h3>Mission 8 : Les Ransomwares</h3>
+                <p>Quel type de malware demande souvent un paiement en crypto ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Ransomware', 'mission3-8')">Ransomware</button>
+                    <button onclick="checkAnswer('Spyware', 'mission3-8')">Spyware</button>
+                    <button onclick="checkAnswer('Adware', 'mission3-8')">Adware</button>
+                    <p class="hint">Indice : Il prend tes données en otage.</p>
+                    <p class="feedback" id="feedback-mission3-8"></p>
+                </div>
+            </article>
 
-<!-- Mission 3-9 -->
-<article class="mission" id="mission3-9" style="display: none;">
-    <h3>Mission 9 : Les Backups</h3>
-    <p>Où est-il recommandé de stocker une sauvegarde de sa seed phrase ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Dans un endroit sécurisé hors ligne', 'mission3-9')">Dans un endroit sécurisé hors ligne</button>
-        <button onclick="checkAnswer('Sur un cloud', 'mission3-9')">Sur un cloud</button>
-        <button onclick="checkAnswer('Dans un email', 'mission3-9')">Dans un email</button>
-        <p class="hint">Indice : Évite les endroits connectés.</p>
-        <p class="feedback" id="feedback-mission3-9"></p>
-    </div>
-</article>
+            <article class="mission" id="mission3-9" style="display: none;">
+                <h3>Mission 9 : Les Backups</h3>
+                <p>Où est-il recommandé de stocker une sauvegarde de sa seed phrase ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Dans un endroit sécurisé hors ligne', 'mission3-9')">Dans un endroit sécurisé hors ligne</button>
+                    <button onclick="checkAnswer('Sur un cloud', 'mission3-9')">Sur un cloud</button>
+                    <button onclick="checkAnswer('Dans un email', 'mission3-9')">Dans un email</button>
+                    <p class="hint">Indice : Évite les endroits connectés.</p>
+                    <p class="feedback" id="feedback-mission3-9"></p>
+                </div>
+            </article>
 
             <article class="mission boss" id="boss3" style="display: none;">
                 <h3>Boss : Titan des Clés</h3>
@@ -495,57 +481,66 @@
                 </div>
             </article>
 
-            <!-- Mission 4-6 -->
-<article class="mission" id="mission4-6" style="display: none;">
-    <h3>Mission 6 : Les Sidechains</h3>
-    <p>À quoi sert une sidechain ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Améliorer la scalabilité', 'mission4-6')">Améliorer la scalabilité</button>
-        <button onclick="checkAnswer('Stocker des données', 'mission4-6')">Stocker des données</button>
-        <button onclick="checkAnswer('Sécuriser les clés', 'mission4-6')">Sécuriser les clés</button>
-        <p class="hint">Indice : Pense à une solution pour plus de transactions.</p>
-        <p class="feedback" id="feedback-mission4-6"></p>
-    </div>
-</article>
+            <article class="mission" id="mission4-6" style="display: none;">
+                <h3>Mission 6 : Les Sidechains</h3>
+                <p>À quoi sert une sidechain ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Améliorer la scalabilité', 'mission4-6')">Améliorer la scalabilité</button>
+                    <button onclick="checkAnswer('Stocker des données', 'mission4-6')">Stocker des données</button>
+                    <button onclick="checkAnswer('Sécuriser les clés', 'mission4-6')">Sécuriser les clés</button>
+                    <p class="hint">Indice : Pense à une solution pour plus de transactions.</p>
+                    <p class="feedback" id="feedback-mission4-6"></p>
+                </div>
+            </article>
 
-<!-- Mission 4-7 -->
-<article class="mission" id="mission4-7" style="display: none;">
-    <h3>Mission 7 : Les DAO</h3>
-    <p>Que signifie DAO ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Organisation autonome décentralisée', 'mission4-7')">Organisation autonome décentralisée</button>
-        <button onclick="checkAnswer('Organisation avancée ouverte', 'mission4-7')">Organisation avancée ouverte</button>
-        <button onclick="checkAnswer('Organisation automatique optimisée', 'mission4-7')">Organisation automatique optimisée</button>
-        <p class="hint">Indice : C’est une structure sans chef.</p>
-        <p class="feedback" id="feedback-mission4-7"></p>
-    </div>
-</article>
+            <article class="mission" id="mission4-7" style="display: none;">
+                <h3>Mission 7 : Les DAO</h3>
+                <p>Que signifie DAO ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Organisation autonome décentralisée', 'mission4-7')">Organisation autonome décentralisée</button>
+                    <button onclick="checkAnswer('Organisation avancée ouverte', 'mission4-7')">Organisation avancée ouverte</button>
+                    <button onclick="checkAnswer('Organisation automatique optimisée', 'mission4-7')">Organisation automatique optimisée</button>
+                    <p class="hint">Indice : C’est une structure sans chef.</p>
+                    <p class="feedback" id="feedback-mission4-7"></p>
+                </div>
+            </article>
 
-<!-- Mission 4-8 -->
-<article class="mission" id="mission4-8" style="display: none;">
-    <h3>Mission 8 : Les Stablecoins</h3>
-    <p>Quel est un exemple de stablecoin ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('USDT', 'mission4-8')">USDT</button>
-        <button onclick="checkAnswer('ETH', 'mission4-8')">ETH</button>
-        <button onclick="checkAnswer('BTC', 'mission4-8')">BTC</button>
-        <p class="hint">Indice : C’est lié à une monnaie fiat.</p>
-        <p class="feedback" id="feedback-mission4-8"></p>
-    </div>
-</article>
+            <article class="mission" id="mission4-8" style="display: none;">
+                <h3>Mission 8 : Les Stablecoins</h3>
+                <p>Quel est un exemple de stablecoin ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('USDT', 'mission4-8')">USDT</button>
+                    <button onclick="checkAnswer('ETH', 'mission4-8')">ETH</button>
+                    <button onclick="checkAnswer('BTC', 'mission4-8')">BTC</button>
+                    <p class="hint">Indice : C’est lié à une monnaie fiat.</p>
+                    <p class="feedback" id="feedback-mission4-8"></p>
+                </div>
+            </article>
 
-<!-- Mission 4-9 -->
-<article class="mission" id="mission4-9" style="display: none;">
-    <h3>Mission 9 : Les Interopérabilités</h3>
-    <p>Quel projet vise à connecter différentes blockchains ?</p>
-    <div class="activity">
-        <button onclick="checkAnswer('Polkadot', 'mission4-9')">Polkadot</button>
-        <button onclick="checkAnswer('Bitcoin', 'mission4-9')">Bitcoin</button>
-        <button onclick="checkAnswer('Ripple', 'mission4-9')">Ripple</button>
-        <p class="hint">Indice : Pense à un pont entre blockchains.</p>
-        <p class="feedback" id="feedback-mission4-9"></p>
-    </div>
-</article>
+            <article class="mission" id="mission4-9" style="display: none;">
+                <h3>Mission 9 : Les Interopérabilités</h3>
+                <p>Quel projet vise à connecter différentes blockchains ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Polkadot', 'mission4-9')">Polkadot</button>
+                    <button onclick="checkAnswer('Bitcoin', 'mission4-9')">Bitcoin</button>
+                    <button onclick="checkAnswer('Ripple', 'mission4-9')">Ripple</button>
+                    <p class="hint">Indice : Pense à un pont entre blockchains.</p>
+                    <p class="feedback" id="feedback-mission4-9"></p>
+                </div>
+            </article>
+
+            <!-- Mission 4-10 : Les Tokens RWA -->
+            <article class="mission" id="mission4-10" style="display: none;">
+                <h3>Mission 10 : Les Tokens RWA</h3>
+                <p>Quel type d'actif peut être représenté par un token RWA ?</p>
+                <div class="activity">
+                    <button onclick="checkAnswer('Immobilier', 'mission4-10')">Immobilier</button>
+                    <button onclick="checkAnswer('Meme coin', 'mission4-10')">Meme coin</button>
+                    <button onclick="checkAnswer('Crypto-monnaie', 'mission4-10')">Crypto-monnaie</button>
+                    <p class="hint">Indice : Pense à un actif tangible du monde réel.</p>
+                    <p class="feedback" id="feedback-mission4-10"></p>
+                </div>
+            </article>
 
             <article class="mission boss" id="boss4" style="display: none;">
                 <h3>Boss : Spectre de la Centralisation</h3>
@@ -572,7 +567,7 @@
 
             <article class="bonus-mission" id="bonus-tax-1">
                 <h3>Mission 1 : Déclaration Légale</h3>
-                <p><img src="https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=029" alt="Doge"> L’Inspecteur Fiscal te demande : "Dois-tu déclarer tes cryptos ?"</p>
+                <p><img src="assets/legatio-coin.png" alt="Legatio Coin"> L’Inspecteur Fiscal te demande : "Dois-tu déclarer tes cryptos ?"</p>
                 <div class="activity">
                     <button onclick="checkTaxAnswer('Oui', 'bonus-tax-1')">Oui</button>
                     <button onclick="checkTaxAnswer('Non', 'bonus-tax-1')">Non</button>
@@ -594,7 +589,7 @@
 
             <article class="bonus-mission" id="bonus-tax-3" style="display: none;">
                 <h3>Mission 3 : Optimisation</h3>
-                <p><img src="https://cryptologos.cc/logos/shiba-inu-shib-logo.png?v=029" alt="Shiba"> Quelle stratégie réduit tes impôts légaux ?</p>
+                <p><img src="assets/legatio-coin.png" alt="Legatio Coin"> Quelle stratégie réduit tes impôts légaux ?</p>
                 <div class="activity">
                     <button onclick="checkTaxStrategy('Défiscalisation', 'bonus-tax-3')">Défiscalisation</button>
                     <button onclick="checkTaxStrategy('Évasion fiscale', 'bonus-tax-3')">Évasion fiscale</button>
@@ -605,8 +600,8 @@
 
             <div class="bonus-reward" id="bonus-tax-reward" style="display: none;">
                 <h3>Récompense : Bouclier Fiscal</h3>
-                <p>Tu es un maître de la fiscalité !</p>
-                <img src="https://media.giphy.com/media/VRKheDy4DkBMrQm66p/giphy.gif" alt="Doge Dancing">
+                <p>Tu es un maître de la fiscalité avec Legatio !</p>
+                <img src="assets/legatio-text.png" alt="Legatio Text">
                 <button onclick="endGame()">Terminer</button>
             </div>
         </section>
@@ -657,97 +652,93 @@
             }
         }
 
-function checkAnswer(answer, missionId) {
-    const feedback = document.getElementById(`feedback-${missionId}`);
-    let correctAnswer;
+        function checkAnswer(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            let correctAnswer;
+            const answers = {
+                // Semaine 1
+                'mission1-1': 'Décentralisation',
+                'mission1-5': 'Portefeuille matériel',
+                'mission1-6': 'Un mot de passe',
+                'mission1-7': 'Frais de minage',
+                'mission1-8': 'Preuve de travail',
+                'mission1-9': 'Valider les transactions',
+                // Semaine 2
+                'mission2-1': 'Ethereum',
+                'mission2-5': 'Pour exécuter des transactions',
+                'mission2-6': 'Preuve d\'enjeu',
+                'mission2-7': 'Des tokens standards sur Ethereum',
+                'mission2-8': 'Non-Fungible Token',
+                'mission2-9': 'Fournir des données externes',
+                // Semaine 3
+                'mission3-1': 'Une adresse',
+                'mission3-6': '12',
+                'mission3-7': 'Piratage',
+                'mission3-8': 'Ransomware',
+                'mission3-9': 'Dans un endroit sécurisé hors ligne',
+                // Semaine 4
+                'mission4-1': 'Registre décentralisé',
+                'mission4-6': 'Améliorer la scalabilité',
+                'mission4-7': 'Organisation autonome décentralisée',
+                'mission4-8': 'USDT',
+                'mission4-9': 'Polkadot',
+                'mission4-10': 'Immobilier', // Ajout pour la mission RWA
+                // Bonus
+                'bonus-tax-1': 'Oui'
+            };
 
-    // Définir les réponses correctes pour toutes les missions
-    const answers = {
-        // Semaine 1
-        'mission1-1': 'Décentralisation',
-        'mission1-5': 'Portefeuille matériel',
-        'mission1-6': 'Un mot de passe',
-        'mission1-7': 'Frais de minage',
-        'mission1-8': 'Preuve de travail',
-        'mission1-9': 'Valider les transactions',
-        // Semaine 2
-        'mission2-1': 'Ethereum',
-        'mission2-5': 'Pour exécuter des transactions',
-        'mission2-6': 'Preuve d\'enjeu',
-        'mission2-7': 'Des tokens standards sur Ethereum',
-        'mission2-8': 'Non-Fungible Token',
-        'mission2-9': 'Fournir des données externes',
-        // Semaine 3
-        'mission3-1': 'Une adresse',
-        'mission3-6': '12',
-        'mission3-7': 'Piratage',
-        'mission3-8': 'Ransomware',
-        'mission3-9': 'Dans un endroit sécurisé hors ligne',
-        // Semaine 4
-        'mission4-1': 'Registre décentralisé',
-        'mission4-6': 'Améliorer la scalabilité',
-        'mission4-7': 'Organisation autonome décentralisée',
-        'mission4-8': 'USDT',
-        'mission4-9': 'Polkadot',
-        // Bonus
-        'bonus-tax-1': 'Oui'
-    };
+            correctAnswer = answers[missionId];
 
-    correctAnswer = answers[missionId];
+            if (answer === correctAnswer) {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                if (missionId === 'mission1-1') updateInventory('BTC');
+                if (missionId === 'mission2-1') updateInventory('ETH');
 
-    if (answer === correctAnswer) {
-        feedback.textContent = 'Correct ! Bien joué !';
-        feedback.className = 'feedback correct';
-        try {
-            winSound.play();
-        } catch (error) {
-            console.error("Erreur lors de la lecture du son de victoire:", error);
-        }
-        updateProgress(10);
-        if (missionId === 'mission1-1') updateInventory('BTC');
-        if (missionId === 'mission2-1') updateInventory('ETH');
+                const [_, weekNum, missionNum] = missionId.match(/mission(\d+)-(\d+)/) || [];
+                if (weekNum && missionNum) {
+                    const nextMissionNum = parseInt(missionNum) + 1;
+                    const nextMissionId = `mission${weekNum}-${nextMissionNum}`;
+                    const nextMissionElement = document.getElementById(nextMissionId);
 
-        // Extraire les numéros de semaine et de mission
-        const [_, weekNum, missionNum] = missionId.match(/mission(\d+)-(\d+)/) || [];
-        if (weekNum && missionNum) {
-            const nextMissionNum = parseInt(missionNum) + 1;
-            const nextMissionId = `mission${weekNum}-${nextMissionNum}`;
-            const nextMissionElement = document.getElementById(nextMissionId);
-
-            // Si la mission suivante existe, passer à celle-ci
-            if (nextMissionElement) {
-                setTimeout(() => {
-                    document.getElementById(missionId).style.display = 'none';
-                    nextMissionElement.style.display = 'block';
-                }, 1000);
-            } else {
-                // Sinon, passer au boss de la semaine
-                const bossElement = document.getElementById(`boss${weekNum}`);
-                if (bossElement) {
+                    if (nextMissionElement) {
+                        setTimeout(() => {
+                            document.getElementById(missionId).style.display = 'none';
+                            nextMissionElement.style.display = 'block';
+                        }, 1000);
+                    } else {
+                        const bossElement = document.getElementById(`boss${weekNum}`);
+                        if (bossElement) {
+                            setTimeout(() => {
+                                document.getElementById(missionId).style.display = 'none';
+                                bossElement.style.display = 'block';
+                            }, 1000);
+                        } else {
+                            console.warn(`Boss de la semaine ${weekNum} non trouvé.`);
+                        }
+                    }
+                } else if (missionId === 'bonus-tax-1') {
                     setTimeout(() => {
                         document.getElementById(missionId).style.display = 'none';
-                        bossElement.style.display = 'block';
+                        document.getElementById('bonus-tax-2').style.display = 'block';
                     }, 1000);
-                } else {
-                    console.warn(`Boss de la semaine ${weekNum} non trouvé.`);
+                }
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
                 }
             }
-        } else if (missionId === 'bonus-tax-1') {
-            setTimeout(() => {
-                document.getElementById(missionId).style.display = 'none';
-                document.getElementById('bonus-tax-2').style.display = 'block';
-            }, 1000);
         }
-    } else {
-        feedback.textContent = 'Incorrect. Réessaie !';
-        feedback.className = 'feedback incorrect';
-        try {
-            wrongSound.play();
-        } catch (error) {
-            console.error("Erreur lors de la lecture du son d'erreur:", error);
-        }
-    }
-}
 
         function checkPassword(missionId) {
             const password = document.getElementById('password1').value;
@@ -802,31 +793,31 @@ function checkAnswer(answer, missionId) {
             }
         }
 
-   function checkPhishing(answer, missionId) {
-    const feedback = document.getElementById(`feedback-${missionId}`);
-    if (answer === 'Faux') {
-        feedback.textContent = 'Correct ! Bien joué !';
-        feedback.className = 'feedback correct';
-        try {
-            winSound.play();
-        } catch (error) {
-            console.error("Erreur lors de la lecture du son de victoire:", error);
+        function checkPhishing(answer, missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (answer === 'Faux') {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission1-5').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
         }
-        updateProgress(10);
-        setTimeout(() => {
-            document.getElementById(missionId).style.display = 'none';
-            document.getElementById('mission1-5').style.display = 'block'; // Passer à mission1-5
-        }, 1000);
-    } else {
-        feedback.textContent = 'Incorrect. Réessaie !';
-        feedback.className = 'feedback incorrect';
-        try {
-            wrongSound.play();
-        } catch (error) {
-            console.error("Erreur lors de la lecture du son d'erreur:", error);
-        }
-    }
-}
 
         function checkBoss(answer, missionId) {
             const feedback = document.getElementById(`feedback-${missionId}`);
@@ -901,32 +892,32 @@ function checkAnswer(answer, missionId) {
             }
         }
 
-function checkFees(missionId) {
-    const fees = parseFloat(document.getElementById('fees').value);
-    const feedback = document.getElementById(`feedback-${missionId}`);
-    if (fees === 0.5) {
-        feedback.textContent = 'Correct ! Bien joué !';
-        feedback.className = 'feedback correct';
-        try {
-            winSound.play();
-        } catch (error) {
-            console.error("Erreur lors de la lecture du son de victoire:", error);
+        function checkFees(missionId) {
+            const fees = parseFloat(document.getElementById('fees').value);
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            if (fees === 0.5) {
+                feedback.textContent = 'Correct ! Bien joué !';
+                feedback.className = 'feedback correct';
+                try {
+                    winSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son de victoire:", error);
+                }
+                updateProgress(10);
+                setTimeout(() => {
+                    document.getElementById(missionId).style.display = 'none';
+                    document.getElementById('mission2-5').style.display = 'block';
+                }, 1000);
+            } else {
+                feedback.textContent = 'Incorrect. Réessaie !';
+                feedback.className = 'feedback incorrect';
+                try {
+                    wrongSound.play();
+                } catch (error) {
+                    console.error("Erreur lors de la lecture du son d'erreur:", error);
+                }
+            }
         }
-        updateProgress(10);
-        setTimeout(() => {
-            document.getElementById(missionId).style.display = 'none';
-            document.getElementById('mission2-5').style.display = 'block'; // Passer à 2-5
-        }, 1000);
-    } else {
-        feedback.textContent = 'Incorrect. Réessaie !';
-        feedback.className = 'feedback incorrect';
-        try {
-            wrongSound.play();
-        } catch (error) {
-            console.error("Erreur lors de la lecture du son d'erreur:", error);
-        }
-    }
-}
 
         function checkReason(missionId) {
             const reason = document.getElementById('reason').value;
@@ -1033,21 +1024,21 @@ function checkFees(missionId) {
             }
         }
 
-    function transferBTC(missionId) {
-    const feedback = document.getElementById(`feedback-${missionId}`);
-    feedback.textContent = 'Transfert réussi !';
-    feedback.className = 'feedback correct';
-    try {
-        winSound.play();
-    } catch (error) {
-        console.error("Erreur lors de la lecture du son de victoire:", error);
-    }
-    updateProgress(10);
-    setTimeout(() => {
-        document.getElementById(missionId).style.display = 'none';
-        document.getElementById('mission3-6').style.display = 'block'; // Passer à 3-6
-    }, 1000);
-}
+        function transferBTC(missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            feedback.textContent = 'Transfert réussi !';
+            feedback.className = 'feedback correct';
+            try {
+                winSound.play();
+            } catch (error) {
+                console.error("Erreur lors de la lecture du son de victoire:", error);
+            }
+            updateProgress(10);
+            setTimeout(() => {
+                document.getElementById(missionId).style.display = 'none';
+                document.getElementById('mission3-6').style.display = 'block';
+            }, 1000);
+        }
 
         function checkBlocks(missionId) {
             const blocks = parseInt(document.getElementById('blocks').value);
@@ -1128,21 +1119,21 @@ function checkFees(missionId) {
             }
         }
 
-   function exploreBlock(missionId) {
-    const feedback = document.getElementById(`feedback-${missionId}`);
-    feedback.textContent = 'Bloc exploré !';
-    feedback.className = 'feedback correct';
-    try {
-        winSound.play();
-    } catch (error) {
-        console.error("Erreur lors de la lecture du son de victoire:", error);
-    }
-    updateProgress(10);
-    setTimeout(() => {
-        document.getElementById(missionId).style.display = 'none';
-        document.getElementById('mission4-6').style.display = 'block'; // Passer à 4-6
-    }, 1000);
-}
+        function exploreBlock(missionId) {
+            const feedback = document.getElementById(`feedback-${missionId}`);
+            feedback.textContent = 'Bloc exploré !';
+            feedback.className = 'feedback correct';
+            try {
+                winSound.play();
+            } catch (error) {
+                console.error("Erreur lors de la lecture du son de victoire:", error);
+            }
+            updateProgress(10);
+            setTimeout(() => {
+                document.getElementById(missionId).style.display = 'none';
+                document.getElementById('mission4-6').style.display = 'block';
+            }, 1000);
+        }
 
         function checkTaxAnswer(answer, missionId) {
             const feedback = document.getElementById(`feedback-${missionId}`);
@@ -1225,9 +1216,9 @@ function checkFees(missionId) {
 
         function updateProgress(amount) {
             progress += amount;
-            if (progress > 110) progress = 110;
+            if (progress > 120) progress = 120; // Ajusté pour la nouvelle mission
             document.getElementById('progress').value = progress;
-            document.getElementById('progress-text').textContent = `Progression : ${Math.round(progress / 110 * 100)}%`;
+            document.getElementById('progress-text').textContent = `Progression : ${Math.round(progress / 120 * 100)}%`;
         }
 
         function updateInventory(type) {
