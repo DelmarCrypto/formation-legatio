@@ -660,34 +660,40 @@
 function checkAnswer(answer, missionId) {
     const feedback = document.getElementById(`feedback-${missionId}`);
     let correctAnswer;
-    // Semaine 1
-    if (missionId === 'mission1-1') correctAnswer = 'Décentralisation';
-    if (missionId === 'mission1-5') correctAnswer = 'Portefeuille matériel';
-    if (missionId === 'mission1-6') correctAnswer = 'Un mot de passe';
-    if (missionId === 'mission1-7') correctAnswer = 'Frais de minage';
-    if (missionId === 'mission1-8') correctAnswer = 'Preuve de travail';
-    if (missionId === 'mission1-9') correctAnswer = 'Valider les transactions';
-    // Semaine 2
-    if (missionId === 'mission2-1') correctAnswer = 'Ethereum';
-    if (missionId === 'mission2-5') correctAnswer = 'Pour exécuter des transactions';
-    if (missionId === 'mission2-6') correctAnswer = 'Preuve d\'enjeu';
-    if (missionId === 'mission2-7') correctAnswer = 'Des tokens standards sur Ethereum';
-    if (missionId === 'mission2-8') correctAnswer = 'Non-Fungible Token';
-    if (missionId === 'mission2-9') correctAnswer = 'Fournir des données externes';
-    // Semaine 3
-    if (missionId === 'mission3-1') correctAnswer = 'Une adresse';
-    if (missionId === 'mission3-6') correctAnswer = '12';
-    if (missionId === 'mission3-7') correctAnswer = 'Piratage';
-    if (missionId === 'mission3-8') correctAnswer = 'Ransomware';
-    if (missionId === 'mission3-9') correctAnswer = 'Dans un endroit sécurisé hors ligne';
-    // Semaine 4
-    if (missionId === 'mission4-1') correctAnswer = 'Registre décentralisé';
-    if (missionId === 'mission4-6') correctAnswer = 'Améliorer la scalabilité';
-    if (missionId === 'mission4-7') correctAnswer = 'Organisation autonome décentralisée';
-    if (missionId === 'mission4-8') correctAnswer = 'USDT';
-    if (missionId === 'mission4-9') correctAnswer = 'Polkadot';
-    // Bonus
-    if (missionId === 'bonus-tax-1') correctAnswer = 'Oui';
+
+    // Définir les réponses correctes pour toutes les missions
+    const answers = {
+        // Semaine 1
+        'mission1-1': 'Décentralisation',
+        'mission1-5': 'Portefeuille matériel',
+        'mission1-6': 'Un mot de passe',
+        'mission1-7': 'Frais de minage',
+        'mission1-8': 'Preuve de travail',
+        'mission1-9': 'Valider les transactions',
+        // Semaine 2
+        'mission2-1': 'Ethereum',
+        'mission2-5': 'Pour exécuter des transactions',
+        'mission2-6': 'Preuve d\'enjeu',
+        'mission2-7': 'Des tokens standards sur Ethereum',
+        'mission2-8': 'Non-Fungible Token',
+        'mission2-9': 'Fournir des données externes',
+        // Semaine 3
+        'mission3-1': 'Une adresse',
+        'mission3-6': '12',
+        'mission3-7': 'Piratage',
+        'mission3-8': 'Ransomware',
+        'mission3-9': 'Dans un endroit sécurisé hors ligne',
+        // Semaine 4
+        'mission4-1': 'Registre décentralisé',
+        'mission4-6': 'Améliorer la scalabilité',
+        'mission4-7': 'Organisation autonome décentralisée',
+        'mission4-8': 'USDT',
+        'mission4-9': 'Polkadot',
+        // Bonus
+        'bonus-tax-1': 'Oui'
+    };
+
+    correctAnswer = answers[missionId];
 
     if (answer === correctAnswer) {
         feedback.textContent = 'Correct ! Bien joué !';
@@ -701,28 +707,21 @@ function checkAnswer(answer, missionId) {
         if (missionId === 'mission1-1') updateInventory('BTC');
         if (missionId === 'mission2-1') updateInventory('ETH');
 
-        // Calculer l'ID de la mission suivante
-        if (missionId === 'bonus-tax-1') {
-            // Cas spécial pour le bonus : passer à bonus-tax-2
-            setTimeout(() => {
-                document.getElementById(missionId).style.display = 'none';
-                document.getElementById('bonus-tax-2').style.display = 'block';
-            }, 1000);
-        } else {
-            // Extraire les numéros de semaine et de mission (ex: mission1-1 -> semaine 1, mission 1)
-            const [_, weekNum, missionNum] = missionId.match(/mission(\d+)-(\d+)/);
+        // Extraire les numéros de semaine et de mission
+        const [_, weekNum, missionNum] = missionId.match(/mission(\d+)-(\d+)/) || [];
+        if (weekNum && missionNum) {
             const nextMissionNum = parseInt(missionNum) + 1;
             const nextMissionId = `mission${weekNum}-${nextMissionNum}`;
-
-            // Vérifier si la mission suivante existe
             const nextMissionElement = document.getElementById(nextMissionId);
+
+            // Si la mission suivante existe, passer à celle-ci
             if (nextMissionElement) {
                 setTimeout(() => {
                     document.getElementById(missionId).style.display = 'none';
                     nextMissionElement.style.display = 'block';
                 }, 1000);
             } else {
-                // Si c'est la dernière mission de la semaine, passer au boss
+                // Sinon, passer au boss de la semaine
                 const bossElement = document.getElementById(`boss${weekNum}`);
                 if (bossElement) {
                     setTimeout(() => {
@@ -730,9 +729,14 @@ function checkAnswer(answer, missionId) {
                         bossElement.style.display = 'block';
                     }, 1000);
                 } else {
-                    console.warn(`Boss de la semaine ${weekNum} non trouvé. Vérifiez l'ID.`);
+                    console.warn(`Boss de la semaine ${weekNum} non trouvé.`);
                 }
             }
+        } else if (missionId === 'bonus-tax-1') {
+            setTimeout(() => {
+                document.getElementById(missionId).style.display = 'none';
+                document.getElementById('bonus-tax-2').style.display = 'block';
+            }, 1000);
         }
     } else {
         feedback.textContent = 'Incorrect. Réessaie !';
