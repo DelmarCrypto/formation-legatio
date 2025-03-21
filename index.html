@@ -1033,21 +1033,21 @@ function checkFees(missionId) {
             }
         }
 
-        function transferBTC(missionId) {
-            const feedback = document.getElementById(`feedback-${missionId}`);
-            feedback.textContent = 'Transfert réussi !';
-            feedback.className = 'feedback correct';
-            try {
-                winSound.play();
-            } catch (error) {
-                console.error("Erreur lors de la lecture du son de victoire:", error);
-            }
-            updateProgress(10);
-            setTimeout(() => {
-                document.getElementById(missionId).style.display = 'none';
-                document.getElementById('boss3').style.display = 'block';
-            }, 1000);
-        }
+    function transferBTC(missionId) {
+    const feedback = document.getElementById(`feedback-${missionId}`);
+    feedback.textContent = 'Transfert réussi !';
+    feedback.className = 'feedback correct';
+    try {
+        winSound.play();
+    } catch (error) {
+        console.error("Erreur lors de la lecture du son de victoire:", error);
+    }
+    updateProgress(10);
+    setTimeout(() => {
+        document.getElementById(missionId).style.display = 'none';
+        document.getElementById('mission3-6').style.display = 'block'; // Passer à 3-6
+    }, 1000);
+}
 
         function checkBlocks(missionId) {
             const blocks = parseInt(document.getElementById('blocks').value);
@@ -1128,21 +1128,21 @@ function checkFees(missionId) {
             }
         }
 
-        function exploreBlock(missionId) {
-            const feedback = document.getElementById(`feedback-${missionId}`);
-            feedback.textContent = 'Bloc exploré !';
-            feedback.className = 'feedback correct';
-            try {
-                winSound.play();
-            } catch (error) {
-                console.error("Erreur lors de la lecture du son de victoire:", error);
-            }
-            updateProgress(10);
-            setTimeout(() => {
-                document.getElementById(missionId).style.display = 'none';
-                document.getElementById('boss4').style.display = 'block';
-            }, 1000);
-        }
+   function exploreBlock(missionId) {
+    const feedback = document.getElementById(`feedback-${missionId}`);
+    feedback.textContent = 'Bloc exploré !';
+    feedback.className = 'feedback correct';
+    try {
+        winSound.play();
+    } catch (error) {
+        console.error("Erreur lors de la lecture du son de victoire:", error);
+    }
+    updateProgress(10);
+    setTimeout(() => {
+        document.getElementById(missionId).style.display = 'none';
+        document.getElementById('mission4-6').style.display = 'block'; // Passer à 4-6
+    }, 1000);
+}
 
         function checkTaxAnswer(answer, missionId) {
             const feedback = document.getElementById(`feedback-${missionId}`);
