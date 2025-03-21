@@ -901,32 +901,32 @@ function checkAnswer(answer, missionId) {
             }
         }
 
-        function checkFees(missionId) {
-            const fees = parseFloat(document.getElementById('fees').value);
-            const feedback = document.getElementById(`feedback-${missionId}`);
-            if (fees === 0.5) {
-                feedback.textContent = 'Correct ! Bien joué !';
-                feedback.className = 'feedback correct';
-                try {
-                    winSound.play();
-                } catch (error) {
-                    console.error("Erreur lors de la lecture du son de victoire:", error);
-                }
-                updateProgress(10);
-                setTimeout(() => {
-                    document.getElementById(missionId).style.display = 'none';
-                    document.getElementById('boss2').style.display = 'block';
-                }, 1000);
-            } else {
-                feedback.textContent = 'Incorrect. Réessaie !';
-                feedback.className = 'feedback incorrect';
-                try {
-                    wrongSound.play();
-                } catch (error) {
-                    console.error("Erreur lors de la lecture du son d'erreur:", error);
-                }
-            }
+function checkFees(missionId) {
+    const fees = parseFloat(document.getElementById('fees').value);
+    const feedback = document.getElementById(`feedback-${missionId}`);
+    if (fees === 0.5) {
+        feedback.textContent = 'Correct ! Bien joué !';
+        feedback.className = 'feedback correct';
+        try {
+            winSound.play();
+        } catch (error) {
+            console.error("Erreur lors de la lecture du son de victoire:", error);
         }
+        updateProgress(10);
+        setTimeout(() => {
+            document.getElementById(missionId).style.display = 'none';
+            document.getElementById('mission2-5').style.display = 'block'; // Passer à 2-5
+        }, 1000);
+    } else {
+        feedback.textContent = 'Incorrect. Réessaie !';
+        feedback.className = 'feedback incorrect';
+        try {
+            wrongSound.play();
+        } catch (error) {
+            console.error("Erreur lors de la lecture du son d'erreur:", error);
+        }
+    }
+}
 
         function checkReason(missionId) {
             const reason = document.getElementById('reason').value;
