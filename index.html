@@ -802,31 +802,31 @@ function checkAnswer(answer, missionId) {
             }
         }
 
-        function checkPhishing(answer, missionId) {
-            const feedback = document.getElementById(`feedback-${missionId}`);
-            if (answer === 'Faux') {
-                feedback.textContent = 'Correct ! Bien joué !';
-                feedback.className = 'feedback correct';
-                try {
-                    winSound.play();
-                } catch (error) {
-                    console.error("Erreur lors de la lecture du son de victoire:", error);
-                }
-                updateProgress(10);
-                setTimeout(() => {
-                    document.getElementById(missionId).style.display = 'none';
-                    document.getElementById('boss1').style.display = 'block';
-                }, 1000);
-            } else {
-                feedback.textContent = 'Incorrect. Réessaie !';
-                feedback.className = 'feedback incorrect';
-                try {
-                    wrongSound.play();
-                } catch (error) {
-                    console.error("Erreur lors de la lecture du son d'erreur:", error);
-                }
-            }
+   function checkPhishing(answer, missionId) {
+    const feedback = document.getElementById(`feedback-${missionId}`);
+    if (answer === 'Faux') {
+        feedback.textContent = 'Correct ! Bien joué !';
+        feedback.className = 'feedback correct';
+        try {
+            winSound.play();
+        } catch (error) {
+            console.error("Erreur lors de la lecture du son de victoire:", error);
         }
+        updateProgress(10);
+        setTimeout(() => {
+            document.getElementById(missionId).style.display = 'none';
+            document.getElementById('mission1-5').style.display = 'block'; // Passer à mission1-5
+        }, 1000);
+    } else {
+        feedback.textContent = 'Incorrect. Réessaie !';
+        feedback.className = 'feedback incorrect';
+        try {
+            wrongSound.play();
+        } catch (error) {
+            console.error("Erreur lors de la lecture du son d'erreur:", error);
+        }
+    }
+}
 
         function checkBoss(answer, missionId) {
             const feedback = document.getElementById(`feedback-${missionId}`);
