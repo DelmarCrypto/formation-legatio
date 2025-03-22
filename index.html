@@ -15,7 +15,7 @@
             <h1 class="main-title">Crypto Quest</h1>
             <div class="progress-bar">
                 <span id="progress-text">Progression : 0%</span>
-                <progress id="progress" value="0" max="120"></progress> <!-- Ajusté max à 120 pour la nouvelle mission -->
+                <progress id="progress" value="0" max="120"></progress>
             </div>
             <div class="inventory">
                 <h3>Inventaire</h3>
@@ -34,7 +34,7 @@
             <div class="intro-text">
                 <h2>Bienvenue à Cryptopia !</h2>
                 <p>Plonge dans une quête épique pour maîtriser Bitcoin, Ethereum et les tokens RWA avec Legatio !</p>
-                <img src="assets/legatio.coin.png" alt="Legatio Coin"> <!-- Remplacement de Dogecoin -->
+                <img src="legatio.coin.png" alt="Legatio Coin">
             </div>
             <button class="btn-start" onclick="startQuest()">Commencer l'Aventure</button>
         </section>
@@ -451,7 +451,7 @@
 
             <article class="mission" id="mission4-3" style="display: none;">
                 <h3>Mission 3 : Preuve de Travail</h3>
-                <p>Le Mineur te demande : "Quel mécanisme sécurise Bitcoin ?"</p>
+                <p>Le Mineur te demande : "  "Preuve de travail ?"</p>
                 <div class="activity">
                     <button onclick="checkProof('Preuve de travail', 'mission4-3')">Preuve de travail</button>
                     <button onclick="checkProof('Preuve d’enjeu', 'mission4-3')">Preuve d’enjeu</button>
@@ -529,7 +529,6 @@
                 </div>
             </article>
 
-            <!-- Mission 4-10 : Les Tokens RWA -->
             <article class="mission" id="mission4-10" style="display: none;">
                 <h3>Mission 10 : Les Tokens RWA</h3>
                 <p>Quel type d'actif peut être représenté par un token RWA ?</p>
@@ -567,7 +566,7 @@
 
             <article class="bonus-mission" id="bonus-tax-1">
                 <h3>Mission 1 : Déclaration Légale</h3>
-                <p><img src="assets/legatio-coin.png" alt="Legatio Coin"> L’Inspecteur Fiscal te demande : "Dois-tu déclarer tes cryptos ?"</p>
+                <p><img src="legatio.coin.png" alt="Legatio Coin"> L’Inspecteur Fiscal te demande : "Dois-tu déclarer tes cryptos ?"</p>
                 <div class="activity">
                     <button onclick="checkTaxAnswer('Oui', 'bonus-tax-1')">Oui</button>
                     <button onclick="checkTaxAnswer('Non', 'bonus-tax-1')">Non</button>
@@ -589,7 +588,7 @@
 
             <article class="bonus-mission" id="bonus-tax-3" style="display: none;">
                 <h3>Mission 3 : Optimisation</h3>
-                <p><img src="assets/legatio.nft.png" alt="Legatio Coin"> Quelle stratégie réduit tes impôts légaux ?</p>
+                <p><img src="legatio.nft.png" alt="Legatio Coin"> Quelle stratégie réduit tes impôts légaux ?</p>
                 <div class="activity">
                     <button onclick="checkTaxStrategy('Défiscalisation', 'bonus-tax-3')">Défiscalisation</button>
                     <button onclick="checkTaxStrategy('Évasion fiscale', 'bonus-tax-3')">Évasion fiscale</button>
@@ -601,7 +600,7 @@
             <div class="bonus-reward" id="bonus-tax-reward" style="display: none;">
                 <h3>Récompense : Bouclier Fiscal</h3>
                 <p>Tu es un maître de la fiscalité avec Legatio !</p>
-                <img src="assets/legatio.text.png" alt="Legatio Text">
+                <img src="legatio.text.png" alt="Legatio Text">
                 <button onclick="endGame()">Terminer</button>
             </div>
         </section>
@@ -656,34 +655,29 @@
             const feedback = document.getElementById(`feedback-${missionId}`);
             let correctAnswer;
             const answers = {
-                // Semaine 1
                 'mission1-1': 'Décentralisation',
                 'mission1-5': 'Portefeuille matériel',
                 'mission1-6': 'Un mot de passe',
                 'mission1-7': 'Frais de minage',
                 'mission1-8': 'Preuve de travail',
                 'mission1-9': 'Valider les transactions',
-                // Semaine 2
                 'mission2-1': 'Ethereum',
                 'mission2-5': 'Pour exécuter des transactions',
                 'mission2-6': 'Preuve d\'enjeu',
                 'mission2-7': 'Des tokens standards sur Ethereum',
                 'mission2-8': 'Non-Fungible Token',
                 'mission2-9': 'Fournir des données externes',
-                // Semaine 3
                 'mission3-1': 'Une adresse',
                 'mission3-6': '12',
                 'mission3-7': 'Piratage',
                 'mission3-8': 'Ransomware',
                 'mission3-9': 'Dans un endroit sécurisé hors ligne',
-                // Semaine 4
                 'mission4-1': 'Registre décentralisé',
                 'mission4-6': 'Améliorer la scalabilité',
                 'mission4-7': 'Organisation autonome décentralisée',
                 'mission4-8': 'USDT',
                 'mission4-9': 'Polkadot',
-                'mission4-10': 'Immobilier', // Ajout pour la mission RWA
-                // Bonus
+                'mission4-10': 'Immobilier',
                 'bonus-tax-1': 'Oui'
             };
 
@@ -1216,7 +1210,7 @@
 
         function updateProgress(amount) {
             progress += amount;
-            if (progress > 120) progress = 120; // Ajusté pour la nouvelle mission
+            if (progress > 120) progress = 120;
             document.getElementById('progress').value = progress;
             document.getElementById('progress-text').textContent = `Progression : ${Math.round(progress / 120 * 100)}%`;
         }
